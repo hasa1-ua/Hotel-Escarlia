@@ -26,5 +26,28 @@ class Foto extends Model
 
     // Getters
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getUrl()
+    {
+        return $this->url ?? 'Sin URL';
+    }
+
+    // Setters
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    // Métodos
     
 }
