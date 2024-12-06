@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('nacionalidad')->nullable();
             $table->string('pais_residencia')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->enum('rol', ['Webmaster', 'Recepción', 'Cliente']);
+            $table->enum('rol', ['Webmaster', 'Recepción', 'Cliente'])->default('cliente');
             $table->rememberToken();
             $table->timestamps();
         });

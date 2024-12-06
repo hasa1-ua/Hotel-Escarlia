@@ -18,13 +18,14 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             TiposHabitacionesTableSeeder::class,
             TiposSalasTableSeeder::class,
+            RegimenesTableSeeder::class,
             TemporadasTableSeeder::class,
             SalasTableSeeder::class,
             HabitacionesTableSeeder::class,
-            ReservasTableSeeder::class,
-            PreciosTableSeeder::class,
+            FotosTableSeeder::class,
             CuponesTableSeeder::class,
-            CuponesReservasTableSeeder::class, 
+            ReservasTableSeeder::class,
+            CuponesReservasTableSeeder::class,
         ]);
     }
 }

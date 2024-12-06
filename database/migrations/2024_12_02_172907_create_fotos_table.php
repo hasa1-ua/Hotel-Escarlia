@@ -13,9 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('precios', function (Blueprint $table) {
+        Schema::create('fotos', function (Blueprint $table) {
             $table->id();
-            $table->decimal('precio', 10, 2);
+            $table->string('url');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('precios');
+        Schema::dropIfExists('fotos');
     }
 };

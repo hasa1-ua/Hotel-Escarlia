@@ -44,9 +44,14 @@ class User extends Authenticatable
     ];
 
     // Relaciones
-
-    public function reservas() {
+    public function reservas()
+    {
         return $this->hasMany(Reserva::class, 'usuario_id');
+    }
+
+    public function cupones()
+    {
+        return $this->hasMany(Cupon::class, 'usuario_id');
     }
 
     // Getters

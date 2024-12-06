@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('temporadas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nombre');
-            $table->date('fecha_inicio');
-            $table->date('fecha_fin');
-            $table->decimal('multiplicador', 5, 2);
-            $table->timestamps();
+        Schema::table('cupones', function (Blueprint $table) {
+            $table->foreignId('usuario_id')->nullable()->constrained('users')->onDelete('set null');
         });
     }
 
@@ -30,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('temporadas');
+        Schema::table('cupones', function (Blueprint $table) {
+            $table->dropForeign(['usuario_id']);
+            $table->dropColumn('usuario_id');
+        });
     }
 };

@@ -5,31 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sala extends Model
+class Regimen extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'nombre',
-        'aforo',
-        'disponible',
+        'precio',
     ];
 
     // Relaciones
-
     public function reservas()
     {
-        return $this->hasMany(Reserva::class, 'recurso_id');
-    }
-
-    public function tipoSala()
-    {
-        return $this->belongsTo(TipoSala::class, 'tipo_sala_id');
-    }
-
-    public function fotos()
-    {
-        return $this->hasMany(Foto::class, 'sala_id');
+        return $this->hasMany(Reserva::class, 'regimen_id');
     }
 
     // Getters
@@ -44,14 +32,9 @@ class Sala extends Model
         return $this->nombre ?? 'Sin nombre';
     }
 
-    public function getAforo()
+    public function getPrecio()
     {
-        return $this->aforo ?? 0;
-    }
-
-    public function getDisponible()
-    {
-        return $this->disponible ?? true;
+        return $this->precio ?? '0';
     }
 
     // Setters
@@ -66,16 +49,12 @@ class Sala extends Model
         $this->nombre = $nombre;
     }
 
-    public function setAforo($aforo)
+    public function setPrecio($precio)
     {
-        $this->aforo = $aforo;
-    }
-
-    public function setDisponible($disponible)
-    {
-        $this->disponible = $disponible;
+        $this->precio = $precio;
     }
 
     // Métodos
+    
     
 }

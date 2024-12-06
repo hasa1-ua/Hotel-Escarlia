@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('codigo')->unique();
             $table->decimal('descuento', 10, 2);
             $table->date('fecha_expiracion');
+            $table->boolean('utilizado')->default(false);
             $table->timestamps();
         });
     }

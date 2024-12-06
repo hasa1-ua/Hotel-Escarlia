@@ -18,9 +18,9 @@ class TemporadasTableSeeder extends Seeder
         DB::table('temporadas')->delete();
 
         $temporadas = [
-            ['Alta', '2024-06-01', '2024-08-31'],
-            ['Media', '2024-04-01', '2024-05-31'],
-            ['Baja', '2024-09-01', '2024-12-31'],
+            ['Alta', '2024-06-01', '2024-08-31', 1.5],
+            ['Media', '2024-04-01', '2024-05-31', 1.0],
+            ['Baja', '2024-09-01', '2024-12-31', 0.75],
         ];
 
         foreach ($temporadas as $t) {
@@ -28,6 +28,7 @@ class TemporadasTableSeeder extends Seeder
                 'nombre' => $t[0],
                 'fecha_inicio' => $t[1],
                 'fecha_fin' => $t[2],
+                'multiplicador' => $t[3],
             ]);
         }
     }

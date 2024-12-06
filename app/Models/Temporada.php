@@ -13,13 +13,14 @@ class Temporada extends Model
         'nombre',
         'fecha_inicio',
         'fecha_fin',
+        'multiplicador',
     ];
 
     // Relaciones
-
-    public function precios()
+    
+    public function reservas()
     {
-        return $this->hasMany(Precio::class, 'temporada_id');
+        return $this->hasMany(Reserva::class, 'temporada_id');
     }
 
     // Getters
