@@ -18,16 +18,18 @@ class CuponesTableSeeder extends Seeder
         DB::table('cupones')->delete();
 
         $cupones = [
-            ['DESCUENTO10', 10.00, '2024-12-31'],
-            ['OFERTA20', 20.00, '2024-11-30'],
-            ['PROMO30', 30.00, '2024-10-31'],
+            ['DESCUENTO10', 10.00, '2024-12-31', null, false],
+            ['PROMO50', 50.00, '2024-06-30', 1, false],
+            ['BIENVENIDO', 20.00, '2025-01-01', 2, true],
         ];
 
-        foreach ($cupones as $c) {
+        foreach ($cupones as $cupon) {
             DB::table('cupones')->insert([
-                'codigo' => $c[0],
-                'descuento' => $c[1],
-                'fecha_expiracion' => $c[2],
+                'codigo' => $cupon[0],
+                'descuento' => $cupon[1],
+                'fecha_expiracion' => $cupon[2],
+                'usuario_id' => $cupon[3],
+                'utilizado' => $cupon[4],
             ]);
         }
     }

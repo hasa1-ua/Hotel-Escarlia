@@ -13,6 +13,8 @@ class Cupon extends Model
         'codigo',
         'descuento',
         'fecha_expiracion',
+        'usuario_id',
+        'utilizado',
     ];
 
     // Relaciones
@@ -20,6 +22,11 @@ class Cupon extends Model
     public function reservas()
     {
         return $this->belongsToMany(Reserva::class, 'cupon_reserva');
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'usuario_id');
     }
 
     // Getters
@@ -44,6 +51,11 @@ class Cupon extends Model
         return $this->fecha_expiracion ?? 'Sin fecha de expiración';
     }
 
+    public function getUtilizado()
+    {
+        return $this->utilizado ?? false;
+    }
+
     // Setters
 
     public function setId($id)
@@ -64,6 +76,11 @@ class Cupon extends Model
     public function setFechaExpiracion($fecha_expiracion)
     {
         $this->fecha_expiracion = $fecha_expiracion;
+    }
+
+    public function setUtilizado($utilizado)
+    {
+        $this->utilizado = $utilizado;
     }
 
     // Métodos

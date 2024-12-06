@@ -13,13 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('cupones', function (Blueprint $table) {
-            $table->id();
-            $table->string('codigo')->unique();
-            $table->decimal('descuento', 10, 2);
-            $table->date('fecha_expiracion');
-            $table->boolean('utilizado')->default(false);
-            $table->timestamps();
+        Schema::table('cupones', function (Blueprint $table) {
+            $table->foreignId('usuario_id')->nullable()->constrained('usuarios')->onDelete('set null');
         });
     }
 
@@ -30,6 +25,9 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cupones');
+        Schema::table('cupones', function (Blueprint $table) {
+            $table->dropForeign(['usuario_id']);
+            $table->dropColumn('usuario_id');
+        });
     }
 };
