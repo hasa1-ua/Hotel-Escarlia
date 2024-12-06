@@ -13,7 +13,6 @@ class Cupon extends Model
         'codigo',
         'descuento',
         'fecha_expiracion',
-        'usuario_id',
         'utilizado',
     ];
 

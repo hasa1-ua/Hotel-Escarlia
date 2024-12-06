@@ -19,17 +19,17 @@ class Sala extends Model
 
     public function reservas()
     {
-        return $this->hasMany(Reserva::class, 'recurso_id')->where('tipo_reserva', 'Sala');
-    }
-
-    public function precios()
-    {
-        return $this->hasMany(Precio::class, 'sala_id');
+        return $this->hasMany(Reserva::class, 'recurso_id');
     }
 
     public function tipoSala()
     {
         return $this->belongsTo(TipoSala::class, 'tipo_sala_id');
+    }
+
+    public function fotos()
+    {
+        return $this->hasMany(Foto::class, 'sala_id');
     }
 
     // Getters

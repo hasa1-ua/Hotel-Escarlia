@@ -10,9 +10,6 @@ class Reserva extends Model
     use HasFactory;
 
     protected $fillable = [
-        'usuario_id',
-        'habitacion_id',
-        'sala_id',
         'fecha_inicio',
         'fecha_fin',
         'estado',
@@ -24,6 +21,16 @@ class Reserva extends Model
     public function usuario()
     {
         return $this->belongsTo(User::class, 'usuario_id');
+    }
+
+    public function regimen()
+    {
+        return $this->belongsTo(Regimen::class, 'regimen_id');
+    }
+
+    public function temporada()
+    {
+        return $this->belongsTo(Temporada::class, 'temporada_id');
     }
 
     public function habitacion()

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('cupones', function (Blueprint $table) {
-            $table->foreignId('usuario_id')->nullable()->constrained('usuarios')->onDelete('set null');
+            $table->foreignId('usuario_id')->nullable()->constrained('users')->onDelete('set null');
         });
     }
 
