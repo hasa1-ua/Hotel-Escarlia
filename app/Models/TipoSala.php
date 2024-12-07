@@ -11,6 +11,7 @@ class TipoSala extends Model
 
     protected $fillable = [
         'nombre',
+        'aforo',
         'descripcion',
     ];
 

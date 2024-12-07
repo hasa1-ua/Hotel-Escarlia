@@ -16,8 +16,6 @@ return new class extends Migration
         Schema::create('salas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->integer('aforo');
-            $table->text('descripcion')->nullable();
             $table->boolean('disponible')->default(true);
             $table->timestamps();
         });
