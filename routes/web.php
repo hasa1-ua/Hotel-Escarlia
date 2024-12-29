@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\InicioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/Usuario');
 });
+
+Route::get('/Usuario', [InicioController::class, 'Usuario']);
+
+Route::get('/Admin', [InicioController::class, 'Admin']);
