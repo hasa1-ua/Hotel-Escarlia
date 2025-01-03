@@ -12,7 +12,7 @@ class TipoSala extends Model
     protected $fillable = [
         'nombre',
         'aforo',
-        'descripcion',
+        'precio',
     ];
 
     // Relaciones
@@ -39,6 +39,14 @@ class TipoSala extends Model
         return $this->descripcion ?? 'Sin descripción';
     }
 
+    public function getAforo(){
+        return $this->aforo ?? 0;
+    }
+
+    public function getPrecio(){
+        return $this->precio ?? 0.0;
+    }
+
     // Setters
 
     public function setId($id)
@@ -56,6 +64,31 @@ class TipoSala extends Model
         $this->descripcion = $descripcion;
     }
 
-    // Métodos
+    public function setAforo($aforo){
+        $this->aforo = $aforo;
+    }
+
+    public function setPrecio($precio){
+        $this->precio = $precio;
+    }
+
+
+    //
+
+
+    public static function idTipo($id){
+        return self::find($id);
+    }
+
+    public function eliminarTipoSala(){
+        $this->delete();
+    }
+
+    public static function deleteWithId($id){
+        TipoSala::find($id)->delete();
+    }
+
+
+
     
 }

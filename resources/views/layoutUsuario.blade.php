@@ -78,7 +78,7 @@
             }
 
             .rectangle-1 {
-                width: 1461px;
+                width: 1420px;
                 height: 122px;
                 padding: 8px 8px 8px 8px;
                 background: #000000;

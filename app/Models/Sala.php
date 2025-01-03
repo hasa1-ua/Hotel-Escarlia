@@ -75,6 +75,20 @@ class Sala extends Model
         $this->disponible = $disponible;
     }
 
-    // Métodos
+    public static function selectidbytype($tipoid){
+        return self::with('tipoSala')
+                    ->where('tipo_sala_id', $tipoid)
+                    ->where('disponible', true)
+                    ->first();
+    }
     
+
+    public function eliminarSala(){
+        $this->delete();
+    }
+
+    public static function deleteWithId($id){
+        Sala::find($id)->delete();
+    }
+
 }

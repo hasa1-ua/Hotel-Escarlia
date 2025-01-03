@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\InicioController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\listadoSalaController;
+use App\Http\Controllers\descripcionSalaController;
+use App\Http\Controllers\SalaUsuarioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,3 +24,7 @@ Route::get('/', function () {
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
 
 Route::get('/Admin', [InicioController::class, 'Admin']);
+
+Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
+//En salas hay que pasarle atributos de TipoSala
+Route::get('/Usuario/salas-de-conferencia/{id}',[descripcionSalaController::class, 'getSala']);

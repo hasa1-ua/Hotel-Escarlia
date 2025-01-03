@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tipos_salas', function (Blueprint $table) {
+        Schema::create('tipo_salas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->integer('aforo');
             $table->text('descripcion')->nullable();
+            $table->decimal('precio', 5, 2);
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipos_salas');
+        Schema::dropIfExists('tipo_salas');
     }
 };

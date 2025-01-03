@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->integer('plazas');
             $table->json('características')->nullable();
+            $table->decimal('precio', 5, 2);
             $table->timestamps();
         });
     }

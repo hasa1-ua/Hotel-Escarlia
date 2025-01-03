@@ -18,9 +18,9 @@ class TiposHabitacionesTableSeeder extends Seeder
         DB::table('tipos_habitaciones')->delete();
 
         $tipos_habitaciones = [
-            ['Individual', 'Habitación para una persona', 1, json_encode(['WiFi', 'TV'])],
-            ['Doble', 'Habitación para dos personas', 2, json_encode(['WiFi', 'TV', 'MiniBar'])],
-            ['Suite', 'Habitación de lujo para cuatro personas', 4, json_encode(['WiFi', 'TV', 'MiniBar', 'Jacuzzi'])],
+            ['Individual', 'Habitación para una persona', 1, json_encode(['WiFi', 'TV']), 30.00],
+            ['Doble', 'Habitación para dos personas', 2, json_encode(['WiFi', 'TV', 'MiniBar']), 50.00],
+            ['Suite', 'Habitación de lujo para cuatro personas', 4, json_encode(['WiFi', 'TV', 'MiniBar', 'Jacuzzi']), 70.00],
         ];
 
         foreach ($tipos_habitaciones as $th) {
@@ -29,6 +29,7 @@ class TiposHabitacionesTableSeeder extends Seeder
                 'descripcion' => $th[1],
                 'plazas' => $th[2],
                 'características' => $th[3],
+                'precio' => $th[4]
             ]);
         }
     }
