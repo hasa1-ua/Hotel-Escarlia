@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('aforo');
             $table->text('descripcion')->nullable();
             $table->decimal('precio', 5, 2);
+            $table->longText('img');
             $table->timestamps();
         });
     }

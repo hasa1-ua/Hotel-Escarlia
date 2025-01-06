@@ -9,10 +9,13 @@ class TipoSala extends Model
 {
     use HasFactory;
 
+
+
     protected $fillable = [
         'nombre',
         'aforo',
         'precio',
+        'img'
     ];
 
     // Relaciones
@@ -47,6 +50,10 @@ class TipoSala extends Model
         return $this->precio ?? 0.0;
     }
 
+    public function getImagen(){
+        return $this->img;
+    }
+
     // Setters
 
     public function setId($id)
@@ -72,8 +79,12 @@ class TipoSala extends Model
         $this->precio = $precio;
     }
 
+    public function setImagen($img){
+        $this->img = $img;
+    }
 
-    //
+
+    //Metodos nuevos
 
 
     public static function idTipo($id){

@@ -31,14 +31,20 @@
 }
 
 .image{
-  width: 399px;
-  height: 20px;
   display: inline-block; /* Permite que esté en línea con la imagen */
   vertical-align: middle;
   align-items: left;
+  margin-top: 50px;
+  margin-left: 20px;
+}
+
+img{
+  width: 450px;
+  height: 300px;
 }
 
 .label1{
+  margin-left: 50px;
   display: inline-block; /* Permite que esté en línea con la imagen */
   vertical-align: middle;
 }
@@ -55,11 +61,13 @@
 .label2{
   display: inline-block; /* Permite que esté en línea con la imagen */
   vertical-align: right;
+  margin-left: -50px;
+  
 }
 
 .descripcion {
-  width: 554px;
-  height: 294px;
+  width: 450px;
+  height: 20px;
   color: #C3BB38;
   font-family: "Solitreo";
   font-weight: 400;
@@ -80,7 +88,7 @@
 
     <div class="casilla"  onclick="window.location.href='/Usuario/salas-de-conferencia/{{$tiposala->id}}';">
         <div class="image">
-          <p style="color: white"> imagen </p>
+          <img src="{{ asset($tiposala->img) }}">
         </div>
         <div class="label1">
           <h4 class="nombre"> {{ $tiposala->nombre}} </h4>
