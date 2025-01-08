@@ -84,7 +84,7 @@ class TipoSala extends Model
     }
 
 
-    //Metodos nuevos
+    //Metodos CRUD
 
 
     public static function idTipo($id){

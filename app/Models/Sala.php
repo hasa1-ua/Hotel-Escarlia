@@ -81,6 +81,8 @@ class Sala extends Model
                     ->where('disponible', true)
                     ->first();
     }
+
+    // Metodos CRUD
     
 
     public function eliminarSala(){
@@ -89,6 +91,10 @@ class Sala extends Model
 
     public static function deleteWithId($id){
         Sala::find($id)->delete();
+    }
+
+    public function obtenerSalaporId($id){
+        return self::find($id);
     }
 
 }

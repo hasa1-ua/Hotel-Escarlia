@@ -1,6 +1,8 @@
 <style>
 
 .container{
+  margin-top: 20px;
+  margin-left: -10px;
   width: 1420px;
   height: 849px;
   padding: 8px 8px 8px 8px;
@@ -51,10 +53,21 @@ button {
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
+  
+}
+
+.button1{
   text-align: center;
   float: right;
   margin-right: 150px;
-  margin-top: -150px;
+  margin-top: -200px;
+}
+
+.button2{
+  text-align: center;
+  float: right;
+  margin-right: 150px;
+  margin-top: -60px;
 }
 
 
@@ -81,7 +94,8 @@ button {
         @else
             <h3 class="letras1">No disponible</h3>
         @endif
-        <button onclick="window.location.href='/'">Reservar</button>
+        <button class="button1"  onclick="window.location.reload();">Reservar</button>
+        <button class="button2" onclick="window.location.href='/Usuario/salas-de-conferencia'">Volver</button>
     </div>
 
     
