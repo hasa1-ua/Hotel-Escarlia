@@ -49,4 +49,38 @@ class PerfilUsuario extends Controller
 
         return redirect('/Usuario/perfil');
     }
+
+    public function modificar_contraseña(){
+        $usuario = Auth::user();
+        if(!$usuario){
+            return redirect()->route('/Usuario');
+        }
+
+        return view('perfil/modificarContraseña', ['usuario' => $usuario]);
+    }
+
+    public function confirmar_contraseña($email, Request $request){
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8',
+            'repeat_password' => 'required|same:new_password',
+        ]);
+
+        $usuario = Auth::user();
+        if(!$usuario){
+            return redirect()->route('/Usuario');
+        }
+
+        $usuario = User::obtenerUsuarioPorEmail($email);
+
+        // Verificar si la contraseña actual es correcta
+        if (!Hash::check($request->current_password, $usuario->password)) {
+            return back()->with('error', 'La contraseña actual no es correcta.');
+        }
+
+        $usuario->password = Hash::make($request->password);
+        $usuario->save();
+
+        return redirect('/Usuario/perfil');
+    }
 }

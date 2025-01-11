@@ -19,6 +19,8 @@ use App\Models\User;
 |
 */
 
+
+//Esto es para poder tener una sesion mientras david termina lo suyo
 Route::get('/simulate-login', function () {
     $user = User::find(3); // Cambia el ID al de tu usuario
     if ($user) {
@@ -47,8 +49,8 @@ Route::get('/Usuario/salas-de-conferencia/{id}',[DescripcionSalaController::clas
 Route::get('/Usuario/perfil', [PerfilUsuario::class, 'mi_perfil']);
 Route::get('/Usuario/perfil/editar-usuario', [PerfilUsuario::class, 'editar_perfil']);
 Route::post('/Usuario/perfil/editar-usuario/{email}', [PerfilUsuario::class, 'confirmar_editar'])->name('perfil.confirmarEditar');
-
-
+Route::get('/Usuario/perfil/modificar-contraseña', [PerfilUsuario::class, 'modificar_contraseña']);
+Route::post('/Usuario/perfil/modificar-contraseña/{email}', [PerfilUsuario::class, 'confirmar_contraseña'])->name('perfil.confirmarContraseña');
 
 Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
 
