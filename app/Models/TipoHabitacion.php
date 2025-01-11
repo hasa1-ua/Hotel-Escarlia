@@ -23,7 +23,7 @@ class TipoHabitacion extends Model
 
     public function precios()
     {
-        return $this->hasMany(Precio::class, 'tipo_habitacion_id');
+        return $this->hasMany(TipoHabitacion::class, 'tipo_habitacion_id');
     }
 
     // Getters

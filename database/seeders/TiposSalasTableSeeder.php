@@ -18,9 +18,9 @@ class TiposSalasTableSeeder extends Seeder
         DB::table('tipo_salas')->delete();
 
         $tipo_salas = [
-            ['Solo Sala', 30, 'Sala básica sin servicios adicionales', 50.00, "imagenes/Salas/Sala30.jpg"],
-            ['Con Cátering', 50, 'Sala con servicio de cátering incluido', 70.00, "imagenes/Salas/Sala50.jpg"],
-            ['Con Asistentes', 100, 'Sala con servicio de asistentes para el evento', 90.00, "imagenes/Salas/Sala100.jpg"],
+            ['Solo Sala', 30, 'Sala básica sin servicios adicionales', 50.00, "imagenes/TiposSalas/Sala30.jpg"],
+            ['Con Cátering', 50, 'Sala con servicio de cátering incluido', 70.00, "imagenes/TiposSalas/Sala50.jpg"],
+            ['Con Asistentes', 100, 'Sala con servicio de asistentes para el evento', 90.00, "imagenes/TiposSalas/Sala100.jpg"],
         ];
 
         foreach ($tipo_salas as $ts) {

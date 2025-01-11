@@ -10,79 +10,144 @@ use App\Models\Sala;
 
 class SalaAdminController extends Controller{
 
-    public function getTipoSala(){
-        $tipossalas = TipoSala::all();
-        return view('listas.SalaAdmin', ['tipo_salas'=>$tipossalas]);
+    public function getTipoSala(Request $request){
+        // Obtén los tipos de sala
+        $tipossalas = TipoSala::paginate(5, ['*'], 'tipos_pagina');
+
+    
+        $disponible = $request->get('disponible');
+    
+        // Si el filtro 'disponible' está presente, se aplica
+        $salas = Sala::with('tipoSala')
+                ->when($disponible !== null, function($query) use ($disponible) {
+                    return $query->where('disponible', $disponible); // Convertir a entero
+                })
+                ->paginate(5, ['*'], 'salas_pagina');
+    
+        // Retorna la vista con ambas variables
+        return view('listas.listadoAdminSalas', [
+            'tipo_salas' => $tipossalas, // Variable para la primera tabla (tipo de sala)
+            'salas' => $salas           // Variable para la segunda tabla (salas)
+        ]);
     }
 
-    public function getSala(){
-        $salas = Sala::all();
-        return view('listas.SalaAdmin', ['salas'=>$salas]);
-    }
+    // Tipo Sala
 
     public function deleteTipoSala($id){
         $tipossalas = TipoSala::idTipo($id);
         $tipossalas->eliminarTipoSala();
-        return redirect('/Admin/TipoSalas');
+        return redirect('/Admin/salas-de-conferencia');
     }
 
     public function editarTipoSala($id){
         $tipossalas = TipoSala::idTipo($id);
-        return view('Editar.editarTipoSala', ['tipo_salas'=>$tipossalas]);
+        return view('editar.editarTipoSala', ['tipo_salas'=>$tipossalas]);
     }
 
     public function añadirTipoSala(){
-        return view('Crear.crearTipoSala');
+        return view('crear.crearTipoSala');
     }
 
 
     public function guardarTipoSala(Request $request){
         $request->validate([
-            'nombre' => 'required|regex:/^[\pL\s]+$/u',
+            'nombre' => 'required|string|max:255',
             'precio' => 'required|numeric',
             'aforo' => 'required|numeric',
             'descripcion' => 'required|string',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $imageName = $request->file('imagen')->getClientOriginalName();
-        $imagePath = 'imagenes/Salas/' . $imageName;
+        $imageName = $request->file('img')->getClientOriginalName();
+        $imagePath = 'imagenes/TipoSalas/' . $imageName;
 
 	    $tipossalas = new TipoSala();
 	    $tipossalas->nombre = $request->nombre;
 	    $tipossalas->precio = $request->precio;
-	    $tipossalas->duracion = $request->aforo;
+	    $tipossalas->aforo = $request->aforo;
 	    $tipossalas->descripcion = $request->descripcion;
         $tipossalas->img = $imagePath ?? null;
 	    $tipossalas->save();
 
-	    return redirect('/Admin/tiposala')->with('success', '¡Tipo de Sala creado exitosamente!');
+	    return redirect('/Admin/salas-de-conferencia')->with('success', '¡Tipo de Sala creado exitosamente!');
     }
 
 
     public function actualizarTipoSala($id, Request $request){
 
         $request->validate([
-            'nombre' => 'required|regex:/^[\pL\s]+$/u',
+            'nombre' => 'required|string|max:255',
             'precio' => 'required|numeric',
             'aforo' => 'required|numeric',
             'descripcion' => 'required|string',
-            'imagen' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $imageName = $request->file('imagen')->getClientOriginalName();
-        $imagePath = 'imagenes/Menu/' . $imageName;
+        $imageName = $request->file('img')->getClientOriginalName();
+        $imagePath = 'imagenes/TipoSalas/' . $imageName;
 
         $tipossalas = TipoSala::idTipo($id);
 	    $tipossalas->nombre = $request->nombre;
 	    $tipossalas->precio = $request->precio;
-	    $tipossalas->duracion = $request->aforo;
+	    $tipossalas->aforo = $request->aforo;
 	    $tipossalas->descripcion = $request->descripcion;
         $tipossalas->img = $imagePath ?? null;
 	    $tipossalas->save();
-        return redirect('/Admin/tiposala');
+        return redirect('/Admin/salas-de-conferencia');
     }
 
+
+    // Sala
+
+    public function editarSala($id){
+        $tipossalas = TipoSala::all();
+        $salas = Sala::obtenerSalaporId($id);
+        return view('editar.editarSala', ['salas'=>$salas, 'tipo_sala'=> $tipossalas]);
+    }
+
+
+    public function actualizarSala($id, Request $request){
+
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'disponible' => 'required|boolean',
+        ]);
+
+        $salas = Sala::obtenerSalaporId($id);
+	    $salas->nombre = $request->nombre;
+	    $salas->disponible = $request->disponible;
+        $salas->tipo_sala_id = $request->tipo_sala_id;
+	    $salas->save();
+        return redirect('/Admin/salas-de-conferencia');
+    }
+
+    public function añadirSala(){
+        $tipossalas = TipoSala::all();
+        $salas = new Sala();
+        return view('crear.crearSala', ['salas'=>$salas, 'tipo_sala'=> $tipossalas]);
+    }
+
+
+    public function guardarSala(Request $request){
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'disponible' => 'required|boolean',
+        ]);
+
+
+	    $salas = new Sala();
+	    $salas->nombre = $request->nombre;
+	    $salas->disponible = $request->disponible;
+        $salas->tipo_sala_id = $request->tipo_sala_id;
+	    $salas->save();
+        return redirect('/Admin/salas-de-conferencia');
+    }
+
+    public function deleteSala($id){
+        $salas = Sala::obtenerSalaporId($id);
+        $salas->eliminarSala();
+        return redirect('/Admin/salas-de-conferencia');
+    }
     
 }
 

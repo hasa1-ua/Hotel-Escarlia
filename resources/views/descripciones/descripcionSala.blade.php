@@ -46,7 +46,7 @@ button {
   height: 73px;
   background: #840705;
   color: #C3BB38;
-  border-color: #F4EB49;
+  border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
   border-radius: 3px 3px 3px 3px;

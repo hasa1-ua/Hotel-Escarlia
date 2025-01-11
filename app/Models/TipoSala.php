@@ -86,7 +86,6 @@ class TipoSala extends Model
 
     //Metodos CRUD
 
-
     public static function idTipo($id){
         return self::find($id);
     }

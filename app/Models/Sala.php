@@ -93,7 +93,7 @@ class Sala extends Model
         Sala::find($id)->delete();
     }
 
-    public function obtenerSalaporId($id){
+    public static function obtenerSalaporId($id){
         return self::find($id);
     }
 
