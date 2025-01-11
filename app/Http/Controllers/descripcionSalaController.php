@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Sala;
 
 // Controlador para la tabla Salas
-class descripcionSalaController extends Controller{
+class DescripcionSalaController extends Controller{
 
     public function getSala($id){
         //Escoge todos los IDs de sala

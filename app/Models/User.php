@@ -152,4 +152,13 @@ class User extends Authenticatable
         return $this->rol === 'Cliente';
     }
 
+    public static function obtenerUsuarioPorEmail($email)
+    {
+        $usuario = self::find($email);
+        if ($usuario) {
+            return $usuario;
+        }
+        return null;
+    }
+
 }

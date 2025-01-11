@@ -9,11 +9,11 @@ class InicioController extends Controller
 {
     public function Usuario()
     {
-        return view('Homes/InicioUsuario');
+        return view('homes/inicioUsuario');
     }
 
     public function Admin()
     {
-        return view('Homes/InicioAdmin');
+        return view('homes/inicioAdmin');
     }
 }
