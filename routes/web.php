@@ -36,7 +36,7 @@ Route::get('/simulate-logout', function () {
 });
 
 Route::get('/', function () {
-    return redirect('/Usuario');
+    return redirect('/Publico');
 });
 
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
@@ -56,3 +56,7 @@ Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
 
 
 Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);
+
+
+
+Route::get('/Publico', [InicioController::class, 'Publico']);

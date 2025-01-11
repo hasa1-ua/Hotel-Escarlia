@@ -21,4 +21,9 @@ class InicioController extends Controller
     {
         return view('homes/inicioRecepcionista');
     }
+
+    public function Publico()
+    {
+        return view('homes/inicioPublico');
+    }
 }
