@@ -28,20 +28,29 @@ Route::get('/simulate-login', function () {
     return "Usuario no encontrado";
 });
 
+Route::get('/simulate-logout', function () {
+    auth()->logout();
+    return redirect('/Usuario'); // Cambia la ruta según tu proyecto
+});
+
 Route::get('/', function () {
     return redirect('/Usuario');
 });
 
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
 
-Route::get('/Admin', [InicioController::class, 'Admin']);
-
 Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
 //En salas hay que pasarle atributos de TipoSala
 Route::get('/Usuario/salas-de-conferencia/{id}',[DescripcionSalaController::class, 'getSala']);
 
+
 Route::get('/Usuario/perfil', [PerfilUsuario::class, 'mi_perfil']);
+Route::get('/Usuario/perfil/editar-usuario', [PerfilUsuario::class, 'editar_perfil']);
+Route::post('/Usuario/perfil/editar-usuario/{email}', [PerfilUsuario::class, 'confirmar_editar'])->name('perfil.confirmarEditar');
 
 
-Route::get('/Usuario/perfil/editar-usuario', [PerfilUsuario::class, 'mi_perfil']);
-Route::post('/Usuario/perfil/editar-usuario', [PerfilUsuario::class, 'actualizar_perfil']);
+
+Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
+
+
+Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);

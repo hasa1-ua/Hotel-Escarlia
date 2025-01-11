@@ -178,23 +178,23 @@
         </style>
     </head>
         <header class="rectangle-1">
-            <a onclick="window.location.href='/Admin'">
+            <a onclick="window.location.href='/Webmaster'">
                 <img class='imagen image-placeholder' src="/imagenes/BarraDeMenu/Logo.png">
             </a>
 
             <div class="barra-nav">
-                <div class="opcion"><a onclick="window.location.href='/Admin/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Admin/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Admin/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Admin/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Webmaster/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Webmaster/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Webmaster/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Webmaster/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
             </div>
             <div class="perfil dropdown">
                 <img class="imagen perfil" src="/imagenes/BarraDeMenu/Perfil.png">
 
                 <div class="dropdown-menu">
-                    <div class="dropdown-menu-item rectangle"><a onclick="window.location.href='/Admin/pefil'" class="dropdown-perfil">Mi perfil</a></div>
+                    <div class="dropdown-menu-item rectangle"><a onclick="window.location.href='/Webmaster/pefil'" class="dropdown-perfil">Mi perfil</a></div>
                     <div class="dropdown-menu-item rectangle">
-                        <a onclick="logout()" class="dropdown-perfil">Cerrar sesión</a>
+                        <a onclick="window.location.href='/simulate-logout'" class="dropdown-perfil">Cerrar sesión</a>
                     </div>
                 </div>
             </div>

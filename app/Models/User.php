@@ -140,7 +140,7 @@ class User extends Authenticatable
 
     // Métodos
 
-    public function isAdmin() {
+    public function isWebmaster() {
         return $this->rol === 'Webmaster';
     }
 

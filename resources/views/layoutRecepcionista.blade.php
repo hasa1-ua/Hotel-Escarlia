@@ -78,7 +78,7 @@
             }
 
             .rectangle-1 {
-                width: 1420px;
+                width: 1461px;
                 height: 122px;
                 padding: 8px 8px 8px 8px;
                 background: #000000;
@@ -99,7 +99,7 @@
                 text-align: left;
             }
 
-            .fotos {
+            .resevas {
                 width: 91px;
                 height: 67px;
                 color: #C3BB38;
@@ -178,21 +178,21 @@
         </style>
     </head>
         <header class="rectangle-1">
-            <a onclick="window.location.href='/Usuario'">
+            <a onclick="window.location.href='/Webmaster'">
                 <img class='imagen image-placeholder' src="/imagenes/BarraDeMenu/Logo.png">
             </a>
 
             <div class="barra-nav">
-                <div class="opcion"><a onclick="window.location.href='/Usuario/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Usuario/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Usuario/fotos'" class="fotos">&nbsp;&nbsp;Fotos&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Usuario/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Recepcionista/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Recepcionista/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Recepcionista/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Recepcionista/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
             </div>
             <div class="perfil dropdown">
                 <img class="imagen perfil" src="/imagenes/BarraDeMenu/Perfil.png">
 
                 <div class="dropdown-menu">
-                    <div class="dropdown-menu-item rectangle"><a onclick="window.location.href='/Usuario/perfil'" class="dropdown-perfil">Mi perfil</a></div>
+                    <div class="dropdown-menu-item rectangle"><a onclick="window.location.href='/Recepcionista/pefil'" class="dropdown-perfil">Mi perfil</a></div>
                     <div class="dropdown-menu-item rectangle">
                         <a onclick="window.location.href='/simulate-logout'" class="dropdown-perfil">Cerrar sesión</a>
                     </div>

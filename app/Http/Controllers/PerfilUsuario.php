@@ -28,7 +28,7 @@ class PerfilUsuario extends Controller
         return view('perfil/editarPerfilUsuario', ['usuario' => $usuario]);
     }
 
-    public function actualizar_perfil($email, Request $request){
+    public function confirmar_editar($email, Request $request){
         $usuario = Auth::user();
         if(!$usuario){
             return redirect()->route('/Usuario');
@@ -48,6 +48,5 @@ class PerfilUsuario extends Controller
         $usuario->save();
 
         return redirect('/Usuario/perfil');
-        
     }
 }

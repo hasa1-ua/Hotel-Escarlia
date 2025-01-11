@@ -1,6 +1,6 @@
-@extends('layoutAdmin')
+@extends('layoutWebmaster')
 @section('contenido')
     <div>
-        Hola Admin
+        Hola Webmaster
     </div>
 @endsection

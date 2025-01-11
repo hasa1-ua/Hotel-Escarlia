@@ -8,22 +8,22 @@ use Illuminate\Support\Facades\DB;
 use App\Models\TipoSala;
 use App\Models\Sala;
 
-class SalaAdminController extends Controller{
+class SalaWebmasterController extends Controller{
 
     public function getTipoSala(){
         $tipossalas = TipoSala::all();
-        return view('listas.SalaAdmin', ['tipo_salas'=>$tipossalas]);
+        return view('listas.SalaWebmaster', ['tipo_salas'=>$tipossalas]);
     }
 
     public function getSala(){
         $salas = Sala::all();
-        return view('listas.SalaAdmin', ['salas'=>$salas]);
+        return view('listas.SalaWebmaster', ['salas'=>$salas]);
     }
 
     public function deleteTipoSala($id){
         $tipossalas = TipoSala::idTipo($id);
         $tipossalas->eliminarTipoSala();
-        return redirect('/Admin/TipoSalas');
+        return redirect('/Webmaster/TipoSalas');
     }
 
     public function editarTipoSala($id){
@@ -56,7 +56,7 @@ class SalaAdminController extends Controller{
         $tipossalas->img = $imagePath ?? null;
 	    $tipossalas->save();
 
-	    return redirect('/Admin/tiposala')->with('success', '¡Tipo de Sala creado exitosamente!');
+	    return redirect('/Webmaster/tiposala')->with('success', '¡Tipo de Sala creado exitosamente!');
     }
 
 
@@ -80,7 +80,7 @@ class SalaAdminController extends Controller{
 	    $tipossalas->descripcion = $request->descripcion;
         $tipossalas->img = $imagePath ?? null;
 	    $tipossalas->save();
-        return redirect('/Admin/tiposala');
+        return redirect('/Webmaster/tiposala');
     }
 
     
