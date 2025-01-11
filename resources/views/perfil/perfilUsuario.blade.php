@@ -24,7 +24,7 @@
         margin-top: 20px;
         margin-left: -10px;
         width: 1395px;
-        height: 620px;
+        height: auto;
         background: #000000;
         border-color: #C3BB38;
         border-width: 1px;

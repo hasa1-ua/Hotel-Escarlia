@@ -34,7 +34,7 @@ class PerfilUsuario extends Controller
             return redirect()->route('/Usuario');
         }
 
-        $usuario = User::buscarPorEmail($email);
+        $usuario = User::obtenerUsuarioPorEmail($email);
         $usuario->nombre_usuario = $request->nombre_usuario;
         $usuario->email = $email;
         if($request->password){
