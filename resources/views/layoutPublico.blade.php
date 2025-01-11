@@ -198,15 +198,15 @@
         </style>
     </head>
         <header class="rectangle-1">
-            <a onclick="window.location.href='/Webmaster'">
+            <a onclick="window.location.href='/Publico'">
                 <img class='imagen image-placeholder' src="/imagenes/BarraDeMenu/Logo.png">
             </a>
 
             <div class="barra-nav">
-                <div class="opcion"><a onclick="window.location.href='/Webmaster/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Webmaster/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Webmaster/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Webmaster/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Publico/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Publico/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Publico/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Publico/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
             </div>
             <!-- Botón de Login -->
             <button class="btn-login" onclick="window.location.href='/login'">

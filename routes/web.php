@@ -4,7 +4,8 @@ use App\Http\Controllers\InicioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\listadoSalaController;
 use App\Http\Controllers\DescripcionSalaController;
-use App\Http\Controllers\PerfilUsuario;
+use App\Http\Controllers\ExtrasUsuarioController;
+use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\SalaUsuarioController;
 use App\Models\User;
 
@@ -22,37 +23,39 @@ use App\Models\User;
 
 //Esto es para poder tener una sesion mientras david termina lo suyo
 Route::get('/simulate-login', function () {
-    $user = User::find(3); // Cambia el ID al de tu usuario
+    $user = User::find(3);
     if ($user) {
         auth()->login($user);
-        return redirect('/Usuario'); // Cambia la ruta según tu proyecto
+        return redirect('/Usuario');
     }
     return "Usuario no encontrado";
 });
 
 Route::get('/simulate-logout', function () {
     auth()->logout();
-    return redirect('/Usuario'); // Cambia la ruta según tu proyecto
+    return redirect('/Usuario');
 });
 
 Route::get('/', function () {
-    return redirect('/Publico');
+    return redirect('/Usuario');
 });
 
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
 
 Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
-//En salas hay que pasarle atributos de TipoSala
 Route::get('/Usuario/salas-de-conferencia/{id}',[DescripcionSalaController::class, 'getSala']);
+Route::get('/Usuario/fotos', [ExtrasUsuarioController::class, 'getFotos']);
+
+Route::get('/Usuario/perfil', [PerfilUsuarioController::class, 'mi_perfil']);
+Route::get('/Usuario/perfil/editar-usuario', [PerfilUsuarioController::class, 'editar_perfil']);
+Route::post('/Usuario/perfil/editar-usuario/{email}', [PerfilUsuarioController::class, 'confirmar_editar'])->name('perfil.confirmarEditar');
+Route::get('/Usuario/perfil/modificar-contraseña', [PerfilUsuarioController::class, 'modificar_contraseña']);
+Route::post('/Usuario/perfil/modificar-contraseña/{email}', [PerfilUsuarioController::class, 'confirmar_contraseña'])->name('perfil.confirmarContraseña');
 
 
-Route::get('/Usuario/perfil', [PerfilUsuario::class, 'mi_perfil']);
-Route::get('/Usuario/perfil/editar-usuario', [PerfilUsuario::class, 'editar_perfil']);
-Route::post('/Usuario/perfil/editar-usuario/{email}', [PerfilUsuario::class, 'confirmar_editar'])->name('perfil.confirmarEditar');
-Route::get('/Usuario/perfil/modificar-contraseña', [PerfilUsuario::class, 'modificar_contraseña']);
-Route::post('/Usuario/perfil/modificar-contraseña/{email}', [PerfilUsuario::class, 'confirmar_contraseña'])->name('perfil.confirmarContraseña');
 
 Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
+
 
 
 Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);

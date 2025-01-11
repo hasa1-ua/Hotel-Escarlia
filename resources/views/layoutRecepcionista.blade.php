@@ -178,7 +178,7 @@
         </style>
     </head>
         <header class="rectangle-1">
-            <a onclick="window.location.href='/Webmaster'">
+            <a onclick="window.location.href='/Recepcionista'">
                 <img class='imagen image-placeholder' src="/imagenes/BarraDeMenu/Logo.png">
             </a>
 

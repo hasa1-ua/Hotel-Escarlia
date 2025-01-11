@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class PerfilUsuario extends Controller
+class PerfilUsuarioController extends Controller
 {
     public function mi_perfil(){
         $usuario = Auth::user();
@@ -16,7 +16,7 @@ class PerfilUsuario extends Controller
             return redirect()->route('/Usuario');
         }
 
-        return view('perfil/perfilUsuario', ['usuario' => $usuario]);
+        return view('perfil/PerfilUsuarioController', ['usuario' => $usuario]);
     }
 
     public function editar_perfil(){
@@ -25,7 +25,7 @@ class PerfilUsuario extends Controller
             return redirect()->route('/Usuario');
         }
 
-        return view('perfil/editarPerfilUsuario', ['usuario' => $usuario]);
+        return view('perfil/editarPerfilUsuarioController', ['usuario' => $usuario]);
     }
 
     public function confirmar_editar($email, Request $request){
