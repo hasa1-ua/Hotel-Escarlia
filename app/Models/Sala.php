@@ -76,7 +76,7 @@ class Sala extends Model
     }
 
     public static function selectidbytype($tipoid){
-        return self::with('tipoSala')
+        return self::with(['tipoSala'])
                     ->where('tipo_sala_id', $tipoid)
                     ->where('disponible', true)
                     ->first();
@@ -93,7 +93,7 @@ class Sala extends Model
         Sala::find($id)->delete();
     }
 
-    public function obtenerSalaporId($id){
+    public static function obtenerSalaporId($id){
         return self::find($id);
     }
 

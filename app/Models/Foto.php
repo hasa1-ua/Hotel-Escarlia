@@ -49,5 +49,8 @@ class Foto extends Model
     }
 
     // Métodos
+
+    
+
     
 }
