@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\listadoSalaController;
 use App\Http\Controllers\DescripcionSalaController;
 use App\Http\Controllers\ExtrasUsuarioController;
+use App\Http\Controllers\PerfilRecepcionistaController;
 use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\PerfilWebmasterController;
 use App\Http\Controllers\SalaUsuarioController;
@@ -24,21 +25,21 @@ use App\Models\User;
 
 //Esto es para poder tener una sesion mientras david termina lo suyo
 Route::get('/simulate-login', function () {
-    $user = User::find(1);
+    $user = User::find(2);
     if ($user) {
         auth()->login($user);
-        return redirect('/Webmaster');
+        return redirect('/Recepcionista');
     }
     return "Usuario no encontrado";
 });
 
 Route::get('/simulate-logout', function () {
     auth()->logout();
-    return redirect('/Webmaster');
+    return redirect('/Recepcionista');
 });
 
 Route::get('/', function () {
-    return redirect('/Webmaster');
+    return redirect('/Recepcionista');
 });
 
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
@@ -64,7 +65,14 @@ Route::get('/Webmaster/perfil/modificar-contraseña', [PerfilWebmasterController
 Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña'])->name('perfil.confirmarContraseña');
 
 
+
 Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);
+
+Route::get('/Recepcionista/perfil', [PerfilRecepcionistaController::class, 'mi_perfil']);
+Route::get('/Recepcionista/perfil/editar-usuario', [PerfilRecepcionistaController::class, 'editar_perfil']);
+Route::post('/Recepcionista/perfil/editar-usuario/{email}', [PerfilRecepcionistaController::class, 'confirmar_editar'])->name('perfil.confirmarEditar');
+Route::get('/Recepcionista/perfil/modificar-contraseña', [PerfilRecepcionistaController::class, 'modificar_contraseña']);
+Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepcionistaController::class, 'confirmar_contraseña'])->name('perfil.confirmarContraseña');
 
 
 
