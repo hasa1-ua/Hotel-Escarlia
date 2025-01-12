@@ -59,7 +59,7 @@ class SalaAdminController extends Controller{
         ]);
 
         $imageName = $request->file('img')->getClientOriginalName();
-        $imagePath = 'imagenes/TipoSalas/' . $imageName;
+        $imagePath = 'imagenes/TiposSalas/' . $imageName;
 
 	    $tipossalas = new TipoSala();
 	    $tipossalas->nombre = $request->nombre;
@@ -80,18 +80,27 @@ class SalaAdminController extends Controller{
             'precio' => 'required|numeric',
             'aforo' => 'required|numeric',
             'descripcion' => 'required|string',
-            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $imageName = $request->file('img')->getClientOriginalName();
-        $imagePath = 'imagenes/TipoSalas/' . $imageName;
-
         $tipossalas = TipoSala::idTipo($id);
+
+        if ($request->hasFile('img')) {
+            $imageName = $request->file('img')->getClientOriginalName();
+            $imagePath = 'imagenes/TiposSalas/' . $imageName;
+    
+            // Guardar la nueva ruta de la imagen
+            $tipossalas->img = $imagePath;
+    
+            // Mover la imagen al almacenamiento (asegúrate de tener la carpeta creada)
+            $request->file('img')->move(public_path('imagenes/TiposSalas'), $imageName);
+        }
+    
+        
 	    $tipossalas->nombre = $request->nombre;
 	    $tipossalas->precio = $request->precio;
 	    $tipossalas->aforo = $request->aforo;
 	    $tipossalas->descripcion = $request->descripcion;
-        $tipossalas->img = $imagePath ?? null;
 	    $tipossalas->save();
         return redirect('/Admin/salas-de-conferencia');
     }
