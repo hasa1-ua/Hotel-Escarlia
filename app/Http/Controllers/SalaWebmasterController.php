@@ -14,7 +14,6 @@ class SalaWebmasterController extends Controller{
         // Obtén los tipos de sala
         $tipossalas = TipoSala::paginate(5, ['*'], 'tipos_pagina');
 
-    
         $disponible = $request->get('disponible');
     
         // Si el filtro 'disponible' está presente, se aplica
@@ -25,7 +24,7 @@ class SalaWebmasterController extends Controller{
                 ->paginate(5, ['*'], 'salas_pagina');
     
         // Retorna la vista con ambas variables
-        return view('listas.listadoAdminSalas', [
+        return view('listas.listadoWebmasterSalas', [
             'tipo_salas' => $tipossalas, // Variable para la primera tabla (tipo de sala)
             'salas' => $salas           // Variable para la segunda tabla (salas)
         ]);

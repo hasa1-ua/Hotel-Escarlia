@@ -98,7 +98,7 @@ button {
 </style>
 
 
-@extends('layoutAdmin')
+@extends('layoutWebmaster')
 
 @section('contenido')
     <h3 class="titulo">Editar Sala</h3>

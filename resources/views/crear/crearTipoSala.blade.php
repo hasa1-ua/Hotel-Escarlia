@@ -131,7 +131,7 @@ button {
 
 
 
-@extends('layoutAdmin')
+@extends('layoutWebmaster')
 
 @section('contenido')
 

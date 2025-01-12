@@ -1,4 +1,4 @@
-@extends('layoutWebmaster')
+@extends('layoutRecepcionista')
 
 @section('contenido')
 

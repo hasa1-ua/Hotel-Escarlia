@@ -10,13 +10,13 @@ use App\Models\Foto;
 // Controlador para la tabla Salas
 class DescripcionSalaController extends Controller{
 
-    public function getSala($id){
+    public function getSalaUsuario($id){
         //Escoge todos los IDs de sala
         $sala = Sala::selectidbytype($id);
 
         $fotos = Foto::where('sala_id', $sala->id)->get();
         //Pasaremos todos los IDs a la vista de descripciones de sala
-        return view('descripciones.descripcionSala', ['sala'=>$sala, 'fotos' => $fotos]);
+        return view('descripciones.descripcionSalaUsuario', ['sala'=>$sala, 'fotos' => $fotos]);
     }
     
 

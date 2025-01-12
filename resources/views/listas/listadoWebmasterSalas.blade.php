@@ -95,7 +95,7 @@ img{
 </style>
 
 
-@extends('layoutAdmin')
+@extends('layoutWebmaster')
 
 @section('contenido')
 
@@ -106,7 +106,7 @@ img{
     <div class="casilla">
     <h1 class="Titulo">Tipos de Sala</h1>
     <div class="separation">
-        <button class="button1" onclick="window.location.href='/Admin/salas-de-conferencia/tiposala/crear';">Crear</button>
+        <button class="button1" onclick="window.location.href='/Webmaster/salas-de-conferencia/tiposala/crear';">Crear</button>
     </div>
     <table class="tabla-tipo">
         <thead>
@@ -122,7 +122,7 @@ img{
         </thead>
         <tbody>
         @forelse ($tipo_salas as $tiposala)
-            <tr onclick="window.location.href='/Admin/salas-de-conferencia/tiposala/editar/{{$tiposala->id}}';" style="cursor: pointer;">
+            <tr onclick="window.location.href='/Webmaster/salas-de-conferencia/tiposala/editar/{{$tiposala->id}}';" style="cursor: pointer;">
                     <!-- Realizar vista descripcion y añadir una columna mas para verla-->
                     <!-- Añadir añadir, editar y borrar-->
                     <td>{{ $tiposala->id }}</td>
@@ -133,7 +133,7 @@ img{
                     <td> <img src="{{ asset($tiposala->img) }}"></td>
                     <td>
                         <!-- Formulario para eliminar -->
-                        <form action="/Admin/salas-de-conferencia/tiposala/{{ $tiposala->id }}" method="POST" style="display: inline;">
+                        <form action="/Webmaster/salas-de-conferencia/tiposala/{{ $tiposala->id }}" method="POST" style="display: inline;">
                          @csrf
                          @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 
@@ -162,8 +162,8 @@ img{
     <div class="casilla" style="margin-top: 20px;">
     <h1 class="Titulo">Salas</h1>
     <div class="separation">
-        <button class="button1" onclick="window.location.href='/Admin/salas-de-conferencia/sala/crear';">Crear</button>
-        <form class="filtro" method="GET" action="{{ url('/Admin/salas-de-conferencia') }}">
+        <button class="button1" onclick="window.location.href='/Webmaster/salas-de-conferencia/sala/crear';">Crear</button>
+        <form class="filtro" method="GET" action="{{ url('/Webmaster/salas-de-conferencia') }}">
         <!-- Filtro para disponible y no disponible -->
         <select name="disponible" class="button1">
             <option value="">Seleccionar disponibilidad</option>
@@ -185,7 +185,7 @@ img{
         </thead>
         <tbody>
         @forelse ($salas as $sala)
-                <tr onclick="window.location.href='/Admin/salas-de-conferencia/sala/editar/{{$sala->id}}';"  style="cursor: pointer;">
+                <tr onclick="window.location.href='/Webmaster/salas-de-conferencia/sala/editar/{{$sala->id}}';"  style="cursor: pointer;">
                     <!-- Realizar vista descripcion y añadir una columna mas para verla-->
                     <!-- Añadir añadir, editar y borrar-->
                     <td>{{ $sala->id }}</td>
@@ -201,7 +201,7 @@ img{
 
                     <td>
                         <!-- Formulario para eliminar -->
-                        <form action="/Admin/salas-de-conferencia/sala/{{ $sala->id }}" method="POST" style="display: inline;">
+                        <form action="/Webmaster/salas-de-conferencia/sala/{{ $sala->id }}" method="POST" style="display: inline;">
                          @csrf
                          @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 

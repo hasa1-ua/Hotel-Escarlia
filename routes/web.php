@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\InicioController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\listadoSalaController;
 use App\Http\Controllers\DescripcionSalaController;
-use App\Http\Controllers\SalaAdminController;
+use App\Http\Controllers\SalaWebmasterController;
 use App\Http\Controllers\ExtrasUsuarioController;
 use App\Http\Controllers\PerfilRecepcionistaController;
 use App\Http\Controllers\PerfilUsuarioController;
@@ -26,21 +25,21 @@ use App\Models\User;
 
 //Esto es para poder tener una sesion mientras david termina lo suyo
 Route::get('/simulate-login', function () {
-    $user = User::find(2);
+    $user = User::find(1);
     if ($user) {
         auth()->login($user);
-        return redirect('/Recepcionista');
+        return redirect('/Usuario');
     }
     return "Usuario no encontrado";
 });
 
 Route::get('/simulate-logout', function () {
     auth()->logout();
-    return redirect('/Recepcionista');
+    return redirect('/Usuario');
 });
 
 Route::get('/', function () {
-    return redirect('/Recepcionista');
+    return redirect('/Usuario');
 });
 
 // Inicio / Home
@@ -48,7 +47,7 @@ Route::get('/', function () {
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
 
 Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
-Route::get('/Usuario/salas-de-conferencia/{id}',[DescripcionSalaController::class, 'getSala']);
+Route::get('/Usuario/salas-de-conferencia/{id}',[DescripcionSalaController::class, 'getSalaUsuario']);
 Route::get('/Usuario/fotos', [ExtrasUsuarioController::class, 'getFotos']);
 
 Route::get('/Usuario/perfil', [PerfilUsuarioController::class, 'mi_perfil']);
@@ -60,6 +59,19 @@ Route::post('/Usuario/perfil/modificar-contraseña/{email}', [PerfilUsuarioContr
 
 
 Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
+
+Route::get('/Webmaster/salas-de-conferencia',[SalaWebmasterController::class, 'getTipoSala']);
+Route::get('/Webmaster/salas-de-conferencia/tiposala/crear', [SalaWebmasterController::class, 'añadirTipoSala']);
+Route::post('/Webmaster/salas-de-conferencia/tiposala/crear', [SalaWebmasterController::class, 'guardarTipoSala'])->name('tiposala.guardar');
+Route::get('/Webmaster/salas-de-conferencia/tiposala/editar/{id}', [SalaWebmasterController::class, 'editarTipoSala']);
+Route::put('/Webmaster/salas-de-conferencia/tiposala/editar/{id}', [SalaWebmasterController::class, 'actualizarTipoSala'])->name('tiposala.actualizar');
+Route::delete('/Webmaster/salas-de-conferencia/tiposala/{id}', [SalaWebmasterController::class, 'deleteTipoSala']);
+
+Route::get('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'editarSala']);
+Route::put('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'actualizarSala'])->name('sala.actualizar');
+Route::get('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterController::class, 'añadirSala']);
+Route::post('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterController::class, 'guardarSala'])->name('sala.guardar');
+Route::delete('/Webmaster/salas-de-conferencia/sala/{id}', [SalaWebmasterController::class, 'deleteSala']);
 
 Route::get('/Webmaster/perfil', [PerfilWebmasterController::class, 'mi_perfil']);
 Route::get('/Webmaster/perfil/editar-usuario', [PerfilWebmasterController::class, 'editar_perfil']);
@@ -80,34 +92,3 @@ Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepc
 
 
 Route::get('/Publico', [InicioController::class, 'Publico']);
-
-Route::get('/Usuario/salas-de-conferencia/{id}',[descripcionSalaController::class, 'getSala']);
-
-// SALAS DE CONFERENCIA ADMIN
-
-// Tipos Salas
-
-Route::get('/Admin/salas-de-conferencia',[SalaAdminController::class, 'getTipoSala']);
-
-Route::get('/Admin/salas-de-conferencia/tiposala/crear', [SalaAdminController::class, 'añadirTipoSala']);
-
-Route::post('/Admin/salas-de-conferencia/tiposala/crear', [SalaAdminController::class, 'guardarTipoSala'])->name('tiposala.guardar');
-
-Route::get('/Admin/salas-de-conferencia/tiposala/editar/{id}', [SalaAdminController::class, 'editarTipoSala']);
-
-Route::put('/Admin/salas-de-conferencia/tiposala/editar/{id}', [SalaAdminController::class, 'actualizarTipoSala'])->name('tiposala.actualizar');
-
-Route::delete('/Admin/salas-de-conferencia/tiposala/{id}', [SalaAdminController::class, 'deleteTipoSala']);
-
-// Salas
-
-Route::get('/Admin/salas-de-conferencia/sala/editar/{id}', [SalaAdminController::class, 'editarSala']);
-
-Route::put('/Admin/salas-de-conferencia/sala/editar/{id}', [SalaAdminController::class, 'actualizarSala'])->name('sala.actualizar');
-
-Route::get('/Admin/salas-de-conferencia/sala/crear', [SalaAdminController::class, 'añadirSala']);
-
-Route::post('/Admin/salas-de-conferencia/sala/crear', [SalaAdminController::class, 'guardarSala'])->name('sala.guardar');
-
-Route::delete('/Admin/salas-de-conferencia/sala/{id}', [SalaAdminController::class, 'deleteSala']);
-
