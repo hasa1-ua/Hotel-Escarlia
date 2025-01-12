@@ -192,7 +192,7 @@
                 <img class="imagen perfil" src="/imagenes/BarraDeMenu/Perfil.png">
 
                 <div class="dropdown-menu">
-                    <div class="dropdown-menu-item rectangle"><a onclick="window.location.href='/Webmaster/pefil'" class="dropdown-perfil">Mi perfil</a></div>
+                    <div class="dropdown-menu-item rectangle"><a onclick="window.location.href='/Webmaster/perfil'" class="dropdown-perfil">Mi perfil</a></div>
                     <div class="dropdown-menu-item rectangle">
                         <a onclick="window.location.href='/simulate-logout'" class="dropdown-perfil">Cerrar sesión</a>
                     </div>

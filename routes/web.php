@@ -6,6 +6,7 @@ use App\Http\Controllers\listadoSalaController;
 use App\Http\Controllers\DescripcionSalaController;
 use App\Http\Controllers\ExtrasUsuarioController;
 use App\Http\Controllers\PerfilUsuarioController;
+use App\Http\Controllers\PerfilWebmasterController;
 use App\Http\Controllers\SalaUsuarioController;
 use App\Models\User;
 
@@ -23,21 +24,21 @@ use App\Models\User;
 
 //Esto es para poder tener una sesion mientras david termina lo suyo
 Route::get('/simulate-login', function () {
-    $user = User::find(3);
+    $user = User::find(1);
     if ($user) {
         auth()->login($user);
-        return redirect('/Usuario');
+        return redirect('/Webmaster');
     }
     return "Usuario no encontrado";
 });
 
 Route::get('/simulate-logout', function () {
     auth()->logout();
-    return redirect('/Usuario');
+    return redirect('/Webmaster');
 });
 
 Route::get('/', function () {
-    return redirect('/Usuario');
+    return redirect('/Webmaster');
 });
 
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
@@ -56,6 +57,11 @@ Route::post('/Usuario/perfil/modificar-contraseña/{email}', [PerfilUsuarioContr
 
 Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
 
+Route::get('/Webmaster/perfil', [PerfilWebmasterController::class, 'mi_perfil']);
+Route::get('/Webmaster/perfil/editar-usuario', [PerfilWebmasterController::class, 'editar_perfil']);
+Route::post('/Webmaster/perfil/editar-usuario/{email}', [PerfilWebmasterController::class, 'confirmar_editar'])->name('perfil.confirmarEditar');
+Route::get('/Webmaster/perfil/modificar-contraseña', [PerfilWebmasterController::class, 'modificar_contraseña']);
+Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña'])->name('perfil.confirmarContraseña');
 
 
 Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);

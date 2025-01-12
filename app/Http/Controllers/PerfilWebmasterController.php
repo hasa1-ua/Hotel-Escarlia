@@ -8,30 +8,30 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class PerfilUsuarioController extends Controller
+class PerfilWebmasterController extends Controller
 {
     public function mi_perfil(){
         $usuario = Auth::user();
         if(!$usuario){
-            return redirect()->route('/Usuario');
+            return redirect()->route('/Webmaster');
         }
 
-        return view('perfil/perfilUsuario', ['usuario' => $usuario]);
+        return view('perfil/perfilWebmaster', ['usuario' => $usuario]);
     }
 
     public function editar_perfil(){
         $usuario = Auth::user();
         if(!$usuario){
-            return redirect()->route('/Usuario');
+            return redirect()->route('/Webmaster');
         }
 
-        return view('perfil/editarPerfilUsuario', ['usuario' => $usuario]);
+        return view('perfil/editarPerfilWebmaster', ['usuario' => $usuario]);
     }
 
     public function confirmar_editar($email, Request $request){
         $usuario = Auth::user();
         if(!$usuario){
-            return redirect()->route('/Usuario');
+            return redirect()->route('/Webmaster');
         }
 
         $usuario = User::obtenerUsuarioPorEmail($email);
@@ -47,16 +47,16 @@ class PerfilUsuarioController extends Controller
         $usuario->pais_residencia = $request->pais_residencia;
         $usuario->save();
 
-        return redirect('/Usuario/perfil');
+        return redirect('/Webmaster/perfil');
     }
 
     public function modificar_contraseña(){
         $usuario = Auth::user();
         if(!$usuario){
-            return redirect()->route('/Usuario');
+            return redirect()->route('/Webmaster');
         }
 
-        return view('perfil/modificarContraseñaUsuario', ['usuario' => $usuario]);
+        return view('perfil/modificarContraseñaWebmaster', ['usuario' => $usuario]);
     }
 
     public function confirmar_contraseña($email, Request $request){
@@ -68,7 +68,7 @@ class PerfilUsuarioController extends Controller
 
         $usuario = Auth::user();
         if(!$usuario){
-            return redirect()->route('/Usuario');
+            return redirect()->route('/Webmaster');
         }
 
         $usuario = User::obtenerUsuarioPorEmail($email);
@@ -81,6 +81,6 @@ class PerfilUsuarioController extends Controller
         $usuario->password = Hash::make($request->password);
         $usuario->save();
 
-        return redirect('/Usuario/perfil');
+        return redirect('/Webmaster/perfil');
     }
 }
