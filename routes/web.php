@@ -8,6 +8,7 @@ use App\Http\Controllers\ExtrasUsuarioController;
 use App\Http\Controllers\PerfilRecepcionistaController;
 use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\PerfilWebmasterController;
+use App\Http\Controllers\SalaRecepcionistaController;
 use App\Http\Controllers\SalaUsuarioController;
 use App\Models\User;
 
@@ -28,33 +29,36 @@ Route::get('/simulate-login', function () {
     $user = User::find(1);
     if ($user) {
         auth()->login($user);
-        return redirect('/Usuario');
+        return redirect('/Recepcionista');
     }
     return "Usuario no encontrado";
 });
 
 Route::get('/simulate-logout', function () {
     auth()->logout();
-    return redirect('/Usuario');
+    return redirect('/Recepcionista');
 });
+
+
 
 Route::get('/', function () {
-    return redirect('/Usuario');
+    return redirect('/Recepcionista');
 });
 
-// Inicio / Home
+
 
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
 
 Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
 Route::get('/Usuario/salas-de-conferencia/{id}',[DescripcionSalaController::class, 'getSalaUsuario']);
+
 Route::get('/Usuario/fotos', [ExtrasUsuarioController::class, 'getFotos']);
 
 Route::get('/Usuario/perfil', [PerfilUsuarioController::class, 'mi_perfil']);
 Route::get('/Usuario/perfil/editar-usuario', [PerfilUsuarioController::class, 'editar_perfil']);
-Route::post('/Usuario/perfil/editar-usuario/{email}', [PerfilUsuarioController::class, 'confirmar_editar'])->name('perfil.confirmarEditar');
+Route::post('/Usuario/perfil/editar-usuario/{email}', [PerfilUsuarioController::class, 'confirmar_editar']);
 Route::get('/Usuario/perfil/modificar-contraseña', [PerfilUsuarioController::class, 'modificar_contraseña']);
-Route::post('/Usuario/perfil/modificar-contraseña/{email}', [PerfilUsuarioController::class, 'confirmar_contraseña'])->name('perfil.confirmarContraseña');
+Route::post('/Usuario/perfil/modificar-contraseña/{email}', [PerfilUsuarioController::class, 'confirmar_contraseña']);
 
 
 
@@ -67,27 +71,32 @@ Route::get('/Webmaster/salas-de-conferencia/tiposala/editar/{id}', [SalaWebmaste
 Route::put('/Webmaster/salas-de-conferencia/tiposala/editar/{id}', [SalaWebmasterController::class, 'actualizarTipoSala'])->name('tiposala.actualizar');
 Route::delete('/Webmaster/salas-de-conferencia/tiposala/{id}', [SalaWebmasterController::class, 'deleteTipoSala']);
 
-Route::get('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'editarSala']);
-Route::put('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'actualizarSala'])->name('sala.actualizar');
 Route::get('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterController::class, 'añadirSala']);
 Route::post('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterController::class, 'guardarSala'])->name('sala.guardar');
+Route::get('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'editarSala']);
+Route::put('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'actualizarSala'])->name('sala.actualizar');
 Route::delete('/Webmaster/salas-de-conferencia/sala/{id}', [SalaWebmasterController::class, 'deleteSala']);
 
 Route::get('/Webmaster/perfil', [PerfilWebmasterController::class, 'mi_perfil']);
 Route::get('/Webmaster/perfil/editar-usuario', [PerfilWebmasterController::class, 'editar_perfil']);
-Route::post('/Webmaster/perfil/editar-usuario/{email}', [PerfilWebmasterController::class, 'confirmar_editar'])->name('perfil.confirmarEditar');
+Route::post('/Webmaster/perfil/editar-usuario/{email}', [PerfilWebmasterController::class, 'confirmar_editar']);
 Route::get('/Webmaster/perfil/modificar-contraseña', [PerfilWebmasterController::class, 'modificar_contraseña']);
-Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña'])->name('perfil.confirmarContraseña');
+Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña']);
 
 
 
 Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);
 
+Route::get('/Recepcionista/salas-de-conferencia',[SalaRecepcionistaController::class, 'getTipoSala']);
+Route::get('/Recepcionista/salas-de-conferencia/{id}',[DescripcionSalaController::class, 'getSalaRecepcionista']);
+Route::get('/Recepcionista/salas-de-conferencia/descripcion-recepcionista/{id}', [DescripcionSalaController::class, 'getSalaRecepcionista'])->name('descripcion.sala.recepcionista');
+Route::post('/Recepcionista/salas-de-conferencia/{id}/toggle', [SalaRecepcionistaController::class, 'toggleDisponibilidad'])->name('sala.toggle');
+
 Route::get('/Recepcionista/perfil', [PerfilRecepcionistaController::class, 'mi_perfil']);
 Route::get('/Recepcionista/perfil/editar-usuario', [PerfilRecepcionistaController::class, 'editar_perfil']);
-Route::post('/Recepcionista/perfil/editar-usuario/{email}', [PerfilRecepcionistaController::class, 'confirmar_editar'])->name('perfil.confirmarEditar');
+Route::post('/Recepcionista/perfil/editar-usuario/{email}', [PerfilRecepcionistaController::class, 'confirmar_editar']);
 Route::get('/Recepcionista/perfil/modificar-contraseña', [PerfilRecepcionistaController::class, 'modificar_contraseña']);
-Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepcionistaController::class, 'confirmar_contraseña'])->name('perfil.confirmarContraseña');
+Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepcionistaController::class, 'confirmar_contraseña']);
 
 
 
