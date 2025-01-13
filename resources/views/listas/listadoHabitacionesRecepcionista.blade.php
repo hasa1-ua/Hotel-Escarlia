@@ -83,31 +83,30 @@ img{
 @section('contenido')
 
 
-<h3 class="titulo">Salas</h3>
+<h3 class="titulo">Habitaciones</h3>
 
-@foreach($tipo_salas as $tiposala)
+@foreach($tipo_habitaciones as $tipohabitacion)
 
-    <div class="casilla"  onclick="window.location.href='/Recepcionista/salas-de-conferencia/{{$tiposala->id}}/{{$tiposala->salas()->first()->id}}';">
+    <div class="casilla"  onclick="window.location.href='/Recepcionista/habitaciones/{{$tipohabitacion->id}}/{{$tipohabitacion->habitaciones()->first()->id}}';">
         <div class="image">
-          <img src="{{ asset($tiposala->img) }}">
+          <img src="{{ asset($tipohabitacion->img) }}">
         </div>
         <div class="label1">
-          <h4 class="nombre"> {{ $tiposala->nombre}} </h4>
+          <h4 class="nombre"> {{ $tipohabitacion->nombre}} </h4>
           <div style="margin-top: 150px;">
             <h5 class="letras1">
-                Plazas: 
-                {{$tiposala->getAforo()}}
+                Plazas: {{$tipohabitacion->getPlazas()}}
             </h5>
             <h5 class="letras1" style="width: 300px; margin-top: -30px">
               Precio:
-              {{number_format($tiposala->getPrecio(), 2)}}€
+              {{number_format($tipohabitacion->getPrecio(), 2)}}€
               Por noche
             </h5> 
           </div>
           
         </div>
         <div class="label2"> 
-            <p class="descripcion">{{$tiposala->getDescripcion()}}</p>
+            <p class="descripcion">{{$tipohabitacion->getDescripcion()}}</p>
         </div>
     </div>
 @endforeach

@@ -14,7 +14,7 @@ class SalaRecepcionistaController extends Controller
         return view('listas.listadoSalasRecepcionista', ['tipo_salas'=>$tipossalas]);
     }
 
-    public function toggleDisponibilidad($id)
+    public function toggleDisponibilidad($tipoid, $id)
     {
         // Buscar la sala por su ID
         $sala = Sala::findOrFail($id);

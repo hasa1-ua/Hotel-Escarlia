@@ -1,10 +1,13 @@
 <?php
 
+use App\Http\Controllers\DescripcionHabitacionesController;
 use App\Http\Controllers\InicioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DescripcionSalaController;
 use App\Http\Controllers\SalaWebmasterController;
 use App\Http\Controllers\ExtrasUsuarioController;
+use App\Http\Controllers\HabitacionesRecepcionistaController;
+use App\Http\Controllers\HabitacionesUsuarioController;
 use App\Http\Controllers\PerfilRecepcionistaController;
 use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\PerfilWebmasterController;
@@ -52,6 +55,9 @@ Route::get('/Usuario', [InicioController::class, 'Usuario']);
 Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
 Route::get('/Usuario/salas-de-conferencia/{id}',[DescripcionSalaController::class, 'getSalaUsuario']);
 
+Route::get('/Usuario/habitaciones',[HabitacionesUsuarioController::class, 'getTipoHabitacion']);
+Route::get('/Usuario/habitaciones/{id}',[DescripcionHabitacionesController::class, 'getHabitacionesUsuario']);
+
 Route::get('/Usuario/fotos', [ExtrasUsuarioController::class, 'getFotos']);
 
 Route::get('/Usuario/perfil', [PerfilUsuarioController::class, 'mi_perfil']);
@@ -88,9 +94,12 @@ Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterC
 Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);
 
 Route::get('/Recepcionista/salas-de-conferencia',[SalaRecepcionistaController::class, 'getTipoSala']);
-Route::get('/Recepcionista/salas-de-conferencia/{id}',[DescripcionSalaController::class, 'getSalaRecepcionista']);
-Route::get('/Recepcionista/salas-de-conferencia/descripcion-recepcionista/{id}', [DescripcionSalaController::class, 'getSalaRecepcionista'])->name('descripcion.sala.recepcionista');
-Route::post('/Recepcionista/salas-de-conferencia/{id}/toggle', [SalaRecepcionistaController::class, 'toggleDisponibilidad'])->name('sala.toggle');
+Route::get('/Recepcionista/salas-de-conferencia/{tipoid}/{id}',[DescripcionSalaController::class, 'getSalaRecepcionista'])->name('descripcion.sala.recepcionista');
+Route::post('/Recepcionista/salas-de-conferencia/{tipoid}/{id}/toggle', [SalaRecepcionistaController::class, 'toggleDisponibilidad'])->name('sala.toggle');
+
+Route::get('/Recepcionista/habitaciones',[HabitacionesRecepcionistaController::class, 'getTipoHabitaciones']);
+Route::get('/Recepcionista/habitaciones/{tipoid}/{id}',[DescripcionHabitacionesController::class, 'getHabitacionesRecepcionista'])->name('descripcion.habitaciones.recepcionista');
+Route::post('/Recepcionista/habitaciones/{tipoid}/{id}/toggle', [HabitacionesRecepcionistaController::class, 'toggleDisponibilidad'])->name('habitaciones.toggle');
 
 Route::get('/Recepcionista/perfil', [PerfilRecepcionistaController::class, 'mi_perfil']);
 Route::get('/Recepcionista/perfil/editar-usuario', [PerfilRecepcionistaController::class, 'editar_perfil']);

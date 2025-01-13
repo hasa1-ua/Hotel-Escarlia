@@ -155,7 +155,7 @@
             <h3 class="letras1">No disponible</h3>
         @endif
         <div style="display: flex; justify-content: right;">
-        <form method="POST" action="{{ route('sala.toggle', $sala->id) }}" style="margin-left: 20px;">
+        <form method="POST" action="{{ route('sala.toggle', ['tipoid' => $sala->tipoSala->id, 'id' => $sala->id]) }}" style="margin-left: 20px;">
             @csrf
             <button type="submit" class="button1">
                 {{ $sala->disponible ? 'Bloquear' : 'Desbloquear' }}
@@ -166,8 +166,8 @@
     </div>
 
     <div>
-        <a href="{{ route('descripcion.sala.recepcionista', $previousSala->id) }}" class="button2">Sala anterior</a>
-        <a href="{{ route('descripcion.sala.recepcionista', $nextSala->id) }}" class="button2">Siguiente sala</a>
+        <a href="{{ route('descripcion.sala.recepcionista', ['tipoid' => $sala->tipo_sala_id, 'id' => $previousSala->id]) }}" class="button2">Siguiente sala</a>
+        <a href="{{ route('descripcion.sala.recepcionista', ['tipoid' => $sala->tipo_sala_id, 'id' => $nextSala->id]) }}" class="button2">Sala anterior</a>
     </div>
 </div>
     

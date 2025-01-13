@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('plazas');
             $table->json('características')->nullable();
             $table->decimal('precio', 5, 2);
+            $table->longText('img');
             $table->timestamps();
         });
     }

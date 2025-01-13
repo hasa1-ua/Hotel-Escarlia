@@ -30,10 +30,16 @@ class FotosTableSeeder extends Seeder
             ['imagenes/Salas/zero-bodas-1.jpg', 5, null],
             ['imagenes/Salas/sala-multiusos-multipurpose-room-hotel-tossal-daltea-inicio-home-4.jpg', 6, null],
             ['imagenes/Salas/zero-bodas-1.jpg', 6, null],
-            ['foto5.jpg', null, 1],
-            ['foto6.jpg', null, 1],
-            ['foto7.jpg', null, 2],
-            ['foto8.jpg', null, 2],
+            ['imagenes/Habitaciones/1-Hostal-Abadia-Habitacion-Individual-Cama.jpg', null, 1],
+            ['imagenes/Habitaciones/3-Hostal-Abadia-Habitacion-Individual-Bano.jpg', null, 1],
+            ['imagenes/Habitaciones/1-Hostal-Abadia-Habitacion-Individual-Cama.jpg', null, 2],
+            ['imagenes/Habitaciones/3-Hostal-Abadia-Habitacion-Individual-Bano.jpg', null, 2],
+            ['imagenes/Habitaciones/1-Hostal-Abadia-Habitacion-Individual-Cama.jpg', null, 3],
+            ['imagenes/Habitaciones/3-Hostal-Abadia-Habitacion-Individual-Bano.jpg', null, 3],
+            ['imagenes/Habitaciones/1-Hostal-Abadia-Habitacion-Individual-Cama.jpg', null, 4],
+            ['imagenes/Habitaciones/3-Hostal-Abadia-Habitacion-Individual-Bano.jpg', null, 4],
+            ['imagenes/Habitaciones/1-Hostal-Abadia-Habitacion-Individual-Cama.jpg', null, 5],
+            ['imagenes/Habitaciones/3-Hostal-Abadia-Habitacion-Individual-Bano.jpg', null, 5],
         ];
 
         foreach ($fotos as $f) {

@@ -82,10 +82,8 @@ class Sala extends Model
                     ->first();
     }
 
-    public static function selectidbytypeRecepcionista($tipoid){
-        return self::with(['tipoSala'])
-                    ->where('tipo_sala_id', $tipoid)
-                    ->first();
+    public static function selectidbySala($tipoid){
+        return self::with(['tipoSala'])->find($tipoid);
     }
 
     // Metodos CRUD

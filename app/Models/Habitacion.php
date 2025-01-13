@@ -9,6 +9,8 @@ class Habitacion extends Model
 {
     use HasFactory;
 
+    protected $table = 'habitaciones';
+
     protected $fillable = [
         'numero',
         'planta',
@@ -93,5 +95,16 @@ class Habitacion extends Model
     {
         $this->disponible = true;
         $this->save();
+    }
+
+    public static function selectidbytype($tipoid){
+        return self::with(['tipo'])
+                    ->where('tipo_id', $tipoid)
+                    ->where('disponible', true)
+                    ->first();
+    }
+
+    public static function selectidbyHabitacion($tipoid){
+        return self::with(['tipo'])->find($tipoid);
     }
 }
