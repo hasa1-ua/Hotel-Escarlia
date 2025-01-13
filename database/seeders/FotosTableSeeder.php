@@ -18,8 +18,8 @@ class FotosTableSeeder extends Seeder
         DB::table('fotos')->delete();
 
         $fotos = [
-            ['imagenes/Salas/sala-multiusos-multipurpose-room-hotel-tossal-daltea-inicio-home-4.jpg', 1, null],
-            ['imagenes/Salas/zero-bodas-1.jpg', 1, null],
+            ['imagenes/Salas/Salaid1-1.jpg', 1, null],
+            ['imagenes/Salas/Salaid1-2.jpg', 1, null],
             ['foto3.jpg', 2, null],
             ['foto4.jpg', 2, null],
             ['foto5.jpg', null, 1],

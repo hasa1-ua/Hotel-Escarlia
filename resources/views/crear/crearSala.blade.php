@@ -59,7 +59,8 @@ button {
 }
 
 .button1{
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-left: 20px;
 }
 
 
@@ -86,6 +87,45 @@ button {
     margin-top: 20px;
     margin-left: 20px;
 }
+
+.custom-file-container {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    /* Input file invisible pero funcional */
+    .custom-file-container input[type="file"] {
+        position: absolute;
+        opacity: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    /* Botón personalizado */
+    .custom-file-button {
+        padding: 10px 10px;
+        background-color:  #840705;
+        color: #C3BB38;
+        border: 1px solid #C3BB38;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 48px;
+        text-align: center;
+        font-family: "Solitreo";
+        width: 363px;
+        height: 73px;
+    }
+
+    .custom-file-button:hover {
+        background-color:rgb(84, 4, 3);
+        cursor: pointer;
+    }
+
+
 
 </style>
 
@@ -127,10 +167,45 @@ button {
             </select>
         </div>
 
-        <button type="submit" class="button-1">Crear</button>
+        <div class="form-group">
+            <label class="letras1" for="imagenes" style="display: block;">Imágenes de la Sala:</label>
+            <div class="custom-file-container" style="display: block;">
+              <button type="button" style=" margin-left: 20px;" class="custom-file-button">Subir Imagen</button>
+              <input style="margin-top: 10px;" class="celda" type="file" id="imagenes" name="imagenes[]" multiple accept="image/*" onchange="mostrarNombres()">
+              <div id="lista-imagenes" style="margin-top: 10px; color: #C3BB38; font-family: 'Solitreo'; font-size: 20px;"></div>
+            </div>
+        </div>
+
+        <button type="submit" class="button1">Crear</button>
     </form>
 <div>
 
+<script>
+ function mostrarNombres() {
+    const input = document.getElementById('imagenes');
+    const lista = document.getElementById('lista-imagenes');
+    
+    // Limpiar el contenido actual
+    lista.innerHTML = '';
 
+    // Obtener los archivos seleccionados
+    const archivos = input.files;
+
+    // Crear una lista de nombres
+    if (archivos.length > 0) {
+        const ul = document.createElement('ul');
+        for (const archivo of archivos) {
+            const li = document.createElement('li');
+            li.textContent = archivo.name; // Mostrar solo el nombre del archivo
+            ul.appendChild(li);
+        }
+        lista.appendChild(ul);
+    } else {
+        lista.textContent = 'No se ha seleccionado ninguna imagen.';
+    }
+}
+
+
+</script>
 
 @endsection

@@ -54,8 +54,6 @@
   margin-top: -200px;
 }
 
-
-
 .carousel {
     position: relative;
     width: 100%;

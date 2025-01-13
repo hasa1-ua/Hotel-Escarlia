@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\TipoSala;
 use App\Models\Sala;
+use App\Models\Foto;
 
 class SalaWebmasterController extends Controller{
 
@@ -119,6 +120,7 @@ class SalaWebmasterController extends Controller{
         $request->validate([
             'nombre' => 'required|string|max:255',
             'disponible' => 'required|boolean',
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $salas = Sala::obtenerSalaporId($id);
@@ -126,7 +128,37 @@ class SalaWebmasterController extends Controller{
 	    $salas->disponible = $request->disponible;
         $salas->tipo_sala_id = $request->tipo_sala_id;
 	    $salas->save();
-        return redirect('/Admin/salas-de-conferencia');
+
+        if ($request->hasFile('imagenes')) {
+            foreach ($request->file('imagenes') as $imagen) {
+                // Guardar la imagen en storage/app/public/salas
+                $nombreArchivo = time() . '_' . $imagen->getClientOriginalName();
+                $rutaRelativa = 'imagenes/Salas/' . $nombreArchivo;
+                $imagen->move(public_path('imagenes/Salas'), $nombreArchivo);
+    
+                // Crear una nueva entrada en la tabla fotos
+                $salas->fotos()->create([
+                    'url' => $rutaRelativa,
+                ]);
+            }
+        }
+
+        return redirect('/Webmaster/salas-de-conferencia');
+    }
+
+    public function deleteImagen($id) {
+        $foto = Foto::findOrFail($id);
+    
+        // Eliminar el archivo físico si existe
+        $ruta = public_path($foto->url);
+        if (file_exists($ruta)) {
+            unlink($ruta);
+        }
+    
+        // Eliminar la entrada de la base de datos
+        $foto->delete();
+    
+        return redirect()->back()->with('success', 'Imagen eliminada correctamente.');
     }
 
     public function añadirSala(){
@@ -140,6 +172,7 @@ class SalaWebmasterController extends Controller{
         $request->validate([
             'nombre' => 'required|string|max:255',
             'disponible' => 'required|boolean',
+            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
 
@@ -148,13 +181,27 @@ class SalaWebmasterController extends Controller{
 	    $salas->disponible = $request->disponible;
         $salas->tipo_sala_id = $request->tipo_sala_id;
 	    $salas->save();
-        return redirect('/Admin/salas-de-conferencia');
+
+        if ($request->hasFile('imagenes')) {
+            foreach ($request->file('imagenes') as $imagen) {
+                // Guardar la imagen en storage/app/public/salas
+                $nombreArchivo = time() . '_' . $imagen->getClientOriginalName();
+                $rutaRelativa = 'imagenes/Salas/' . $nombreArchivo;
+                $imagen->move(public_path('imagenes/Salas'), $nombreArchivo);
+    
+                // Crear una nueva entrada en la tabla fotos
+                $salas->fotos()->create([
+                    'url' => $rutaRelativa,
+                ]);
+            }
+        }
+        return redirect('/Webmaster/salas-de-conferencia');
     }
 
     public function deleteSala($id){
         $salas = Sala::obtenerSalaporId($id);
         $salas->eliminarSala();
-        return redirect('/Admin/salas-de-conferencia');
+        return redirect('/Webmaster/salas-de-conferencia')->with('success', '¡Tipo de Sala creado exitosamente!');
     }
     
 }
