@@ -26,28 +26,9 @@ use App\Models\User;
 |
 */
 
-
-//Esto es para poder tener una sesion mientras david termina lo suyo
-Route::get('/simulate-login', function () {
-    $user = User::find(1);
-    if ($user) {
-        auth()->login($user);
-        return redirect('/Recepcionista');
-    }
-    return "Usuario no encontrado";
-});
-
-Route::get('/simulate-logout', function () {
-    auth()->logout();
-    return redirect('/Recepcionista');
-});
-
-
-
 Route::get('/', function () {
-    return redirect('/Recepcionista');
+    return redirect('/Publico');
 });
-
 
 
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
@@ -110,3 +91,23 @@ Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepc
 
 
 Route::get('/Publico', [InicioController::class, 'Publico']);
+
+Route::middleware(['usuario.registrado'])->group(function () {
+    Route::get('/Usuario', [InicioController::class, 'Usuario']);
+    // Otras rutas para usuarios registrados
+});
+
+Route::middleware(['usuario.no.registrado'])->group(function () {
+    Route::get('/Publico', [InicioController::class, 'login']);
+    // Otras rutas para usuarios no registrados
+});
+
+Route::middleware(['recepcionista'])->group(function () {
+    Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);
+    // Otras rutas para recepcionistas
+});
+
+Route::middleware(['webmaster'])->group(function () {
+    Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
+    // Otras rutas para webmasters
+});
