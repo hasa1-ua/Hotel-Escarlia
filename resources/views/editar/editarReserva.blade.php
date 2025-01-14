@@ -36,9 +36,10 @@
 img{
   width: 736px;
   height: 457px;
-  margin-top: -400px;
+  margin-top: 50px;
   margin-left: 600px;
   align-items: left;
+  display: inline;
 }
 
 
@@ -55,14 +56,13 @@ button {
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
+  margin-left: 20px;
   
 }
 
 .button1{
   margin-top: 40px;
-  margin-left: 20px;
 }
-
 
 
 .celda{
@@ -75,6 +75,15 @@ button {
     color: #C3BB38; /* Texto en rojo oscuro */
     width: 300px;
     height: 70px;
+}
+
+.label{
+  margin-top: 0px;
+}
+
+.form-group label[for="descripcion"] {
+    margin-top: 20px; /* Ajusta este valor según necesites */
+    display: block;
 }
 
 .celda:focus{
@@ -107,7 +116,7 @@ button {
 
     /* Botón personalizado */
     .custom-file-button {
-        padding: 10px 10px;
+        padding: 10px 20px;
         background-color:  #840705;
         color: #C3BB38;
         border: 1px solid #C3BB38;
@@ -115,9 +124,6 @@ button {
         cursor: pointer;
         font-size: 48px;
         text-align: center;
-        font-family: "Solitreo";
-        width: 363px;
-        height: 73px;
     }
 
     .custom-file-button:hover {
@@ -125,27 +131,32 @@ button {
         cursor: pointer;
     }
 
-
-
 </style>
-
-
 
 
 @extends('layoutWebmaster')
 
 @section('contenido')
+    <h3 class="titulo">Editar Reserva</h3>
+
+    <div class="container">
 
 
-<h3 class="titulo">Crear Reserva</h3>
+    <div class="label">
 
-<div class="container">
-    <form method="POST" action="{{ route('reservas.guardar') }}" enctype="multipart/form-data">
+    @if(session('error'))
+        <div class="alert alert-danger">{{ session('error') }}</div>
+    @endif
+
+
+    <form action="{{ route('reservas.actualizar', $reservas->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT') <!-- Método PUT para actualizar -->
+        
         <div class="form-group">
         <label for="usuario_id" class="letras1">Usuario*:</label>
         <select class="celda" name="usuario_id" id="usuario_id" required>
-        <option value="">Seleccione un usuario</option>
+        <option value="" disabled>Seleccione un usuario</option>
             @foreach ($usuarios as $usuario)
                 <option value="{{ $usuario->id }}" {{ $reservas->usuario_id == $usuario->id ? 'selected' : '' }}>
                     {{ $usuario->nombre_usuario }}
@@ -180,8 +191,8 @@ button {
 
         <div class="form-group">
         <label for="cupon_reserva" class="letras1">Cupon:</label>
-        <select class="celda" name="cupon_reserva" id="cupon_reserva" required>
-        <option value="">Sin cupon</option>
+        <select class="celda" name="cupon_reserva" id="cupon_reserva">
+        <option value="" {{ is_null($reservas->cupon_reserva) ? 'selected' : '' }}>Sin cupon</option>
             @foreach ($cupon as $cupon)
                 <option value="{{ $cupon->id }}" {{ $reservas->cupon_reserva == $cupon->id ? 'selected' : '' }}>
                     {{ $cupon->descuento }}
@@ -193,7 +204,7 @@ button {
         <div class="form-group">
         <label for="regimen_id" class="letras1">Regimen*:</label>
         <select class="celda" name="regimen_id" id="regimen_id" required>
-        <option value="">Selecciona regimen</option>
+        <option value="" disabled>Selecciona regimen</option>
             @foreach ($regimen as $regimen)
                 <option value="{{ $regimen->id }}" {{ $reservas->regimen_id == $regimen->id ? 'selected' : '' }}>
                     {{ $regimen->nombre }}
@@ -205,7 +216,7 @@ button {
         <div class="form-group">
         <label for="temporada_id" class="letras1">Temporada*:</label>
         <select class="celda" name="temporada_id" id="temporada_id" required>
-        <option value="">Selecciona temporada</option>
+        <option value="" disabled>Selecciona temporada</option>
             @foreach ($temporada as $temporada)
                 <option value="{{ $temporada->id }}" {{ $reservas->temporada_id == $temporada->id ? 'selected' : '' }}>
                     {{ $temporada->nombre }}
@@ -236,9 +247,8 @@ button {
             <input class="celda" style=" margin-left: 20px;"  type="number" id="precio_total" name="precio_total" step="0.01" value="{{ $reservas->precio_total }}">
         </div>
 
-        <button type="submit" class="button1">Crear</button>
+        <button class="button1" type="submit">Editar</button>
     </form>
-<div>
-
-
+    </div>
+    </div>
 @endsection

@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Reserva;
 use App\Models\User;
-
+use App\Models\Regimen;
+use App\Models\Cupon;
+use App\Models\Temporada;
+use App\Models\Sala;
+use App\Models\Habitacion;
 
 use App\Models\TipoSala;
-use App\Models\Sala;
+
 use App\Models\Foto;
 
 
@@ -35,177 +39,127 @@ class ReservaWebmasterController extends Controller{
         ]);
     }
 
-    // Tipo Sala
+    public function editarReserva($id){
+        $reservas = Reserva::findOrFail($id);
+        $usuarios = User::all();
+        $regimen = Regimen::all();
+        $cupon = Cupon::all();
+        $temporada = Temporada::all();
+        $habitacion = Habitacion::all();
+        $sala = Sala::all();
 
-    public function deleteTipoSala($id){
-        $tipossalas = TipoSala::idTipo($id);
-        $tipossalas->eliminarTipoSala();
-        return redirect('/Webmaster/salas-de-conferencia');
-    }
-
-    public function editarTipoSala($id){
-        $tipossalas = TipoSala::idTipo($id);
-        return view('editar.editarTipoSala', ['tipo_salas'=>$tipossalas]);
-    }
-
-    public function añadirTipoSala(){
-        return view('crear.crearTipoSala');
-    }
-
-
-    public function guardarTipoSala(Request $request){
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'precio' => 'required|numeric',
-            'aforo' => 'required|numeric',
-            'descripcion' => 'required|string',
-            'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        return view('editar.editarReserva', 
+        ['reservas'=>$reservas, 
+        'usuarios'=>$usuarios,
+        'regimen'=>$regimen,
+        'cupon'=>$cupon,
+        'temporada'=>$temporada,
+        'habitacion'=>$habitacion,
+        'sala'=>$sala,
         ]);
+    }
 
-        $imageName = $request->file('img')->getClientOriginalName();
-        $imagePath = 'imagenes/TiposSalas/' . $imageName;
+    public function actualizarReserva($id, Request $request)
+    {
+    // Validar los datos del formulario
+    $request->validate([
+        'fecha_inicio' => 'required|date|after_or_equal:today',
+        'fecha_fin' => 'required|date|after:fecha_inicio',
+        'estado' => 'required|string|max:255',
+        'precio_total' => 'required|numeric|min:0',
+        'usuario_id' => 'required|exists:users,id',  // Asegúrate de que este campo esté validado
+        'habitacion_id' => 'nullable|exists:habitaciones,id',
+        'sala_id' => 'nullable|exists:salas,id',
+        'cupon_reserva' => 'nullable|exists:cupones,id',  // Verifica también este campo
+        'temporada_id' => 'nullable|exists:temporadas,id',  // Verifica este campo también
+        'regimen_id' => 'nullable|exists:regimenes,id', // Y este
+    ]);
 
-	    $tipossalas = new TipoSala();
-	    $tipossalas->nombre = $request->nombre;
-	    $tipossalas->precio = $request->precio;
-	    $tipossalas->aforo = $request->aforo;
-	    $tipossalas->descripcion = $request->descripcion;
-        $tipossalas->img = $imagePath ?? null;
-	    $tipossalas->save();
 
-	    return redirect('/Webmaster/salas-de-conferencia')->with('success', '¡Tipo de Sala creado exitosamente!');
+
+    // Obtener la reserva por ID
+    $reserva = Reserva::find($id);
+
+    // Actualizar los campos de la reserva
+    $reserva->fecha_inicio = $request->fecha_inicio;
+    $reserva->fecha_fin = $request->fecha_fin;
+    $reserva->estado = $request->estado;
+    $reserva->precio_total = $request->precio_total;
+    $reserva->usuario_id = $request->usuario_id;
+    $reserva->habitacion_id = $request->habitacion_id;
+    $reserva->sala_id = $request->sala_id;
+    $reserva->cupon_reserva = $request->cupon_reserva;
+    $reserva->temporada_id = $request->temporada_id;
+    $reserva->regimen_id = $request->regimen_id;
+    $reserva->save();
+
+    // Redirigir con mensaje de éxito
+    return redirect('/Webmaster/reservas')
+        ->with('success', 'Reserva actualizada correctamente.');
+    }
+
+    public function deleteReserva($id){
+        $reservas = Reserva::find($id);
+        $reservas->eliminarReserva();
+        return redirect('/Webmaster/reservas');
     }
 
 
-    public function actualizarTipoSala($id, Request $request){
-
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'precio' => 'required|numeric',
-            'aforo' => 'required|numeric',
-            'descripcion' => 'required|string',
-            'img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+    public function añadirReserva(){
+        $reservas = new Reserva();
+        $usuarios = User::all();
+        $regimen = Regimen::all();
+        $cupon = Cupon::all();
+        $temporada = Temporada::all();
+        $habitacion = Habitacion::all();
+        $sala = Sala::all();
+        return view('crear.crearReserva', 
+        ['reservas'=>$reservas, 
+        'usuarios'=>$usuarios,
+        'regimen'=>$regimen,
+        'cupon'=>$cupon,
+        'temporada'=>$temporada,
+        'habitacion'=>$habitacion,
+        'sala'=>$sala,
         ]);
-
-        $tipossalas = TipoSala::idTipo($id);
-
-        if ($request->hasFile('img')) {
-            $imageName = $request->file('img')->getClientOriginalName();
-            $imagePath = 'imagenes/TiposSalas/' . $imageName;
-    
-            // Guardar la nueva ruta de la imagen
-            $tipossalas->img = $imagePath;
-    
-            // Mover la imagen al almacenamiento (asegúrate de tener la carpeta creada)
-            $request->file('img')->move(public_path('imagenes/TiposSalas'), $imageName);
-        }
-    
-        
-	    $tipossalas->nombre = $request->nombre;
-	    $tipossalas->precio = $request->precio;
-	    $tipossalas->aforo = $request->aforo;
-	    $tipossalas->descripcion = $request->descripcion;
-	    $tipossalas->save();
-        return redirect('/Webmaster/salas-de-conferencia');
     }
 
 
-    // Sala
-
-    public function editarSala($id){
-        $tipossalas = TipoSala::all();
-        $salas = Sala::obtenerSalaporId($id);
-        return view('editar.editarSala', ['salas'=>$salas, 'tipo_sala'=> $tipossalas]);
-    }
-
-
-    public function actualizarSala($id, Request $request){
-
+    public function guardarReserva(Request $request){
         $request->validate([
-            'nombre' => 'required|string|max:255',
-            'disponible' => 'required|boolean',
-            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'fecha_inicio' => 'required|date|after_or_equal:today',
+            'fecha_fin' => 'required|date|after:fecha_inicio',
+            'estado' => 'required|string|max:255',
+            'precio_total' => 'required|numeric|min:0',
+            'usuario_id' => 'required|exists:users,id',  // Asegúrate de que este campo esté validado
+            'habitacion_id' => 'nullable|exists:habitaciones,id',
+            'sala_id' => 'nullable|exists:salas,id',
+            'cupon_reserva' => 'nullable|exists:cupones,id',  // Verifica también este campo
+            'temporada_id' => 'nullable|exists:temporadas,id',  // Verifica este campo también
+            'regimen_id' => 'nullable|exists:regimenes,id', // Y este
         ]);
-
-        $salas = Sala::obtenerSalaporId($id);
-	    $salas->nombre = $request->nombre;
-	    $salas->disponible = $request->disponible;
-        $salas->tipo_sala_id = $request->tipo_sala_id;
-	    $salas->save();
-
-        if ($request->hasFile('imagenes')) {
-            foreach ($request->file('imagenes') as $imagen) {
-                // Guardar la imagen en storage/app/public/salas
-                $nombreArchivo = time() . '_' . $imagen->getClientOriginalName();
-                $rutaRelativa = 'imagenes/Salas/' . $nombreArchivo;
-                $imagen->move(public_path('imagenes/Salas'), $nombreArchivo);
     
-                // Crear una nueva entrada en la tabla fotos
-                $salas->fotos()->create([
-                    'url' => $rutaRelativa,
-                ]);
-            }
-        }
-
-        return redirect('/Webmaster/salas-de-conferencia');
-    }
-
-    public function deleteImagen($id) {
-        $foto = Foto::findOrFail($id);
     
-        // Eliminar el archivo físico si existe
-        $ruta = public_path($foto->url);
-        if (file_exists($ruta)) {
-            unlink($ruta);
-        }
     
-        // Eliminar la entrada de la base de datos
-        $foto->delete();
+        // Obtener la reserva por ID
+        $reserva = new Reserva();
     
-        return redirect()->back()->with('success', 'Imagen eliminada correctamente.');
-    }
-
-    public function añadirSala(){
-        $tipossalas = TipoSala::all();
-        $salas = new Sala();
-        return view('crear.crearSala', ['salas'=>$salas, 'tipo_sala'=> $tipossalas]);
-    }
-
-
-    public function guardarSala(Request $request){
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'disponible' => 'required|boolean',
-            'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-
-	    $salas = new Sala();
-	    $salas->nombre = $request->nombre;
-	    $salas->disponible = $request->disponible;
-        $salas->tipo_sala_id = $request->tipo_sala_id;
-	    $salas->save();
-
-        if ($request->hasFile('imagenes')) {
-            foreach ($request->file('imagenes') as $imagen) {
-                // Guardar la imagen en storage/app/public/salas
-                $nombreArchivo = time() . '_' . $imagen->getClientOriginalName();
-                $rutaRelativa = 'imagenes/Salas/' . $nombreArchivo;
-                $imagen->move(public_path('imagenes/Salas'), $nombreArchivo);
+        // Actualizar los campos de la reserva
+        $reserva->fecha_inicio = $request->fecha_inicio;
+        $reserva->fecha_fin = $request->fecha_fin;
+        $reserva->estado = $request->estado;
+        $reserva->precio_total = $request->precio_total;
+        $reserva->usuario_id = $request->usuario_id;
+        $reserva->habitacion_id = $request->habitacion_id;
+        $reserva->sala_id = $request->sala_id;
+        $reserva->cupon_reserva = $request->cupon_reserva;
+        $reserva->temporada_id = $request->temporada_id;
+        $reserva->regimen_id = $request->regimen_id;
+        $reserva->save();
     
-                // Crear una nueva entrada en la tabla fotos
-                $salas->fotos()->create([
-                    'url' => $rutaRelativa,
-                ]);
-            }
-        }
-        return redirect('/Webmaster/salas-de-conferencia');
-    }
-
-    public function deleteSala($id){
-        $salas = Sala::obtenerSalaporId($id);
-        $salas->eliminarSala();
-        return redirect('/Webmaster/salas-de-conferencia')->with('success', '¡Tipo de Sala creado exitosamente!');
+        // Redirigir con mensaje de éxito
+        return redirect('/Webmaster/reservas')
+            ->with('success', 'Reserva actualizada correctamente.');
     }
     
 }

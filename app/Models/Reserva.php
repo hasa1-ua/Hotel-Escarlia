@@ -94,6 +94,9 @@ class Reserva extends Model
 
     // Métodos
 
+    public function eliminarReserva(){
+        $this->delete();
+    }
 
     
 }
