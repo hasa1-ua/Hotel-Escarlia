@@ -9,6 +9,7 @@ use App\Http\Controllers\PerfilRecepcionistaController;
 use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\PerfilWebmasterController;
 use App\Http\Controllers\SalaUsuarioController;
+use App\Http\Controllers\ReservaWebmasterController;
 use App\Models\User;
 
 /*
@@ -73,6 +74,9 @@ Route::get('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterControlle
 Route::post('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterController::class, 'guardarSala'])->name('sala.guardar');
 Route::delete('/Webmaster/salas-de-conferencia/sala/{id}', [SalaWebmasterController::class, 'deleteSala']);
 Route::delete('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'deleteImagen'])->name('sala.eliminarImagen');
+
+Route::get('/Webmaster/reservas',[ReservaWebmasterController::class, 'getReserva']);
+
 
 Route::get('/Webmaster/perfil', [PerfilWebmasterController::class, 'mi_perfil']);
 Route::get('/Webmaster/perfil/editar-usuario', [PerfilWebmasterController::class, 'editar_perfil']);

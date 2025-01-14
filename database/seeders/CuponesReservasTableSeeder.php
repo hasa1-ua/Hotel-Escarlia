@@ -20,7 +20,7 @@ class CuponesReservasTableSeeder extends Seeder
         $cuponReserva = [
             [1, 1], // Cupon ID 1 asociado a Reserva ID 1
             [2, 2], // Cupon ID 2 asociado a Reserva ID 2
-            [3, 1], // Cupon ID 3 asociado a Reserva ID 1
+            [3, 3], // Cupon ID 3 asociado a Reserva ID 1
         ];
 
         foreach ($cuponReserva as $cr) {

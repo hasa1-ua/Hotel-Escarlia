@@ -47,7 +47,7 @@
 </style>
 
 {{-- Comprobamos si el número total de páginas excede 5 --}}
-@if ($paginable->lastPage() > 5)
+@if ($paginable->lastPage() > 1)
     <div class="pagination-links">
         {{-- Botón Anterior --}}
         @if ($paginable->onFirstPage())

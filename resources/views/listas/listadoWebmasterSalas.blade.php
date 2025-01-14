@@ -15,21 +15,28 @@
   margin-left: auto;
   margin-top: 20px;
   width: 1200px;
-  height: 400px;
   background-color: #f2f2f2;
   border-width: 1px;
   border-style: solid;
+  height: auto; /* Permite que la altura se ajuste al contenido */
 }
 
 
 .casilla {
   width: 1420px;
-  height: 849px;
-  padding: 8px 8px 8px 8px;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  height: auto; /* Permite que la altura se ajuste al contenido */
+}
+
+
+.table-container{
+    width: 100%;
+    max-width: 1420px; /* Tamaño máximo para el contenedor */
+    margin: 0 auto; /* Centra el contenedor */
 }
 
 table {
@@ -171,7 +178,7 @@ img{
             <option value="0" {{ request()->get('disponible') == '0' ? 'selected' : '' }}>No disponible</option>
         </select>
         <button type="submit" class="button1">Filtrar</button>
-    </form>
+        </form>
     </div>
     <table class="tabla-tipo">
         <thead>
@@ -190,7 +197,7 @@ img{
                     <!-- Añadir añadir, editar y borrar-->
                     <td>{{ $sala->id }}</td>
                     <td>{{ $sala->nombre }}</td>
-                    <td>
+                    <td @if($sala->disponible == 1) style="color: green;" @else style="color: red;" @endif>
                         @if ($sala->disponible == 1)
                             Disponible
                         @else

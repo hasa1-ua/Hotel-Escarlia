@@ -9,6 +9,8 @@ class Regimen extends Model
 {
     use HasFactory;
 
+    protected $table = 'regimenes';
+
     protected $fillable = [
         'nombre',
         'precio',

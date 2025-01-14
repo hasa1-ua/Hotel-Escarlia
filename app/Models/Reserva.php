@@ -43,14 +43,15 @@ class Reserva extends Model
         return $this->belongsTo(Sala::class, 'sala_id');
     }
 
+    public function cupon()
+    {
+        return $this->belongsToMany(Cupon::class, 'cupon_reserva');
+    }
+
     // Getters
 
     public function getId() {
         return $this->id;
-    }
-
-    public function getTipoReserva() {
-        return $this->tipo_reserva;
     }
 
     public function getFechaInicio() {
@@ -75,10 +76,6 @@ class Reserva extends Model
         $this->id = $id;
     }
 
-    public function setTipoReserva($tipo_reserva) {
-        $this->tipo_reserva = $tipo_reserva;
-    }
-
     public function setFechaInicio($fecha_inicio) {
         $this->fecha_inicio = $fecha_inicio;
     }
@@ -96,5 +93,7 @@ class Reserva extends Model
     }
 
     // Métodos
+
+
     
 }
