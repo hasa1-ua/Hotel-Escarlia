@@ -13,6 +13,7 @@ use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\PerfilWebmasterController;
 use App\Http\Controllers\SalaRecepcionistaController;
 use App\Http\Controllers\SalaUsuarioController;
+use App\Http\Controllers\LoginController;
 use App\Models\User;
 
 /*
@@ -91,6 +92,9 @@ Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepc
 
 
 Route::get('/Publico', [InicioController::class, 'Publico']);
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware(['usuario.registrado'])->group(function () {
     Route::get('/Usuario', [InicioController::class, 'Usuario']);
@@ -98,7 +102,7 @@ Route::middleware(['usuario.registrado'])->group(function () {
 });
 
 Route::middleware(['usuario.no.registrado'])->group(function () {
-    Route::get('/Publico', [InicioController::class, 'login']);
+    Route::get('/Publico', [LoginController::class, 'showLoginForm'])->name('login');
     // Otras rutas para usuarios no registrados
 });
 
