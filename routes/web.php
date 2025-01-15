@@ -34,21 +34,6 @@ Route::get('/', function () {
     return redirect('/Publico');
 });
 
-
-//Route::get('/Usuario', [InicioController::class, 'Usuario']);
-
-
-
-//Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
-
-
-
-//Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);
-
-
-
-
-
 Route::get('/Publico', [InicioController::class, 'Publico']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
@@ -98,6 +83,13 @@ Route::middleware(['recepcionista'])->group(function () {
     Route::post('/Recepcionista/perfil/editar-usuario/{email}', [PerfilRecepcionistaController::class, 'confirmar_editar']);
     Route::get('/Recepcionista/perfil/modificar-contraseña', [PerfilRecepcionistaController::class, 'modificar_contraseña']);
     Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepcionistaController::class, 'confirmar_contraseña']);
+
+    Route::get('/Recepcionista/reservas', [ReservasRecepcionistaController::class, 'getReservas']);
+    Route::get('/Recepcionista/reservas/crear', [ReservasRecepcionistaController::class, 'crear'])->name('reservas.crear');
+    Route::post('/Recepcionista/reservas/crear/guardar', [ReservasRecepcionistaController::class, 'guardar'])->name('reservas.guardar');
+    Route::get('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'editar']);
+    Route::put('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'actualizar'])->name('reservas.actualizar');
+    Route::delete('/Recepcionista/reservas/borrar/{id}', [ReservasRecepcionistaController::class, 'borrarReserva']);
     // Otras rutas para recepcionistas
 });
 
@@ -116,37 +108,11 @@ Route::middleware(['webmaster'])->group(function () {
     Route::put('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'actualizarSala'])->name('sala.actualizar');
     Route::delete('/Webmaster/salas-de-conferencia/sala/{id}', [SalaWebmasterController::class, 'deleteSala']);
 
-Route::get('/Webmaster/perfil', [PerfilWebmasterController::class, 'mi_perfil']);
-Route::get('/Webmaster/perfil/editar-usuario', [PerfilWebmasterController::class, 'editar_perfil']);
-Route::post('/Webmaster/perfil/editar-usuario/{email}', [PerfilWebmasterController::class, 'confirmar_editar']);
-Route::get('/Webmaster/perfil/modificar-contraseña', [PerfilWebmasterController::class, 'modificar_contraseña']);
-Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña']);
-
-
-
-Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);
-
-Route::get('/Recepcionista/salas-de-conferencia',[SalaRecepcionistaController::class, 'getTipoSala']);
-Route::get('/Recepcionista/salas-de-conferencia/{tipoid}/{id}',[DescripcionSalaController::class, 'getSalaRecepcionista'])->name('descripcion.sala.recepcionista');
-Route::post('/Recepcionista/salas-de-conferencia/{tipoid}/{id}/toggle', [SalaRecepcionistaController::class, 'toggleDisponibilidad'])->name('sala.toggle');
-
-Route::get('/Recepcionista/habitaciones',[HabitacionesRecepcionistaController::class, 'getTipoHabitaciones']);
-Route::get('/Recepcionista/habitaciones/{tipoid}/{id}',[DescripcionHabitacionesController::class, 'getHabitacionesRecepcionista'])->name('descripcion.habitaciones.recepcionista');
-Route::post('/Recepcionista/habitaciones/{tipoid}/{id}/toggle', [HabitacionesRecepcionistaController::class, 'toggleDisponibilidad'])->name('habitaciones.toggle');
-
-Route::get('/Recepcionista/reservas', [ReservasRecepcionistaController::class, 'getReservas']);
-Route::get('/Recepcionista/reservas/crear', [ReservasRecepcionistaController::class, 'crear'])->name('reservas.crear');
-Route::post('/Recepcionista/reservas/crear/guardar', [ReservasRecepcionistaController::class, 'guardar'])->name('reservas.guardar');
-Route::get('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'editar']);
-Route::put('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'actualizar'])->name('reservas.actualizar');
-Route::delete('/Recepcionista/reservas/borrar/{id}', [ReservasRecepcionistaController::class, 'borrarReserva']);
-
-Route::get('/Recepcionista/perfil', [PerfilRecepcionistaController::class, 'mi_perfil']);
-Route::get('/Recepcionista/perfil/editar-usuario', [PerfilRecepcionistaController::class, 'editar_perfil']);
-Route::post('/Recepcionista/perfil/editar-usuario/{email}', [PerfilRecepcionistaController::class, 'confirmar_editar']);
-Route::get('/Recepcionista/perfil/modificar-contraseña', [PerfilRecepcionistaController::class, 'modificar_contraseña']);
-Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepcionistaController::class, 'confirmar_contraseña']);
-
-
+    Route::get('/Webmaster/perfil', [PerfilWebmasterController::class, 'mi_perfil']);
+    Route::get('/Webmaster/perfil/editar-usuario', [PerfilWebmasterController::class, 'editar_perfil']);
+    Route::post('/Webmaster/perfil/editar-usuario/{email}', [PerfilWebmasterController::class, 'confirmar_editar']);
+    Route::get('/Webmaster/perfil/modificar-contraseña', [PerfilWebmasterController::class, 'modificar_contraseña']);
+    Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña']);
+});
 
 Route::get('/Publico', [InicioController::class, 'Publico']);
