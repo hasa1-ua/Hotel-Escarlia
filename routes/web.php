@@ -103,6 +103,10 @@ Route::get('/Recepcionista/habitaciones/{tipoid}/{id}',[DescripcionHabitacionesC
 Route::post('/Recepcionista/habitaciones/{tipoid}/{id}/toggle', [HabitacionesRecepcionistaController::class, 'toggleDisponibilidad'])->name('habitaciones.toggle');
 
 Route::get('/Recepcionista/reservas', [ReservasRecepcionistaController::class, 'getReservas']);
+Route::get('/Recepcionista/reservas/crear', [ReservasRecepcionistaController::class, 'crear'])->name('reservas.crear');
+Route::post('/Recepcionista/reservas/crear/guardar', [ReservasRecepcionistaController::class, 'guardar'])->name('reservas.guardar');
+Route::get('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'editar']);
+Route::put('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'actualizar'])->name('reservas.actualizar');
 Route::delete('/Recepcionista/reservas/borrar/{id}', [ReservasRecepcionistaController::class, 'borrarReserva']);
 
 Route::get('/Recepcionista/perfil', [PerfilRecepcionistaController::class, 'mi_perfil']);

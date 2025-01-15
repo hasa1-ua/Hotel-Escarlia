@@ -112,7 +112,7 @@
                         @endif
                     </td>
                     <td>
-                        <button href="#" class="button">Editar</button>
+                        <button onclick="window.location.href='/Recepcionista/reservas/editar/{{$reserva->id}}';" class="button">Editar</button>
                         <form action="/Recepcionista/reservas/borrar/{{$reserva->id}}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
@@ -128,7 +128,7 @@
     </div>
 
     <div class="create-button-container">
-        <a href="#" class="create-button">Crear Reserva</a>
+        <a href= "{{ route('reservas.crear') }}" class="create-button">Crear Reserva</a>
     </div>
 </div>
 @endsection

@@ -14,6 +14,7 @@ class Reserva extends Model
         'fecha_fin',
         'estado',
         'precio_total',
+        'usuario_id',
     ];
 
     // Relaciones
