@@ -16,7 +16,7 @@
                 align-items: flex-end;
             }
             body{
-                background-image: url("/imagenes/BarraDeMenu/FondoGeneral.png");
+                background-image: url("/imagenes/BarraDeMenu/FondoFoto.png");
                 background-size: cover;
                 background-attachment: fixed;
                 background-repeat: no-repeat;

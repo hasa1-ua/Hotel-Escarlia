@@ -22,7 +22,7 @@ class InicioController extends Controller
         return view('homes/inicioRecepcionista');
     }
 
-    public function Publico()
+    public function Publico() //ESCAPARATE
     {
         return view('homes/inicioPublico');
     }
