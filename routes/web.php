@@ -14,6 +14,8 @@ use App\Http\Controllers\PerfilWebmasterController;
 use App\Http\Controllers\SalaRecepcionistaController;
 use App\Http\Controllers\SalaUsuarioController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PublicoController;
+use App\Http\Controllers\RegisterController;
 use App\Models\User;
 
 /*
@@ -50,10 +52,13 @@ Route::get('/Publico', [InicioController::class, 'Publico']);
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-Route::get('/Publico/fotos', [ExtrasUsuarioController::class, 'getFotos']);
-Route::get('/Publico/habitaciones',[HabitacionesUsuarioController::class, 'getTipoHabitacion']);
-Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
-Route::get('/Publico/sobre-nosotros',[SalaUsuarioController::class], 'about');
+Route::get('/Publico/fotos', [PublicoController::class, 'getFotos']);
+Route::get('/Publico/habitaciones',[PublicoController::class, 'getTipoHabitacion']);
+Route::get('/Publico/salas-de-conferencia',[PublicoController::class, 'getTipoSala']);
+Route::get('/Publico/sobre-nosotros',[PublicoController::class], 'about');
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('/register', [RegisterController::class, 'register']);
+Route::post('/validate-user', [RegisterController::class, 'validateUser'])->name('validate-user');
 
 Route::get('/permiso-denegado', function () {
     return view('errors.permiso-denegado');
