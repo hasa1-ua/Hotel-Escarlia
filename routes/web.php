@@ -11,6 +11,7 @@ use App\Http\Controllers\HabitacionesUsuarioController;
 use App\Http\Controllers\PerfilRecepcionistaController;
 use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\PerfilWebmasterController;
+use App\Http\Controllers\ReservasRecepcionistaController;
 use App\Http\Controllers\SalaRecepcionistaController;
 use App\Http\Controllers\SalaUsuarioController;
 use App\Models\User;
@@ -100,6 +101,9 @@ Route::post('/Recepcionista/salas-de-conferencia/{tipoid}/{id}/toggle', [SalaRec
 Route::get('/Recepcionista/habitaciones',[HabitacionesRecepcionistaController::class, 'getTipoHabitaciones']);
 Route::get('/Recepcionista/habitaciones/{tipoid}/{id}',[DescripcionHabitacionesController::class, 'getHabitacionesRecepcionista'])->name('descripcion.habitaciones.recepcionista');
 Route::post('/Recepcionista/habitaciones/{tipoid}/{id}/toggle', [HabitacionesRecepcionistaController::class, 'toggleDisponibilidad'])->name('habitaciones.toggle');
+
+Route::get('/Recepcionista/reservas', [ReservasRecepcionistaController::class, 'getReservas']);
+Route::delete('/Recepcionista/reservas/borrar/{id}', [ReservasRecepcionistaController::class, 'borrarReserva']);
 
 Route::get('/Recepcionista/perfil', [PerfilRecepcionistaController::class, 'mi_perfil']);
 Route::get('/Recepcionista/perfil/editar-usuario', [PerfilRecepcionistaController::class, 'editar_perfil']);

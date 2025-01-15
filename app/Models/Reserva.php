@@ -28,6 +28,11 @@ class Reserva extends Model
         return $this->belongsTo(Regimen::class, 'regimen_id');
     }
 
+    public function cupon()
+    {
+        return $this->belongsTo(Cupon::class, 'cupon_id');
+    }
+
     public function temporada()
     {
         return $this->belongsTo(Temporada::class, 'temporada_id');
@@ -47,10 +52,6 @@ class Reserva extends Model
 
     public function getId() {
         return $this->id;
-    }
-
-    public function getTipoReserva() {
-        return $this->tipo_reserva;
     }
 
     public function getFechaInicio() {

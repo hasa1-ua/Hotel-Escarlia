@@ -99,7 +99,7 @@
                 text-align: left;
             }
 
-            .resevas {
+            .fotos {
                 width: 91px;
                 height: 67px;
                 color: #C3BB38;
@@ -205,7 +205,7 @@
             <div class="barra-nav">
                 <div class="opcion"><a onclick="window.location.href='/Publico/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
                 <div class="opcion"><a onclick="window.location.href='/Publico/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Publico/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Publico/fotos'" class="fotos">&nbsp;&nbsp;Fotos&nbsp;&nbsp;</a></div>
                 <div class="opcion"><a onclick="window.location.href='/Publico/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
             </div>
             <!-- Botón de Login -->
