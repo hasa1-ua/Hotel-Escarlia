@@ -12,6 +12,6 @@ class Webmaster
         if (Auth::check() && Auth::user()->isWebmaster()) {
             return $next($request);
         }
-        return redirect('/Webmaster');
+        return redirect('/permiso-denegado');
     }
 }

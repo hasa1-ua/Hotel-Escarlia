@@ -10,7 +10,7 @@ class UsuarioNoRegistrado
     public function handle($request, Closure $next)
     {
         if (!Auth::check()) {
-            return redirect('/login');
+            return redirect('/permiso-denegado');
         }
         return $next($request);
     }

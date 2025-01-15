@@ -9,9 +9,9 @@ class UsuarioRegistrado
 {
     public function handle($request, Closure $next)
     {
-        if (Auth::check()) {
+        if (Auth::check() && Auth::user()->isCliente()) {
             return $next($request);
         }
-        return redirect('/Usuario');
+        return redirect('/permiso-denegado');
     }
 }

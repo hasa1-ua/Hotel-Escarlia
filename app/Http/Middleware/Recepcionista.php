@@ -12,6 +12,6 @@ class Recepcionista
         if (Auth::check() && Auth::user()->isRecepcion()) {
             return $next($request);
         }
-        return redirect('/Recepcionista');
+        return redirect('/permiso-denegado');
     }
 }
