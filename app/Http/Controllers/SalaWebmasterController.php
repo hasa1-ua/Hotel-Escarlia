@@ -201,7 +201,7 @@ class SalaWebmasterController extends Controller{
     public function deleteSala($id){
         $salas = Sala::obtenerSalaporId($id);
         $salas->eliminarSala();
-        return redirect('/Webmaster/salas-de-conferencia')->with('success', '¡Tipo de Sala creado exitosamente!');
+        return redirect('/Webmaster/salas-de-conferencia');
     }
     
 }

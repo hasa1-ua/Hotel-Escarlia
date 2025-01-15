@@ -22,7 +22,7 @@ class Cupon extends Model
 
     public function reservas()
     {
-        return $this->belongsToMany(Reserva::class, 'cupon_reserva');
+        return $this->hasMany(Reserva::class, 'reserva_id');
     }
 
     public function usuario()

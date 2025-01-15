@@ -13,10 +13,6 @@ use App\Models\Temporada;
 use App\Models\Sala;
 use App\Models\Habitacion;
 
-use App\Models\TipoSala;
-
-use App\Models\Foto;
-
 
 
 class ReservaWebmasterController extends Controller{
@@ -63,14 +59,14 @@ class ReservaWebmasterController extends Controller{
     {
     // Validar los datos del formulario
     $request->validate([
-        'fecha_inicio' => 'required|date|after_or_equal:today',
+        'fecha_inicio' => 'required|date',
         'fecha_fin' => 'required|date|after:fecha_inicio',
         'estado' => 'required|string|max:255',
         'precio_total' => 'required|numeric|min:0',
         'usuario_id' => 'required|exists:users,id',  // Asegúrate de que este campo esté validado
         'habitacion_id' => 'nullable|exists:habitaciones,id',
         'sala_id' => 'nullable|exists:salas,id',
-        'cupon_reserva' => 'nullable|exists:cupones,id',  // Verifica también este campo
+        'cupon_id' => 'nullable|exists:cupones,id',  // Verifica también este campo
         'temporada_id' => 'nullable|exists:temporadas,id',  // Verifica este campo también
         'regimen_id' => 'nullable|exists:regimenes,id', // Y este
     ]);
@@ -88,7 +84,7 @@ class ReservaWebmasterController extends Controller{
     $reserva->usuario_id = $request->usuario_id;
     $reserva->habitacion_id = $request->habitacion_id;
     $reserva->sala_id = $request->sala_id;
-    $reserva->cupon_reserva = $request->cupon_reserva;
+    $reserva->cupon_id = $request->cupon_id;
     $reserva->temporada_id = $request->temporada_id;
     $reserva->regimen_id = $request->regimen_id;
     $reserva->save();
@@ -127,14 +123,14 @@ class ReservaWebmasterController extends Controller{
 
     public function guardarReserva(Request $request){
         $request->validate([
-            'fecha_inicio' => 'required|date|after_or_equal:today',
+            'fecha_inicio' => 'required|date',
             'fecha_fin' => 'required|date|after:fecha_inicio',
             'estado' => 'required|string|max:255',
             'precio_total' => 'required|numeric|min:0',
             'usuario_id' => 'required|exists:users,id',  // Asegúrate de que este campo esté validado
             'habitacion_id' => 'nullable|exists:habitaciones,id',
             'sala_id' => 'nullable|exists:salas,id',
-            'cupon_reserva' => 'nullable|exists:cupones,id',  // Verifica también este campo
+            'cupon_id' => 'nullable|exists:cupones,id',  // Verifica también este campo
             'temporada_id' => 'nullable|exists:temporadas,id',  // Verifica este campo también
             'regimen_id' => 'nullable|exists:regimenes,id', // Y este
         ]);
@@ -152,15 +148,40 @@ class ReservaWebmasterController extends Controller{
         $reserva->usuario_id = $request->usuario_id;
         $reserva->habitacion_id = $request->habitacion_id;
         $reserva->sala_id = $request->sala_id;
-        $reserva->cupon_reserva = $request->cupon_reserva;
         $reserva->temporada_id = $request->temporada_id;
         $reserva->regimen_id = $request->regimen_id;
+        $reserva->cupon_id = $request->cupon_id;
         $reserva->save();
     
         // Redirigir con mensaje de éxito
         return redirect('/Webmaster/reservas')
             ->with('success', 'Reserva actualizada correctamente.');
     }
+
+    // CUPONES
+
+    public function getCupon(Request $request){
+
+        // Para filtro estados = Confirmada, Pendiente (default), cancelada
+        $utilizado = $request->get('utilizado');
+    
+        // Si el filtro 'estados' está presente, se aplica
+        $cupones = Cupon::query()
+                ->when($utilizado !== null, function($query) use ($utilizado) {
+                    return $query->where('utilizado', $utilizado); 
+                })->paginate(5, ['*'], 'cupon_pagina');
+    
+        // Retorna la vista con ambas variables
+        return view('listas.listadoWebmasterReservas', [
+            'cupones' => $cupones,
+        ]);
+    }
+
+
+
+
+
+
     
 }
 

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\InicioController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DescripcionSalaController;
+use App\Http\Controllers\descripcionSalaUsuarioController;
 use App\Http\Controllers\SalaWebmasterController;
 use App\Http\Controllers\ExtrasUsuarioController;
 use App\Http\Controllers\PerfilRecepcionistaController;
@@ -11,6 +11,8 @@ use App\Http\Controllers\PerfilWebmasterController;
 use App\Http\Controllers\SalaUsuarioController;
 use App\Http\Controllers\ReservaWebmasterController;
 use App\Http\Controllers\UsuarioWebmasterController;
+use App\Http\Controllers\descripcionSalaUsuarioNoRegController;
+use App\Http\Controllers\SalaUsuarioNoRegController;
 use App\Models\User;
 
 /*
@@ -49,7 +51,7 @@ Route::get('/', function () {
 Route::get('/Usuario', [InicioController::class, 'Usuario']);
 
 Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
-Route::get('/Usuario/salas-de-conferencia/{id}',[DescripcionSalaController::class, 'getSalaUsuario']);
+Route::get('/Usuario/salas-de-conferencia/{id}',[descripcionSalaUsuarioController::class, 'getSalaUsuario']);
 Route::get('/Usuario/fotos', [ExtrasUsuarioController::class, 'getFotos']);
 
 Route::get('/Usuario/perfil', [PerfilUsuarioController::class, 'mi_perfil']);
@@ -76,14 +78,20 @@ Route::post('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterControll
 Route::delete('/Webmaster/salas-de-conferencia/sala/{id}', [SalaWebmasterController::class, 'deleteSala']);
 Route::delete('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'deleteImagen'])->name('sala.eliminarImagen');
 
-Route::get('/Webmaster/reservas',[ReservaWebmasterController::class, 'getReserva']);
-Route::get('/Webmaster/reservas/editar/{id}', [ReservaWebmasterController::class, 'editarReserva']);
-Route::put('/Webmaster/reservas/editar/{id}', [ReservaWebmasterController::class, 'actualizarReserva'])->name('reservas.actualizar');
-Route::delete('/Webmaster/reservas/{id}', [ReservaWebmasterController::class, 'deleteReserva']);
-Route::get('/Webmaster/reservas/crear', [ReservaWebmasterController::class, 'añadirReserva']);
-Route::post('/Webmaster/reservas/crear', [ReservaWebmasterController::class, 'guardarReserva'])->name('reservas.guardar');
+//Route::get('/Webmaster/menu-reservas/cupones',[ReservaWebmasterController::class, 'getCupon']);
+Route::get('/Webmaster/menu-reservas/reservas',[ReservaWebmasterController::class, 'getReserva']);
+Route::get('/Webmaster/menu-reservas/reservas/editar/{id}', [ReservaWebmasterController::class, 'editarReserva']);
+Route::put('/Webmaster/menu-reservas/reservas/editar/{id}', [ReservaWebmasterController::class, 'actualizarReserva'])->name('reservas.actualizar');
+Route::delete('/Webmaster/menu-reservas/reservas/{id}', [ReservaWebmasterController::class, 'deleteReserva']);
+Route::get('/Webmaster/menu-reservas/reservas/crear', [ReservaWebmasterController::class, 'añadirReserva']);
+Route::post('/Webmaster/menu-reservas/reservas/crear', [ReservaWebmasterController::class, 'guardarReserva'])->name('reservas.guardar');
 
 Route::get('/Webmaster/usuarios',[UsuarioWebmasterController::class, 'getUsuarios']);
+Route::delete('/Webmaster/usuarios/{id}', [UsuarioWebmasterController::class, 'deleteUsuario']);
+Route::get('/Webmaster/usuarios/editar/{id}', [UsuarioWebmasterController::class, 'editarUsuario']);
+Route::put('/Webmaster/usuarios/editar/{id}', [UsuarioWebmasterController::class, 'actualizarUsuario'])->name('usuarios.actualizar');
+Route::get('/Webmaster/usuarios/crear', [UsuarioWebmasterController::class, 'añadirUsuario']);
+Route::post('/Webmaster/usuarios/crear', [UsuarioWebmasterController::class, 'guardarUsuario'])->name('usuarios.guardar');
 
 
 Route::get('/Webmaster/perfil', [PerfilWebmasterController::class, 'mi_perfil']);
@@ -105,3 +113,6 @@ Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepc
 
 
 Route::get('/Publico', [InicioController::class, 'Publico']);
+
+Route::get('/Publico/salas-de-conferencia',[SalaUsuarioNoRegController::class, 'getTipoSala']);
+Route::get('/Publico/salas-de-conferencia/{id}',[descripcionSalaUsuarioNoRegController::class, 'getSalaUsuario']);

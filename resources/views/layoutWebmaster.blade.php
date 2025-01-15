@@ -185,7 +185,7 @@
             <div class="barra-nav">
                 <div class="opcion"><a onclick="window.location.href='/Webmaster/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
                 <div class="opcion"><a onclick="window.location.href='/Webmaster/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Webmaster/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Webmaster/menu-reservas/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
                 <div class="opcion"><a onclick="window.location.href='/Webmaster/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
             </div>
             <div class="perfil dropdown">

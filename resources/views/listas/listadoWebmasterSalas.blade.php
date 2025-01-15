@@ -56,7 +56,6 @@ th, td {
 
 th {
     background-color: #C0C0C0;
-    text-align: left;
     text-align: center;
 }
 

@@ -45,7 +45,7 @@ class Reserva extends Model
 
     public function cupon()
     {
-        return $this->belongsToMany(Cupon::class, 'cupon_reserva');
+        return $this->belongsTo(Cupon::class, 'cupon_id');
     }
 
     // Getters

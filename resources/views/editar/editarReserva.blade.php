@@ -156,7 +156,7 @@ button {
         <div class="form-group">
         <label for="usuario_id" class="letras1">Usuario*:</label>
         <select class="celda" name="usuario_id" id="usuario_id" required>
-        <option value="" disabled>Seleccione un usuario</option>
+        <option value="">Seleccione un usuario</option>
             @foreach ($usuarios as $usuario)
                 <option value="{{ $usuario->id }}" {{ $reservas->usuario_id == $usuario->id ? 'selected' : '' }}>
                     {{ $usuario->nombre_usuario }}
@@ -190,11 +190,11 @@ button {
         </div>
 
         <div class="form-group">
-        <label for="cupon_reserva" class="letras1">Cupon:</label>
-        <select class="celda" name="cupon_reserva" id="cupon_reserva">
-        <option value="" {{ is_null($reservas->cupon_reserva) ? 'selected' : '' }}>Sin cupon</option>
+        <label for="cupon_id" class="letras1">Cupon:</label>
+        <select class="celda" name="cupon_id" id="cupon_id">
+        <option value="" {{ is_null($reservas->cupon_id) ? 'selected' : '' }}>Sin cupon</option>
             @foreach ($cupon as $cupon)
-                <option value="{{ $cupon->id }}" {{ $reservas->cupon_reserva == $cupon->id ? 'selected' : '' }}>
+                <option value="{{ $cupon->id }}" {{ $reservas->cupon_id == $cupon->id ? 'selected' : '' }}>
                     {{ $cupon->descuento }}
                 </option>
             @endforeach

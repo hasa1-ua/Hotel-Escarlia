@@ -157,4 +157,8 @@ class User extends Authenticatable
         return self::where('email', $email)->first();
     }
 
+    public function eliminarUsuario(){
+        $this->delete();
+    }
+
 }

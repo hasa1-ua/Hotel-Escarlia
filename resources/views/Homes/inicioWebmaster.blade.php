@@ -104,7 +104,7 @@ img{
     <div class="table-container">
     <!-- Listado tipo sala -->
     <div class="casilla">
-    <h1 class="Titulo">Usuario</h1>
+    <h1 class="Titulo">Usuarios</h1>
     <div class="separation">
         <button class="button1" onclick="window.location.href='/Webmaster/usuarios/crear';">Crear</button>
         <form class="filtro" method="GET" action="{{ url('/Webmaster/usuarios') }}">

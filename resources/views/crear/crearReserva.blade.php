@@ -179,11 +179,11 @@ button {
         </div>
 
         <div class="form-group">
-        <label for="cupon_reserva" class="letras1">Cupon:</label>
-        <select class="celda" name="cupon_reserva" id="cupon_reserva" required>
-        <option value="">Sin cupon</option>
+        <label for="cupon_id" class="letras1">Cupon:</label>
+        <select class="celda" name="cupon_id" id="cupon_id" required>
+        <option value="" {{ is_null($reservas->cupon_id) ? 'selected' : '' }}>Sin cupon</option>
             @foreach ($cupon as $cupon)
-                <option value="{{ $cupon->id }}" {{ $reservas->cupon_reserva == $cupon->id ? 'selected' : '' }}>
+                <option value="{{ $cupon->id }}" {{ $reservas->cupon_id == $cupon->id ? 'selected' : '' }}>
                     {{ $cupon->descuento }}
                 </option>
             @endforeach
@@ -225,8 +225,8 @@ button {
         <div class="form-group">
             <label class="letras1" for="estado">Estado:</label>
             <select class="celda" style=" margin-left: 20px;"  id="estado" name="estado">
-                <option value="Confirmada" {{ $reservas->estado == "Confirmada" ? 'selected' : '' }}>Confirmada</option>
                 <option value="Pendiente" {{ $reservas->estado == "Pendiente" ? 'selected' : '' }}>Pendiente</option>
+                <option value="Confirmada" {{ $reservas->estado == "Confirmada" ? 'selected' : '' }}>Confirmada</option>
                 <option value="Cancelada" {{ $reservas->estado == "Cancelada" ? 'selected' : '' }}>Cancelada</option>
             </select>
         </div>

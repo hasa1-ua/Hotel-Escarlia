@@ -15,21 +15,28 @@
   margin-left: auto;
   margin-top: 20px;
   width: 1200px;
-  height: 400px;
   background-color: #f2f2f2;
   border-width: 1px;
   border-style: solid;
+  height: auto;
+  
+}
+
+.table-container{
+    width: 100%;
+    max-width: 1420px; /* Tamaño máximo para el contenedor */
+    margin: 0 auto; /* Centra el contenedor */
 }
 
 
 .casilla {
   width: 1420px;
-  height: 849px;
   padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  height: auto;
 }
 
 table {
@@ -49,7 +56,6 @@ th, td {
 
 th {
     background-color: #C0C0C0;
-    text-align: left;
     text-align: center;
 }
 
