@@ -65,6 +65,7 @@ Route::middleware(['usuario.registrado'])->group(function () {
     Route::post('/Usuario/perfil/editar-usuario/{email}', [PerfilUsuarioController::class, 'confirmar_editar']);
     Route::get('/Usuario/perfil/modificar-contraseña', [PerfilUsuarioController::class, 'modificar_contraseña']);
     Route::post('/Usuario/perfil/modificar-contraseña/{email}', [PerfilUsuarioController::class, 'confirmar_contraseña']);
+    Route::post('/validar-contraseña-actual-Usuario', [PerfilUsuarioController::class, 'validarContraseñaActual']);
     // Otras rutas para usuarios registrados
 });
 
@@ -83,6 +84,7 @@ Route::middleware(['recepcionista'])->group(function () {
     Route::post('/Recepcionista/perfil/editar-usuario/{email}', [PerfilRecepcionistaController::class, 'confirmar_editar']);
     Route::get('/Recepcionista/perfil/modificar-contraseña', [PerfilRecepcionistaController::class, 'modificar_contraseña']);
     Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepcionistaController::class, 'confirmar_contraseña']);
+    Route::post('/validar-contraseña-actual-Recepcionista', [PerfilRecepcionistaController::class, 'validarContraseñaActual']);
 
     Route::get('/Recepcionista/reservas', [ReservasRecepcionistaController::class, 'getReservas']);
     Route::get('/Recepcionista/reservas/crear', [ReservasRecepcionistaController::class, 'crear'])->name('reservas.crear');
@@ -113,6 +115,5 @@ Route::middleware(['webmaster'])->group(function () {
     Route::post('/Webmaster/perfil/editar-usuario/{email}', [PerfilWebmasterController::class, 'confirmar_editar']);
     Route::get('/Webmaster/perfil/modificar-contraseña', [PerfilWebmasterController::class, 'modificar_contraseña']);
     Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña']);
+    Route::post('/validar-contraseña-actual-Webmaster', [PerfilWebmasterController::class, 'validarContraseñaActual']);
 });
-
-Route::get('/Publico', [InicioController::class, 'Publico']);
