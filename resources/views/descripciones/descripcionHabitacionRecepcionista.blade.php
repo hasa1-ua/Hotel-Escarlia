@@ -145,7 +145,6 @@
     </div>
     
 
-    <!-- Información de la habitación -->
     <div class="information">
         <h1>{{ $habitacion->tipo->nombre }}</h1>
         <h5>Número: {{ $habitacion->getNumero() }}</h5>
@@ -160,8 +159,12 @@
                 {{ $habitacion->disponible ? 'Bloquea' : 'Desbloquea' }}
             </button>
         </form>
-        <button class="button1" onclick="window.location.reload();">Reservar</button>
     </div>
+
+    <div class="margen2">
+        <a href="{{ route('recepcionista.reservar.form', ['tipoid' => $habitacion->tipo->id, 'id' => $habitacion->id]) }}" class="button1">Reservar</a>
+    </div>
+
 </div>
 
 
@@ -172,12 +175,11 @@
         const slides = document.querySelector('.carousel-images');
         const totalSlides = slides.children.length;
 
-        // Actualizar índice actual
+        // Actualizar índice actual para pasar entre fotos si tengo más de una
         currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-
-        // Mover las imágenes usando transform
         slides.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 </script>
 
 @endsection
+

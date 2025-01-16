@@ -15,6 +15,7 @@ use App\Http\Controllers\SalaRecepcionistaController;
 use App\Http\Controllers\SalaUsuarioController;
 use App\Models\User;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -109,4 +110,72 @@ Route::post('/Recepcionista/perfil/modificar-contraseña/{email}', [PerfilRecepc
 
 
 
-Route::get('/Publico', [InicioController::class, 'Publico']);
+Route::get('/Publico', [InicioController::class, 'Publico']); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use App\Http\Controllers\HabitacionesWebmasterController;
+use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\SobreNosotrosController;
+
+
+//Tablas de webMaster-CRUD
+Route::get('/Webmaster/habitaciones', [HabitacionesWebmasterController::class, 'listarHabitaciones']);
+Route::get('/Webmaster/habitaciones/crear', [HabitacionesWebmasterController::class, 'crearHabitacion']);
+Route::post('/Webmaster/habitaciones/crear', [HabitacionesWebmasterController::class, 'guardarHabitacion'])->name('habitaciones.guardar');
+Route::get('/Webmaster/habitaciones/editar/{id}', [HabitacionesWebmasterController::class, 'editarHabitacion']);
+Route::put('/Webmaster/habitaciones/editar/{id}', [HabitacionesWebmasterController::class, 'actualizarHabitacion'])->name('habitaciones.actualizar');
+Route::delete('/Webmaster/habitaciones/{id}', [HabitacionesWebmasterController::class, 'deleteHabitacion']);
+
+//Mostrar formulario de reserva habitaciones
+Route::get('/Usuario/habitaciones/{tipoid}/{id}/reservar', [ReservaController::class, 'formularioReservaUsuario'])->name('usuario.reservar.form');
+Route::get('/Recepcionista/habitaciones/{tipoid}/{id}/reservar', [ReservaController::class, 'formularioReservaRecepcionista'])->name('recepcionista.reservar.form');
+Route::post('/Recepcionista/habitaciones/{tipoid}/{id}/reservar', [ReservaController::class, 'reservarRecepcionista'])->name('recepcionista.reservar');
+Route::post('/Usuario/habitaciones/{tipoid}/{id}/reservar', [ReservaController::class, 'reservarUsuario'])->name('usuario.reservar');
+//Vistas reserva hecha habitación 
+Route::get('/Usuario/reserva/confirmacion/{id}', [ReservaController::class, 'mostrarConfirmacionReserva'])->name('usuario.reserva.confirmacion');
+
+//Falta mas info en la vista a rellenar de momento solo fechas. Mostrar y Hacer formularios
+Route::get('/Usuario/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'formularioReservaUsuarioSala'])->name('usuario.reservarSala.form');
+Route::post('/Usuario/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'reservarUsuarioSala']) ->name('usuario.reservar.sala');
+Route::get('/Recepcionista/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'formularioReservaRecepcionistaSala'])->name('recepcionista.reservarSala.form');
+Route::post('/Recepcionista/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'reservarRecepcionistaSala'])->name('recepcionista.reservar.sala');
+//confirmar reserva
+Route::get('/Usuario/salas/reserva/confirmacion/{id}', [ReservaController::class, 'mostrarConfirmacionReservaSala'])->name('usuario.reservaSala.confirmacion');
+
+//Info extra usuario habitacion + reserva
+Route::get('/Usuario/habitaciones/{tipoid}/{id}',[HabitacionesUsuarioController::class, 'getHabitacionDetalle'])->name('usuario.habitacion.detalle');
+
+
+

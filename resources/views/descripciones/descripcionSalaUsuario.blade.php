@@ -138,7 +138,7 @@
         @else
             <h3 class="letras1">No disponible</h3>
         @endif
-        <button class="button1" onclick="window.location.reload();">Reservar</button>
+        <a href="{{ route('usuario.reservarSala.form', ['id' => $sala->id]) }}" class="button1">Reservar</a>
     </div>
 
 <div>
@@ -151,10 +151,7 @@
         const slides = document.querySelector('.carousel-images');
         const totalSlides = slides.children.length;
 
-        // Actualizar índice actual
         currentIndex = (currentIndex + direction + totalSlides) % totalSlides;
-
-        // Mover las imágenes usando transform
         slides.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 </script>
