@@ -18,12 +18,12 @@ class SalasTableSeeder extends Seeder
         DB::table('salas')->delete();
 
         $salas = [
-            ['Sala de Conferencias 1', true, 1],
-            ['Sala de Conferencias 2', true, 1],
-            ['Sala de Eventos 1', true, 2],
-            ['Sala de Eventos 2', true, 2],
-            ['Sala de Capacitación 1', true, 3],
-            ['Sala de Capacitación 2', true, 3],
+            ['Sala de Reuniones Ejecutiva', true, 1],
+            ['Sala de Conferencias VIP', true, 1],
+            ['Sala de Banquetes con Cátering', true, 2],
+            ['Sala de Celebraciones Gourmet', true, 2],
+            ['Sala de Formación con Asistencia Técnica', true, 3],
+            ['Sala de Taller con Equipo Técnico', true, 3],
         ];
 
         foreach ($salas as $s) {

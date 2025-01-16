@@ -20,7 +20,7 @@ class CuponesTableSeeder extends Seeder
         $cupones = [
             ['DESCUENTO10', 10.00, '2024-12-31', null, false],
             ['PROMO50', 50.00, '2024-06-30', 1, false],
-            ['BIENVENIDO', 20.00, '2025-01-01', 2, true],
+            ['BIENVENIDO2025', 50.00, '2025-01-01', 3, true],
         ];
 
         foreach ($cupones as $cupon) {
