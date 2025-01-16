@@ -11,7 +11,7 @@ class InicioController extends Controller
     public function Usuario()
     {
         $user = Auth::user();
-        return view('Homes.inicioPublico', ['user' => $user]);
+        return view('Homes.inicioUsuario', ['user' => $user]);
     }
 
     public function Webmaster()
@@ -22,7 +22,7 @@ class InicioController extends Controller
     public function Recepcionista()
     {
         $user = Auth::user();
-        return view('Homes.inicioPublico', ['user' => $user]);
+        return view('Homes.inicioRecepcionista', ['user' => $user]);
     }
 
     public function Publico() //ESCAPARATE
