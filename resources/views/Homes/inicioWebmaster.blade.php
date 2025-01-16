@@ -15,7 +15,7 @@
   margin-left: auto;
   margin-top: 20px;
   width: 1200px;
-  height: 400px;
+  height: auto;
   background-color: #f2f2f2;
   border-width: 1px;
   border-style: solid;
@@ -23,8 +23,8 @@
 
 
 .casilla {
-  width: 1420px;
-  height: 849px;
+  width: auto;
+  height: auto;
   padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
@@ -73,7 +73,7 @@ td.breakword {
     font-size: 40px;
     border-radius: 4px;
     font-family: "Solitreo";
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .separation {

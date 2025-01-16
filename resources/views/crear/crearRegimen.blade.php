@@ -73,8 +73,13 @@ button {
     border-radius: 5px;
     background-color: #840705; /* Fondo rojo claro */
     color: #C3BB38; /* Texto en rojo oscuro */
-    width: 300px;
+    width: 500px;
     height: 70px;
+}
+
+.dynamic-width {
+    display: inline-block;
+    min-width: 360px; /* Ancho mínimo */
 }
 
 .label{
@@ -154,7 +159,7 @@ button {
     
 
         <div class="form-group">
-            <label class="letras1" for="nombre">Nombre:</label>
+            <label class="letras1" for="nombre">Nombre*:</label>
             <select class="celda" style=" margin-left: 20px;"  id="nombre" name="nombre" required>
                 <option value="">Seleccione un nombre</option>
                 @foreach($regimenes as $reg)
@@ -167,8 +172,9 @@ button {
 
 
         <div class="form-group">
-            <label class="letras1" for="precio">Precio:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="number" id="precio" name="precio" step="0.01" value="{{ $regimen->precio}}">
+            <label class="letras1" for="precio">Precio*:</label>
+            <input class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="precio" name="precio" step="0.01" value="{{ $regimen->precio}}">
         </div>
 
 
@@ -176,4 +182,33 @@ button {
     </form>
     </div>
     </div>
+
+
+    <script>
+function adjustInputWidth(input) {
+    // Crear un elemento invisible para medir el texto
+    const tempSpan = document.createElement("span");
+    tempSpan.style.visibility = "hidden";
+    tempSpan.style.position = "absolute";
+    tempSpan.style.whiteSpace = "nowrap";
+    tempSpan.style.fontSize = window.getComputedStyle(input).fontSize;
+    tempSpan.style.fontFamily = window.getComputedStyle(input).fontFamily;
+    tempSpan.textContent = input.value || input.placeholder;
+
+    // Agregar al documento temporalmente
+    document.body.appendChild(tempSpan);
+
+    // Ajustar el ancho del input basado en el ancho del texto
+    input.style.width = `${tempSpan.offsetWidth + 20}px`;
+
+    // Eliminar el span temporal
+    document.body.removeChild(tempSpan);
+}
+
+// Ajustar el ancho de los inputs al cargar la página
+document.querySelectorAll(".dynamic-width").forEach(input => {
+    adjustInputWidth(input);
+});
+
+</script>
 @endsection

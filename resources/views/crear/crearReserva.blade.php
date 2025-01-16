@@ -215,15 +215,15 @@ button {
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="fecha_inicio">Fecha inicio:</label>
+            <label class="letras1" for="fecha_inicio">Fecha inicio*:</label>
             <input class="celda" style=" margin-left: 20px;"  type="date" id="fecha_inicio" name="fecha_inicio" value="{{ $reservas->fecha_inicio}}">
 
-            <label class="letras1" for="fecha_fin">Fecha fin:</label>
+            <label class="letras1" for="fecha_fin">Fecha fin*:</label>
             <input class="celda" style=" margin-left: 20px;"  type="date" id="fecha_fin" name="fecha_fin" value="{{ $reservas->fecha_fin}}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="estado">Estado:</label>
+            <label class="letras1" for="estado">Estado*:</label>
             <select class="celda" style=" margin-left: 20px;"  id="estado" name="estado">
                 <option value="Pendiente" {{ $reservas->estado == "Pendiente" ? 'selected' : '' }}>Pendiente</option>
                 <option value="Confirmada" {{ $reservas->estado == "Confirmada" ? 'selected' : '' }}>Confirmada</option>

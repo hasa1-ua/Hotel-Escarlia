@@ -54,7 +54,7 @@ class SalaWebmasterController extends Controller{
             'nombre' => 'required|string|max:255',
             'precio' => 'required|numeric',
             'aforo' => 'required|numeric',
-            'descripcion' => 'required|string',
+            'descripcion' => 'nullable|string',
             'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 

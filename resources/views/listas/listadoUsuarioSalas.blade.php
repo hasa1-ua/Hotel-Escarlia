@@ -10,7 +10,7 @@
 
 
 .casilla {
-  width: 1420px;
+  width: auto;
   height: 413px;
   padding: 8px 8px 8px 8px;
   background: #000000;

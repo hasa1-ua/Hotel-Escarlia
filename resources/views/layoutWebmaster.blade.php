@@ -167,8 +167,8 @@
 
 
             .contenido {
-                margin-left: 229px;
-                max-width: 1461px;
+                margin-left: 219px;
+                max-width: 1498px;
                 overflow-wrap: break-word;
                 word-wrap: break-word;
                 padding: 10px;

@@ -207,12 +207,12 @@ img{
         @method('PUT') <!-- Método PUT para actualizar -->
         
         <div class="form-group">
-            <label class="letras1" for="nombre">Nombre:</label>
+            <label class="letras1" for="nombre">Nombre*:</label>
             <input class="celda" style=" margin-left: 20px;  width: 500px;"  type="text" id="nombre" name="nombre" value="{{ $salas->nombre }}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="disponible">Disponible:</label>
+            <label class="letras1" for="disponible">Disponible*:</label>
             <select class="celda" style=" margin-left: 20px;"  id="disponible" name="disponible">
                 <option value="1" {{ $salas->disponible ? 'selected' : '' }}>Sí</option>
                 <option value="0" {{ !$salas->disponible ? 'selected' : '' }}>No</option>
@@ -220,7 +220,7 @@ img{
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="tipo_sala_id">Tipo Sala:</label>
+            <label class="letras1" for="tipo_sala_id">Tipo Sala*:</label>
             <select class="celda" style=" margin-left: 20px;"  id="tipo_sala_id" name="tipo_sala_id">
                 <option value="">Seleccione un tipo</option>
                 @foreach($tipo_sala as $tipo)
@@ -232,7 +232,7 @@ img{
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="imagenes" style="display: block;">Imágenes de la Sala:</label>
+            <label class="letras1" for="imagenes" style="display: block;">Imágenes de la Sala*:</label>
             <div class="custom-file-container" style="display: block;">
               <button type="button" style=" margin-left: 20px;" class="custom-file-button">Subir Imagen</button>
               <input style="margin-top: 10px;" class="celda" type="file" id="imagenes" name="imagenes[]" multiple accept="image/*" onchange="mostrarNombres()">

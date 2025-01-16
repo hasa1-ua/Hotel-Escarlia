@@ -1,7 +1,6 @@
 
 <style>
 
-
 .titulo {
   color: #C3BB38;
   font-family: "Yellowtail";
@@ -15,7 +14,7 @@
   margin-left: auto;
   margin-top: 20px;
   width: 1200px;
-  height: 400px;
+  height: auto;
   background-color: #f2f2f2;
   border-width: 1px;
   border-style: solid;
@@ -23,8 +22,8 @@
 
 
 .casilla {
-  width: 1420px;
-  height: 849px;
+  width: auto;
+  height: auto;
   padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
@@ -73,7 +72,7 @@ td.breakword {
     font-size: 40px;
     border-radius: 4px;
     font-family: "Solitreo";
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .separation {
@@ -92,36 +91,29 @@ img{
     margin-left: 20px;
 }
 
-.table-container{
-    width: 100%;
-    max-width: 1420px; /* Tamaño máximo para el contenedor */
-    margin: 0 auto; /* Centra el contenedor */
-}
-
 
 .menu {
   display: flex;
   justify-content: center;
-  background-color: #333;
+  background-color: #000000;
+  border-color: #C3BB38;
+  border-style: solid;
+  border-width: 1px;
   padding: 10px;
 }
 
 .menu a {
-  color: white;
+  color: #C3BB38;
+  font-family: "Yellowtail";
   text-decoration: none;
   padding: 14px 20px;
   margin: 0 10px;
-  font-size: 18px;
+  font-size: 30px;
   text-align: center;
 }
 
 .menu a:hover {
-  background-color: #575757;
-}
-
-.menu .activo {
-  background-color: #C3BB38;
-  color: black;
+  background-color:rgb(58, 58, 58);
 }
 
 
@@ -138,6 +130,7 @@ img{
     <a href="{{ url('/Webmaster/menu-reservas/regimenes') }}" class="{{ request()->is('/Webmaster/menu-reservas/regimenes') ? 'activo' : '' }}">Regimenes</a>
 </div>
 
+<div style="margin-top: 20px"></div>
 
 <div class="table-container">
 <!-- Listado reservas -->

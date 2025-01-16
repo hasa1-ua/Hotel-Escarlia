@@ -131,13 +131,19 @@ button {
         cursor: pointer;
     }
 
+    .dynamic-width {
+    display: inline-block;
+    min-width: 360px; /* Ancho mínimo */
+}
+
+
 </style>
 
 
 @extends('layoutWebmaster')
 
 @section('contenido')
-    <h3 class="titulo">Editar temporada</h3>
+    <h3 class="titulo">Crear temporada</h3>
 
     <div class="container">
 
@@ -150,30 +156,62 @@ button {
 
 
     <form action="{{ route('temporadas.guardar', $temporadas->id) }}" method="POST" enctype="multipart/form-data">
-        @csrf
+        @csrf    
 
         <div class="form-group">
-            <label class="letras1" for="nombre">Nombre:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="text" id="nombre" name="nombre" value="{{ $temporadas->nombre}}">
+            <label class="letras1" for="nombre">Nombre*:</label>
+            <input class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="nombre" name="nombre" value="{{ $temporadas->nombre}}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="multiplicador">Multiplicador:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="number" id="multiplicador" name="multiplicador" step="0.01" value="{{ $temporadas->multiplicador}}">
+            <label class="letras1" for="multiplicador">Multiplicador*:</label>
+            <input class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="multiplicador" name="multiplicador" step="0.01" value="{{ $temporadas->multiplicador}}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="fecha_inicio">Fecha inicio:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="date" id="fecha_inicio" name="fecha_inicio" value="{{ $temporadas->fecha_inicio}}">
+            <label class="letras1" for="fecha_inicio">Fecha inicio*:</label>
+            <input class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="date" id="fecha_inicio" name="fecha_inicio" value="{{ $temporadas->fecha_inicio}}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="fecha_fin">Fecha fin:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="date" id="fecha_fin" name="fecha_fin" value="{{ $temporadas->fecha_fin}}">
+            <label class="letras1" for="fecha_fin">Fecha fin*:</label>
+            <input class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="date" id="fecha_fin" name="fecha_fin" value="{{ $temporadas->fecha_fin}}">
         </div>
 
         <button class="button1" type="submit">Crear</button>
     </form>
     </div>
     </div>
+
+<script>
+function adjustInputWidth(input) {
+    // Crear un elemento invisible para medir el texto
+    const tempSpan = document.createElement("span");
+    tempSpan.style.visibility = "hidden";
+    tempSpan.style.position = "absolute";
+    tempSpan.style.whiteSpace = "nowrap";
+    tempSpan.style.fontSize = window.getComputedStyle(input).fontSize;
+    tempSpan.style.fontFamily = window.getComputedStyle(input).fontFamily;
+    tempSpan.textContent = input.value || input.placeholder;
+
+    // Agregar al documento temporalmente
+    document.body.appendChild(tempSpan);
+
+    // Ajustar el ancho del input basado en el ancho del texto
+    input.style.width = `${tempSpan.offsetWidth + 20}px`;
+
+    // Eliminar el span temporal
+    document.body.removeChild(tempSpan);
+}
+
+// Ajustar el ancho de los inputs al cargar la página
+document.querySelectorAll(".dynamic-width").forEach(input => {
+    adjustInputWidth(input);
+});
+
+</script>
 @endsection

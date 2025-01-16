@@ -23,7 +23,7 @@
 
 
 .casilla {
-  width: 1420px;
+  width: auto;
   padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
@@ -32,12 +32,6 @@
   height: auto; /* Permite que la altura se ajuste al contenido */
 }
 
-
-.table-container{
-    width: 100%;
-    max-width: 1420px; /* Tamaño máximo para el contenedor */
-    margin: 0 auto; /* Centra el contenedor */
-}
 
 table {
     background-color: white;
@@ -79,7 +73,7 @@ td.breakword {
     font-size: 40px;
     border-radius: 4px;
     font-family: "Solitreo";
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .separation {
@@ -133,7 +127,7 @@ img{
                     <!-- Añadir añadir, editar y borrar-->
                     <td>{{ $tiposala->id }}</td>
                     <td>{{ $tiposala->nombre }}</td>
-                    <td>{{ $tiposala->descripcion }}</td>
+                    <td>{{ $tiposala->descripcion ?: 'Sin descripción' }}</td>
                     <td>{{number_format($tiposala->getPrecio(), 2)}}€</td>
                     <td>{{ $tiposala->aforo }}</td>
                     <td> <img src="{{ asset($tiposala->img) }}"></td>

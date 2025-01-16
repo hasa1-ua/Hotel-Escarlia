@@ -33,6 +33,11 @@
   white-space: nowrap;
 }
 
+.dynamic-width {
+    display: inline-block;
+    min-width: 360px; /* Ancho mínimo */
+}
+
 img{
   width: 736px;
   height: 457px;
@@ -155,22 +160,25 @@ button {
     
 
         <div class="form-group">
-            <label class="letras1" for="codigo">Codigo:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="text" id="codigo" name="codigo" value="{{ $cupones->codigo}}">
+            <label class="letras1" for="codigo">Codigo*:</label>
+            <input class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="codigo" name="codigo" value="{{ $cupones->codigo}}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="descuento">Descuento:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="number" id="descuento" name="descuento" step="0.01" value="{{ $cupones->descuento}}">
+            <label class="letras1" for="descuento">Descuento*:</label>
+            <input class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="descuento" name="descuento" step="0.01" value="{{ $cupones->descuento}}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="fecha_expiracion">Fecha expiracion:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="date" id="fecha_expiracion" name="fecha_expiracion" value="{{ $cupones->fecha_expiracion}}">
+            <label class="letras1" for="fecha_expiracion">Fecha expiracion*:</label>
+            <input class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="date" id="fecha_expiracion" name="fecha_expiracion" value="{{ $cupones->fecha_expiracion}}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="utilizado">Utilizado:</label>
+            <label class="letras1" for="utilizado">Utilizado*:</label>
             <select class="celda" style=" margin-left: 20px;"  id="utilizado" name="utilizado" required>
                 <option value="0" {{ !$cupones->utilizado ? 'selected' : '' }}>No utilizado</option>
                 <option value="1" {{ $cupones->utilizado ? 'selected' : '' }}>Utilizado</option>
@@ -181,4 +189,31 @@ button {
     </form>
     </div>
     </div>
+<script>
+function adjustInputWidth(input) {
+    // Crear un elemento invisible para medir el texto
+    const tempSpan = document.createElement("span");
+    tempSpan.style.visibility = "hidden";
+    tempSpan.style.position = "absolute";
+    tempSpan.style.whiteSpace = "nowrap";
+    tempSpan.style.fontSize = window.getComputedStyle(input).fontSize;
+    tempSpan.style.fontFamily = window.getComputedStyle(input).fontFamily;
+    tempSpan.textContent = input.value || input.placeholder;
+
+    // Agregar al documento temporalmente
+    document.body.appendChild(tempSpan);
+
+    // Ajustar el ancho del input basado en el ancho del texto
+    input.style.width = `${tempSpan.offsetWidth + 20}px`;
+
+    // Eliminar el span temporal
+    document.body.removeChild(tempSpan);
+}
+
+// Ajustar el ancho de los inputs al cargar la página
+document.querySelectorAll(".dynamic-width").forEach(input => {
+    adjustInputWidth(input);
+});
+
+</script>
 @endsection

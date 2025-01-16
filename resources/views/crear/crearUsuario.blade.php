@@ -77,6 +77,11 @@ button {
     height: 70px;
 }
 
+.dynamic-width {
+    display: inline-block;
+    min-width: 360px; /* Ancho mínimo */
+}
+
 .celda:focus{
     outline: none;
     border-color: #840705; /* Borde rojo al hacer foco */
@@ -143,47 +148,55 @@ button {
     <form method="POST" action="{{ route('usuarios.guardar') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label class="letras1" for="nombre_usuario">Nombre:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="text" id="nombre_usuario" name="nombre_usuario" value="{{ $usuarios->nombre_usuario }}">
+            <label class="letras1" for="nombre_usuario">Nombre*:</label>
+            <input  class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="nombre_usuario" name="nombre_usuario" value="{{ $usuarios->nombre_usuario }}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="password">Password:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="password" id="password" name="password" value="{{ $usuarios->password }}">
+            <label class="letras1" for="password">Contraseña*:</label>
+            <input  class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="password" id="password" name="password" value="{{ $usuarios->password }}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="email">Email:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="text" id="email" name="email" value="{{ $usuarios->email }}">
+            <label class="letras1" for="email">Email*:</label>
+            <input  class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="email" name="email" value="{{ $usuarios->email }}">
         </div>
 
         <div class="form-group">
             <label class="letras1" for="fecha_nacimiento">Fecha nacimiento:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ $usuarios->fecha_nacimiento }}">
+            <input  class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ $usuarios->fecha_nacimiento }}">
         </div>
 
         <div class="form-group">
             <label class="letras1" for="telefono">Telefono:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="number" id="telefono" name="telefono" value="{{ $usuarios->telefono }}">
+            <input  class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="telefono" name="telefono" value="{{ $usuarios->telefono }}">
         </div>
 
         <div class="form-group">
             <label class="letras1" for="direccion">Direccion:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="text" id="direccion" name="direccion" value="{{ $usuarios->direccion }}">
+            <input  class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="direccion" name="direccion" value="{{ $usuarios->direccion }}">
         </div>
 
         <div class="form-group">
             <label class="letras1" for="nacionalidad">Nacionalidad:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="number" id="nacionalidad" name="nacionalidad" value="{{ $usuarios->nacionalidad }}">
+            <input  class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="nacionalidad" name="nacionalidad" value="{{ $usuarios->nacionalidad }}">
         </div>
 
         <div class="form-group">
             <label class="letras1" for="pais_residencia">Pais:</label>
-            <input class="celda" style=" margin-left: 20px;"  type="number" id="pais_residencia" name="pais_residencia" value="{{ $usuarios->pais }}">
+            <input  class="celda dynamic-width"
+            oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="pais_residencia" name="pais_residencia" value="{{ $usuarios->pais }}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="rol">Rol:</label>
+            <label class="letras1" for="rol">Rol*:</label>
             <select class="celda" style=" margin-left: 20px;"  id="rol" name="rol">
                 <option value="Webmaster" {{ $usuarios->rol == "Webmaster" ? 'selected' : '' }}>Webmaster</option>
                 <option value="Recepcionista" {{ $usuarios->rol == "Recepcionista" ? 'selected' : '' }}>Recepcionista</option>
@@ -195,5 +208,34 @@ button {
         <button type="submit" class="button1">Crear</button>
     </form>
 <div>
+
+
+<script>
+function adjustInputWidth(input) {
+    // Crear un elemento invisible para medir el texto
+    const tempSpan = document.createElement("span");
+    tempSpan.style.visibility = "hidden";
+    tempSpan.style.position = "absolute";
+    tempSpan.style.whiteSpace = "nowrap";
+    tempSpan.style.fontSize = window.getComputedStyle(input).fontSize;
+    tempSpan.style.fontFamily = window.getComputedStyle(input).fontFamily;
+    tempSpan.textContent = input.value || input.placeholder;
+
+    // Agregar al documento temporalmente
+    document.body.appendChild(tempSpan);
+
+    // Ajustar el ancho del input basado en el ancho del texto
+    input.style.width = `${tempSpan.offsetWidth + 20}px`;
+
+    // Eliminar el span temporal
+    document.body.removeChild(tempSpan);
+}
+
+// Ajustar el ancho de los inputs al cargar la página
+document.querySelectorAll(".dynamic-width").forEach(input => {
+    adjustInputWidth(input);
+});
+
+</script>
 
 @endsection

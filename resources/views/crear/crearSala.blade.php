@@ -143,12 +143,12 @@ button {
     <form method="POST" action="{{ route('sala.guardar') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label class="letras1" for="nombre">Nombre:</label>
+            <label class="letras1" for="nombre">Nombre*:</label>
             <input class="celda" type="text" id="nombre" name="nombre" value="{{ $salas->nombre }}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="precio">Disponible:</label>
+            <label class="letras1" for="precio">Disponible*:</label>
             <select class="celda" id="disponible" name="disponible">
                 <option value="1" {{ $salas->disponible ? 'selected' : '' }}>Sí</option>
                 <option value="0" {{ !$salas->disponible ? 'selected' : '' }}>No</option>
@@ -156,7 +156,7 @@ button {
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="aforo">Tipo Sala:</label>
+            <label class="letras1" for="aforo">Tipo Sala*:</label>
             <select class="celda" id="tipo_sala_id" name="tipo_sala_id">
                 <option value="">Seleccione un tipo</option>
                 @foreach($tipo_sala as $tipo)
@@ -168,7 +168,7 @@ button {
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="imagenes" style="display: block;">Imágenes de la Sala:</label>
+            <label class="letras1" for="imagenes" style="display: block;">Imágenes de la Sala*:</label>
             <div class="custom-file-container" style="display: block;">
               <button type="button" style=" margin-left: 20px;" class="custom-file-button">Subir Imagen</button>
               <input style="margin-top: 10px;" class="celda" type="file" id="imagenes" name="imagenes[]" multiple accept="image/*" onchange="mostrarNombres()">

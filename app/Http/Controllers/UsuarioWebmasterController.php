@@ -77,13 +77,16 @@ class UsuarioWebmasterController extends Controller{
 
         $request->validate([
             'nombre_usuario' => 'required|string|max:255',
-            'email' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'telefono' => 'nullable|numeric',
             'fecha_nacimiento' => 'nullable|date',
             'direccion' => 'nullable|string|max:255',
             'nacionalidad' => 'nullable|string|max:255',
             'pais_residencia' => 'nullable|string|max:255',
             'password' => 'required|string|max:10',
+        ],[
+            'email.unique' => 'El correo electrónico ya está registrado.', // Mensaje personalizado
+            'email.email' => 'Por favor, introduce un correo electrónico válido.', // Mensaje personalizado
         ]);
 
         $usuarios = new User();

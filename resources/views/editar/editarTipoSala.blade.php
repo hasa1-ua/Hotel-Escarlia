@@ -156,17 +156,17 @@ button {
         
         <div class="form-group">
        
-            <label class="letras1" for="nombre">Nombre:</label>
+            <label class="letras1" for="nombre">Nombre*:</label>
             <input class="celda" style=" margin-left: 20px;"  type="text" id="nombre" name="nombre" value="{{ $tipo_salas->nombre }}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="precio">Precio:</label>
+            <label class="letras1" for="precio">Precio*:</label>
             <input class="celda" style=" margin-left: 20px;"  type="number" id="precio" name="precio" step="0.01" value="{{ $tipo_salas->precio }}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="aforo">Aforo:</label>
+            <label class="letras1" for="aforo">Aforo*:</label>
             <input class="celda" style=" margin-left: 20px;"  type="number" id="aforo" name="aforo" value="{{ $tipo_salas->aforo }}">
         </div>
 
@@ -176,7 +176,7 @@ button {
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="img">Imagen:</label>
+            <label class="letras1" for="img">Imagen*:</label>
             <div class="custom-file-container">
               <button type="button" style=" margin-left: 20px;"  class="custom-file-button">Subir Imagen</button>
               <input class="celda" type="file" id="img" name="img" class="hidden">
