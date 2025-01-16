@@ -10,7 +10,7 @@ use App\Models\Foto;
 // Controlador para la tabla Salas
 class descripcionSalaUsuarioNoRegController extends Controller{
 
-    public function getSalaUsuario($id){
+    public function getSalaUsuario($tipoid, $id){
         //Escoge todos los IDs de sala
         $sala = Sala::selectidbytype($id);
 
