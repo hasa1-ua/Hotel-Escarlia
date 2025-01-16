@@ -16,6 +16,7 @@
         padding: 20px;
         color: #C3BB38;
         font-family: "Solitreo";
+        border-radius: 15px;
     }
 
     .form-row {
@@ -46,6 +47,7 @@
         color: #C3BB38;
         font-family: "Solitreo";
         font-size: 26px;
+        border-radius: 15px;
     }
 
     .form-group button {
@@ -55,6 +57,7 @@
         border-radius: 5px;
         padding: 10px 20px;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     .form-group button:hover {

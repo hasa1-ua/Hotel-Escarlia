@@ -64,6 +64,7 @@
         font-size: 40px;
         cursor: pointer;
         margin-left: -120px;
+        border-radius: 15px;
     }
 
     .boton-guardar button:hover {

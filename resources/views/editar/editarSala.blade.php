@@ -19,6 +19,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 
@@ -42,16 +43,14 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
-  border-radius: 3px 3px 3px 3px;
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
   text-align: center;
   float: right;
   margin-right: 1020px;
-
+  border-radius: 15px;
   margin-top: 40px;
-  
 }
 
 .celda{
@@ -64,6 +63,7 @@
     color: #C3BB38; /* Texto en rojo oscuro */
     width: 300px;
     height: 70px;
+    border-radius: 15px;
 }
 
 .celda:focus{
@@ -85,6 +85,7 @@
     margin-top: -480px;
     margin-left: 600px;
     float: left;
+    border-radius: 15px;
 }
 
 .carousel-images {
@@ -140,6 +141,7 @@
         width: 100%;
         height: 100%;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     /* Botón personalizado */
@@ -155,6 +157,7 @@
         font-family: "Solitreo";
         width: 363px;
         height: 73px;
+        border-radius: 15px;
     }
 
     .custom-file-button:hover {
@@ -165,6 +168,7 @@
 img{
   width: 100%; /* Se ajusta al ancho del contenedor */
   height: 100%; /* Se ajusta al alto del contenedor */
+  border-radius: 15px;
 }
 
 .delete-button {

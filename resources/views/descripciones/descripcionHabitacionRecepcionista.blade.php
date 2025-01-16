@@ -11,6 +11,7 @@
   justify-content: space-between;
   margin-left: -10px;
   padding: 22px;
+  border-radius: 20px;
 }
 
 .carousel {
@@ -20,6 +21,7 @@
     max-height: 500px;
     overflow: hidden;
     float: left;
+    border-radius: 20px;
 }
 
 .carousel-images {
@@ -86,6 +88,7 @@
   text-align: center;
   margin: 0 10px;
   cursor: pointer;
+  border-radius: 20px;
 }
 
 .button2{
@@ -103,6 +106,7 @@
   text-align: center;
   margin: 0 10px;
   cursor: pointer;
+  border-radius: 20px;
 }
 
 .margen2{

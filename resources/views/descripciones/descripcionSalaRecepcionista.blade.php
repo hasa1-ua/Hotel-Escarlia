@@ -10,6 +10,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 20px;
 }
 
 .label1{
@@ -52,6 +53,7 @@
   float: right;
   margin-right: 200px;
   margin-top: -200px;
+  border-radius: 20px;
 }
 
 .button2{
@@ -70,6 +72,7 @@
   float: right;
   margin-right: 260px;
   margin-top: 30px;
+  border-radius: 20px;
 }
 
 .carousel {
@@ -81,6 +84,7 @@
     margin-top: -100px;
     margin-left: 20px;
     float: left;
+    border-radius: 20px;
 }
 
 .carousel-images {

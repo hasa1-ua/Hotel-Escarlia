@@ -39,6 +39,7 @@
         font-size: 30px;
         cursor: pointer;
         margin-top: -30px;
+        border-radius: 15px;
     }
 
     .formulario {
@@ -83,6 +84,7 @@
         border-radius: 5px;
         background: #202020;
         color: #C3BB38;
+        border-radius: 15px;
     }
 
     .boton-guardar {
@@ -103,6 +105,7 @@
         font-size: 40px;
         cursor: pointer;
         margin-left: -120px;
+        border-radius: 15px;
     }
 
     .boton-guardar button:hover {

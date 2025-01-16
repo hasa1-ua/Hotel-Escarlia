@@ -38,6 +38,7 @@
         border-radius: 5px;
         background: #202020;
         color: #C3BB38;
+        border-radius: 15px;
     }
 
     .boton-guardar {
@@ -57,6 +58,7 @@
         font-family: "Solitreo";
         font-size: 36px;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     .boton-guardar button:hover {

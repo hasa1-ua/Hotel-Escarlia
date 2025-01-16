@@ -66,7 +66,7 @@
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 1.2em;
+            font-size: 28px;
             font-family: "Solitreo";
             cursor: pointer;
             display: inline-block;
@@ -82,7 +82,7 @@
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
-            font-size: 1.2em;
+            font-size: 28px;
             font-family: "Solitreo";
             cursor: pointer;
             display: inline-block;
