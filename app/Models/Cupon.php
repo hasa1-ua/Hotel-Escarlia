@@ -90,5 +90,9 @@ class Cupon extends Model
     {
         return $monto - ($monto * $this->getDescuento() / 100);
     }
+
+    public function eliminarCupon(){
+        $this->delete();
+    }
     
 }

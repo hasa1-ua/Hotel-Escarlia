@@ -10,9 +10,12 @@ use App\Http\Controllers\PerfilUsuarioController;
 use App\Http\Controllers\PerfilWebmasterController;
 use App\Http\Controllers\SalaUsuarioController;
 use App\Http\Controllers\ReservaWebmasterController;
+use App\Http\Controllers\CuponWebmasterController;
 use App\Http\Controllers\UsuarioWebmasterController;
 use App\Http\Controllers\descripcionSalaUsuarioNoRegController;
 use App\Http\Controllers\SalaUsuarioNoRegController;
+
+
 use App\Models\User;
 
 /*
@@ -78,7 +81,14 @@ Route::post('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterControll
 Route::delete('/Webmaster/salas-de-conferencia/sala/{id}', [SalaWebmasterController::class, 'deleteSala']);
 Route::delete('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'deleteImagen'])->name('sala.eliminarImagen');
 
-//Route::get('/Webmaster/menu-reservas/cupones',[ReservaWebmasterController::class, 'getCupon']);
+Route::get('/Webmaster/menu-reservas/cupones',[CuponWebmasterController::class, 'getCupon']);
+Route::delete('/Webmaster/menu-reservas/cupones/{id}', [CuponWebmasterController::class, 'deleteCupon']);
+Route::get('/Webmaster/menu-reservas/cupones/editar/{id}', [CuponWebmasterController::class, 'editarCupon']);
+Route::put('/Webmaster/menu-reservas/cupones/editar/{id}', [CuponWebmasterController::class, 'actualizarCupon'])->name('cupones.actualizar');
+Route::get('/Webmaster/menu-reservas/cupones/crear', [CuponWebmasterController::class, 'añadirCupon']);
+Route::post('/Webmaster/menu-reservas/cupones/crear', [CuponWebmasterController::class, 'guardarCupon'])->name('cupones.guardar');
+
+
 Route::get('/Webmaster/menu-reservas/reservas',[ReservaWebmasterController::class, 'getReserva']);
 Route::get('/Webmaster/menu-reservas/reservas/editar/{id}', [ReservaWebmasterController::class, 'editarReserva']);
 Route::put('/Webmaster/menu-reservas/reservas/editar/{id}', [ReservaWebmasterController::class, 'actualizarReserva'])->name('reservas.actualizar');
