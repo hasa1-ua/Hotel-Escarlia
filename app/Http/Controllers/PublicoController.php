@@ -8,10 +8,9 @@ use App\Models\TipoSala;
 
 class PublicoController extends Controller
 {
-    //
     public function getTipoSala(){
         $tipossalas = TipoSala::all();
-        return view('listas.listadoSalasUsuario', ['tipo_salas'=>$tipossalas]);
+        return view('listas.listadoUsuarioNoRegSalas', ['tipo_salas'=>$tipossalas]);
     }
 
     public function getTipoHabitacion(){
@@ -19,7 +18,7 @@ class PublicoController extends Controller
         return view('listas.listadoHabitacionesUsuario', ['tipo_habitaciones'=>$tiposhabitaciones]);
     }
 
-    public function getFotos(){
-        return view('extras/fotos');
+    public function getFotosPublico(){
+        return view('extras/fotosPublico');
     }
 }
