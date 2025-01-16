@@ -17,6 +17,7 @@
     position: relative;
     width: 100%;
     max-width: 750px;
+    max-height: 500px;
     overflow: hidden;
     float: left;
 }

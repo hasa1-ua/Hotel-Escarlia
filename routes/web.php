@@ -105,7 +105,7 @@ Route::middleware(['recepcionista'])->group(function () {
 });
 
 Route::middleware(['webmaster'])->group(function () {
-    Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
+    Route::get('/Webmaster/usuarios', [InicioController::class, 'Webmaster']);
     Route::get('/Webmaster/salas-de-conferencia',[SalaWebmasterController::class, 'getTipoSala']);
     Route::get('/Webmaster/salas-de-conferencia/tiposala/crear', [SalaWebmasterController::class, 'añadirTipoSala']);
     Route::post('/Webmaster/salas-de-conferencia/tiposala/crear', [SalaWebmasterController::class, 'guardarTipoSala'])->name('tiposala.guardar');
