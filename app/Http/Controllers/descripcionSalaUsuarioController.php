@@ -13,8 +13,13 @@ class descripcionSalaUsuarioController extends Controller{
     public function getSalaUsuario($tipoid, $id){
         //Escoge todos los IDs de sala
         $sala = Sala::selectidbytype($id);
-        
+        // Si la sala no existe, sumar uno en el id
+        if($sala == null){
+            $sala = Sala::selectidbytype($id+1);
+        }
+            
         $salasMismoTipo = Sala::where('tipo_sala_id', $sala->tipo_sala_id)
+            ->where('disponible', true)
             ->orderBy('id')
             ->get();
 
