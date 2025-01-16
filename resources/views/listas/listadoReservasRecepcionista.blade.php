@@ -4,7 +4,6 @@
 <style>
     .container {
         margin-top: 20px;
-        margin-left: 0;
         width: 99%;
         background: #000000;
         border-color: #C3BB38;
@@ -13,11 +12,11 @@
         padding: 20px;
         color: #C3BB38;
         font-family: "Solitreo";
+        border-radius: 15px;
     }
 
     table {
         width: 100%;
-        border-collapse: collapse;
         margin-top: 20px;
         font-size: 24px;
     }
@@ -42,6 +41,7 @@
         cursor: pointer;
         font-size: 24px;
         text-decoration: none;
+        border-radius: 10px;
     }
 
     .button:hover {
@@ -64,6 +64,7 @@
         text-decoration: none;
         font-family: "Solitreo";
         font-size: 32px;
+        border-radius: 20px;
     }
 
     .create-button:hover {

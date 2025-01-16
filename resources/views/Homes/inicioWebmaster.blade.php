@@ -30,6 +30,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 table {
@@ -64,16 +65,18 @@ td.breakword {
 
 .button1{
     display: inline-block;
-    padding: 5px 10px;
+    padding: 5px 10px 0px 10px;
     background-color: #840705;
     color: #C3BB38;
     border-color: #C3BB38;
     border: 1px solid;
-    text-decoration: none;
     font-size: 40px;
     border-radius: 4px;
     font-family: "Solitreo";
     margin-left: 30px;
+    margin-top: -20px;
+    border-radius: 15px;
+    cursor: pointer;
 }
 
 .separation {
@@ -81,11 +84,6 @@ td.breakword {
     margin-top: 30px;
     margin-left: 100px;
     display: flex;
-}
-
-img{
-    width: 100px;
-    height: 100px;
 }
 
 .filtro{

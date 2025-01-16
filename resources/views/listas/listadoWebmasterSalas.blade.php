@@ -30,6 +30,7 @@
   border-width: 1px;
   border-style: solid;
   height: auto; /* Permite que la altura se ajuste al contenido */
+  border-radius: 15px;
 }
 
 
@@ -74,6 +75,7 @@ td.breakword {
     border-radius: 4px;
     font-family: "Solitreo";
     margin-left: 30px;
+    border-radius: 15px;
 }
 
 .separation {
@@ -86,6 +88,7 @@ td.breakword {
 img{
     width: 100px;
     height: 100px;
+    border-radius: 15px;
 }
 
 .filtro{

@@ -49,7 +49,8 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/Publico/fotos', [PublicoController::class, 'getFotosPublico']);
 Route::get('/Publico/habitaciones',[PublicoController::class, 'getTipoHabitacion']);
-Route::get('/Publico/salas-de-conferencia',[PublicoController::class, 'getTipoSala']);
+Route::get('/Publico/salas-de-conferencia',[SalaUsuarioNoRegController::class, 'getTipoSala']);
+Route::get('/Publico/salas-de-conferencia/{id}',[descripcionSalaUsuarioNoRegController::class, 'getSalaUsuario']);
 Route::get('/Publico/sobre-nosotros',[PublicoController::class], 'about');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
@@ -105,7 +106,6 @@ Route::middleware(['recepcionista'])->group(function () {
 });
 
 Route::middleware(['webmaster'])->group(function () {
-    Route::get('/Webmaster', [InicioController::class, 'Webmaster']);
     Route::get('/Webmaster/salas-de-conferencia',[SalaWebmasterController::class, 'getTipoSala']);
     Route::get('/Webmaster/salas-de-conferencia/tiposala/crear', [SalaWebmasterController::class, 'añadirTipoSala']);
     Route::post('/Webmaster/salas-de-conferencia/tiposala/crear', [SalaWebmasterController::class, 'guardarTipoSala'])->name('tiposala.guardar');
@@ -113,49 +113,49 @@ Route::middleware(['webmaster'])->group(function () {
     Route::put('/Webmaster/salas-de-conferencia/tiposala/editar/{id}', [SalaWebmasterController::class, 'actualizarTipoSala'])->name('tiposala.actualizar');
     Route::delete('/Webmaster/salas-de-conferencia/tiposala/{id}', [SalaWebmasterController::class, 'deleteTipoSala']);
 
-Route::get('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'editarSala']);
-Route::put('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'actualizarSala'])->name('sala.actualizar');
-Route::get('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterController::class, 'añadirSala']);
-Route::post('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterController::class, 'guardarSala'])->name('sala.guardar');
-Route::delete('/Webmaster/salas-de-conferencia/sala/{id}', [SalaWebmasterController::class, 'deleteSala']);
-Route::delete('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'deleteImagen'])->name('sala.eliminarImagen');
+    Route::get('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'editarSala']);
+    Route::put('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'actualizarSala'])->name('sala.actualizar');
+    Route::get('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterController::class, 'añadirSala']);
+    Route::post('/Webmaster/salas-de-conferencia/sala/crear', [SalaWebmasterController::class, 'guardarSala'])->name('sala.guardar');
+    Route::delete('/Webmaster/salas-de-conferencia/sala/{id}', [SalaWebmasterController::class, 'deleteSala']);
+    Route::delete('/Webmaster/salas-de-conferencia/sala/editar/{id}', [SalaWebmasterController::class, 'deleteImagen'])->name('sala.eliminarImagen');
 
-Route::get('/Webmaster/menu-reservas/cupones',[CuponWebmasterController::class, 'getCupon']);
-Route::delete('/Webmaster/menu-reservas/cupones/{id}', [CuponWebmasterController::class, 'deleteCupon']);
-Route::get('/Webmaster/menu-reservas/cupones/editar/{id}', [CuponWebmasterController::class, 'editarCupon']);
-Route::put('/Webmaster/menu-reservas/cupones/editar/{id}', [CuponWebmasterController::class, 'actualizarCupon'])->name('cupones.actualizar');
-Route::get('/Webmaster/menu-reservas/cupones/crear', [CuponWebmasterController::class, 'añadirCupon']);
-Route::post('/Webmaster/menu-reservas/cupones/crear', [CuponWebmasterController::class, 'guardarCupon'])->name('cupones.guardar');
+    Route::get('/Webmaster/menu-reservas/cupones',[CuponWebmasterController::class, 'getCupon']);
+    Route::delete('/Webmaster/menu-reservas/cupones/{id}', [CuponWebmasterController::class, 'deleteCupon']);
+    Route::get('/Webmaster/menu-reservas/cupones/editar/{id}', [CuponWebmasterController::class, 'editarCupon']);
+    Route::put('/Webmaster/menu-reservas/cupones/editar/{id}', [CuponWebmasterController::class, 'actualizarCupon'])->name('cupones.actualizar');
+    Route::get('/Webmaster/menu-reservas/cupones/crear', [CuponWebmasterController::class, 'añadirCupon']);
+    Route::post('/Webmaster/menu-reservas/cupones/crear', [CuponWebmasterController::class, 'guardarCupon'])->name('cupones.guardar');
 
-Route::get('/Webmaster/menu-reservas/temporadas',[TemporadaWebmasterController::class, 'getTemporada']);
-Route::delete('/Webmaster/menu-reservas/temporadas/{id}', [TemporadaWebmasterController::class, 'deleteTemporada']);
-Route::get('/Webmaster/menu-reservas/temporadas/editar/{id}', [TemporadaWebmasterController::class, 'editarTemporada']);
-Route::put('/Webmaster/menu-reservas/temporadas/editar/{id}', [TemporadaWebmasterController::class, 'actualizarTemporada'])->name('temporadas.actualizar');
-Route::get('/Webmaster/menu-reservas/temporadas/crear', [TemporadaWebmasterController::class, 'añadirTemporada']);
-Route::post('/Webmaster/menu-reservas/temporadas/crear', [TemporadaWebmasterController::class, 'guardarTemporada'])->name('temporadas.guardar');
-
-
-Route::get('/Webmaster/menu-reservas/regimenes',[RegimenWebmasterController::class, 'getRegimen']);
-Route::delete('/Webmaster/menu-reservas/regimenes/{id}', [RegimenWebmasterController::class, 'deleteRegimen']);
-Route::get('/Webmaster/menu-reservas/regimenes/editar/{id}', [RegimenWebmasterController::class, 'editarRegimen']);
-Route::put('/Webmaster/menu-reservas/regimenes/editar/{id}', [RegimenWebmasterController::class, 'actualizarRegimen'])->name('regimenes.actualizar');
-Route::get('/Webmaster/menu-reservas/regimenes/crear', [RegimenWebmasterController::class, 'añadirRegimen']);
-Route::post('/Webmaster/menu-reservas/regimenes/crear', [RegimenWebmasterController::class, 'guardarRegimen'])->name('regimenes.guardar');
+    Route::get('/Webmaster/menu-reservas/temporadas',[TemporadaWebmasterController::class, 'getTemporada']);
+    Route::delete('/Webmaster/menu-reservas/temporadas/{id}', [TemporadaWebmasterController::class, 'deleteTemporada']);
+    Route::get('/Webmaster/menu-reservas/temporadas/editar/{id}', [TemporadaWebmasterController::class, 'editarTemporada']);
+    Route::put('/Webmaster/menu-reservas/temporadas/editar/{id}', [TemporadaWebmasterController::class, 'actualizarTemporada'])->name('temporadas.actualizar');
+    Route::get('/Webmaster/menu-reservas/temporadas/crear', [TemporadaWebmasterController::class, 'añadirTemporada']);
+    Route::post('/Webmaster/menu-reservas/temporadas/crear', [TemporadaWebmasterController::class, 'guardarTemporada'])->name('temporadas.guardar');
 
 
-Route::get('/Webmaster/menu-reservas/reservas',[ReservaWebmasterController::class, 'getReserva']);
-Route::get('/Webmaster/menu-reservas/reservas/editar/{id}', [ReservaWebmasterController::class, 'editarReserva']);
-Route::put('/Webmaster/menu-reservas/reservas/editar/{id}', [ReservaWebmasterController::class, 'actualizarReserva'])->name('reservas.actualizar');
-Route::delete('/Webmaster/menu-reservas/reservas/{id}', [ReservaWebmasterController::class, 'deleteReserva']);
-Route::get('/Webmaster/menu-reservas/reservas/crear', [ReservaWebmasterController::class, 'añadirReserva']);
-Route::post('/Webmaster/menu-reservas/reservas/crear', [ReservaWebmasterController::class, 'guardarReserva'])->name('reservas.guardar');
+    Route::get('/Webmaster/menu-reservas/regimenes',[RegimenWebmasterController::class, 'getRegimen']);
+    Route::delete('/Webmaster/menu-reservas/regimenes/{id}', [RegimenWebmasterController::class, 'deleteRegimen']);
+    Route::get('/Webmaster/menu-reservas/regimenes/editar/{id}', [RegimenWebmasterController::class, 'editarRegimen']);
+    Route::put('/Webmaster/menu-reservas/regimenes/editar/{id}', [RegimenWebmasterController::class, 'actualizarRegimen'])->name('regimenes.actualizar');
+    Route::get('/Webmaster/menu-reservas/regimenes/crear', [RegimenWebmasterController::class, 'añadirRegimen']);
+    Route::post('/Webmaster/menu-reservas/regimenes/crear', [RegimenWebmasterController::class, 'guardarRegimen'])->name('regimenes.guardar');
 
-Route::get('/Webmaster/usuarios',[UsuarioWebmasterController::class, 'getUsuarios']);
-Route::delete('/Webmaster/usuarios/{id}', [UsuarioWebmasterController::class, 'deleteUsuario']);
-Route::get('/Webmaster/usuarios/editar/{id}', [UsuarioWebmasterController::class, 'editarUsuario']);
-Route::put('/Webmaster/usuarios/editar/{id}', [UsuarioWebmasterController::class, 'actualizarUsuario'])->name('usuarios.actualizar');
-Route::get('/Webmaster/usuarios/crear', [UsuarioWebmasterController::class, 'añadirUsuario']);
-Route::post('/Webmaster/usuarios/crear', [UsuarioWebmasterController::class, 'guardarUsuario'])->name('usuarios.guardar');
+
+    Route::get('/Webmaster/menu-reservas/reservas',[ReservaWebmasterController::class, 'getReserva']);
+    Route::get('/Webmaster/menu-reservas/reservas/editar/{id}', [ReservaWebmasterController::class, 'editarReserva']);
+    Route::put('/Webmaster/menu-reservas/reservas/editar/{id}', [ReservaWebmasterController::class, 'actualizarReserva'])->name('reservas.actualizar');
+    Route::delete('/Webmaster/menu-reservas/reservas/{id}', [ReservaWebmasterController::class, 'deleteReserva']);
+    Route::get('/Webmaster/menu-reservas/reservas/crear', [ReservaWebmasterController::class, 'añadirReserva']);
+    Route::post('/Webmaster/menu-reservas/reservas/crear', [ReservaWebmasterController::class, 'guardarReserva'])->name('reservas.guardar');
+
+    Route::get('/Webmaster/usuarios',[UsuarioWebmasterController::class, 'getUsuarios']);
+    Route::delete('/Webmaster/usuarios/{id}', [UsuarioWebmasterController::class, 'deleteUsuario']);
+    Route::get('/Webmaster/usuarios/editar/{id}', [UsuarioWebmasterController::class, 'editarUsuario']);
+    Route::put('/Webmaster/usuarios/editar/{id}', [UsuarioWebmasterController::class, 'actualizarUsuario'])->name('usuarios.actualizar');
+    Route::get('/Webmaster/usuarios/crear', [UsuarioWebmasterController::class, 'añadirUsuario']);
+    Route::post('/Webmaster/usuarios/crear', [UsuarioWebmasterController::class, 'guardarUsuario'])->name('usuarios.guardar');
 
 
     Route::get('/Webmaster/perfil', [PerfilWebmasterController::class, 'mi_perfil']);
@@ -165,6 +165,3 @@ Route::post('/Webmaster/usuarios/crear', [UsuarioWebmasterController::class, 'gu
     Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña']);
     Route::post('/validar-contraseña-actual-Webmaster', [PerfilWebmasterController::class, 'validarContraseñaActual']);
 });
-
-Route::get('/Publico/salas-de-conferencia',[SalaUsuarioNoRegController::class, 'getTipoSala']);
-Route::get('/Publico/salas-de-conferencia/{id}',[descripcionSalaUsuarioNoRegController::class, 'getSalaUsuario']);

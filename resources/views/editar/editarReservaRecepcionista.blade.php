@@ -51,6 +51,8 @@
         padding: 10px 20px;
         cursor: pointer;
         width: 100%;
+        border-radius: 15px;
+
     }
 
     .form-group button:hover {

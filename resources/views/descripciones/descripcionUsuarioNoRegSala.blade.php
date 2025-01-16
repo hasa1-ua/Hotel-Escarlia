@@ -4,20 +4,20 @@
   margin-top: 20px;
   margin-left: -10px;
   width: 1420px;
-  height: 830px;
+  height: 850px;
   padding: 8px 8px 8px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 .label1{
   margin-left: 50px;
-  margin-top: 0px;
   display: inline-block; /* Permite que esté en línea con la imagen */
   vertical-align: middle;
-  margin-top: -840px;
+  margin-top: -865px;
   margin-left: 800px;
 }
 
@@ -50,8 +50,9 @@
   font-size: 60px;
   text-align: center;
   float: right;
+  margin-top: -150px;
   margin-right: 200px;
-  margin-top: -200px;
+  border-radius: 15px;
 }
 
 .carousel {
@@ -62,6 +63,7 @@
     margin-top: -100px;
     margin-left: 20px;
     float: left;
+    border-radius: 15px;
 }
 
 .carousel-images {

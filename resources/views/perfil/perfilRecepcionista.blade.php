@@ -30,6 +30,7 @@
         border-width: 1px;
         border-style: solid;
         padding: 20px; /* Márgenes dentro del contenedor */
+        border-radius: 15px;
     }
 
     .fila-datos {

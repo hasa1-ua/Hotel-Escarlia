@@ -21,9 +21,6 @@ class TiposSalasTableSeeder extends Seeder
             ['Solo Sala', 30, 'Sala básica sin servicios adicionales', 50.00, "imagenes/TiposSalas/Sala30.jpg"],
             ['Con Cátering', 50, 'Sala con servicio de cátering incluido', 70.00, "imagenes/TiposSalas/Sala50.jpg"],
             ['Con Asistentes', 100, 'Sala con servicio de asistentes para el evento', 90.00, "imagenes/TiposSalas/Sala100.jpg"],
-            ['Prueba1', 30, 'Descripcion1', 50.00, "imagenes/TiposSalas/Sala30.jpg"],
-            ['Prueba2', 50, 'Descripcion2', 70.00, "imagenes/TiposSalas/Sala50.jpg"],
-            ['Prueba3', 100, 'Descripcion3', 90.00, "imagenes/TiposSalas/Sala100.jpg"],
         ];
 
         foreach ($tipo_salas as $ts) {
