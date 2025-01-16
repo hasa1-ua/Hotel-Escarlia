@@ -171,11 +171,11 @@
                 @csrf
                 <div id="section1" class="form-section active">
                     <div>
-                        <label for="name">Nombre de Usuario:</label>
+                        <label for="name">Nombre de Usuario: <span class="required-asterisk">*</span></label>
                         <input type="text" id="name" name="name" value="{{ old('name') }}" required>
                     </div>
                     <div>
-                        <label for="email">Email:</label>
+                        <label for="email">Email: <span class="required-asterisk">*</span></label>
                         <input type="email" id="email" name="email" value="{{ old('email') }}" required>
                         <span id="email-error" class="error"></span>
                     </div>
@@ -185,11 +185,11 @@
                 </div>
                 <div id="section2" class="form-section">
                     <div>
-                        <label for="password">Contraseña:</label>
+                        <label for="password">Contraseña: <span class="required-asterisk">*</span></label>
                         <input type="password" id="password" name="password" required>
                     </div>
                     <div>
-                        <label for="password_confirmation">Repetir Contraseña:</label>
+                        <label for="password_confirmation">Repetir Contraseña: <span class="required-asterisk">*</span></label>
                         <input type="password" id="password_confirmation" name="password_confirmation" required>
                         <span id="password-error" class="error"></span>
                     </div>
