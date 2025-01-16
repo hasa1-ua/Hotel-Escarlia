@@ -87,6 +87,7 @@
                 border-style: solid;
                 margin-left: 229px;
                 text-align: left;
+                border-radius: 20px;
             }
 
             .habitaciones {
@@ -152,6 +153,7 @@
                 border-color: #C3BB38;
                 border-width: 1px;
                 border-style: solid;
+                border-radius: 5px;
             }
 
             .dropdown-perfil {
@@ -167,8 +169,8 @@
 
 
             .contenido {
-                margin-left: 229px;
-                max-width: 1461px;
+                margin-left: 219px;
+                max-width: 1498px;
                 overflow-wrap: break-word;
                 word-wrap: break-word;
                 padding: 10px;
@@ -178,14 +180,14 @@
         </style>
     </head>
         <header class="rectangle-1">
-            <a onclick="window.location.href='/Webmaster'">
+            <a onclick="window.location.href='/Webmaster/usuarios'">
                 <img class='imagen image-placeholder' src="/imagenes/BarraDeMenu/Logo.png">
             </a>
 
             <div class="barra-nav">
                 <div class="opcion"><a onclick="window.location.href='/Webmaster/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
                 <div class="opcion"><a onclick="window.location.href='/Webmaster/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Webmaster/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Webmaster/menu-reservas/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
                 <div class="opcion"><a onclick="window.location.href='/Webmaster/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
             </div>
             <div class="perfil dropdown">
@@ -194,7 +196,10 @@
                 <div class="dropdown-menu">
                     <div class="dropdown-menu-item rectangle"><a onclick="window.location.href='/Webmaster/perfil'" class="dropdown-perfil">Mi perfil</a></div>
                     <div class="dropdown-menu-item rectangle">
-                        <a onclick="window.location.href='/simulate-logout'" class="dropdown-perfil">Cerrar sesión</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a href="#" class="dropdown-perfil" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
                     </div>
                 </div>
             </div>

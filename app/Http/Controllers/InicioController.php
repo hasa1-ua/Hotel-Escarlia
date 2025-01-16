@@ -12,17 +12,12 @@ class InicioController extends Controller
         return view('homes/inicioUsuario');
     }
 
-    public function Webmaster()
-    {
-        return view('homes/inicioWebmaster');
-    }
-
     public function Recepcionista()
     {
         return view('homes/inicioRecepcionista');
     }
 
-    public function Publico()
+    public function Publico() //ESCAPARATE
     {
         return view('homes/inicioPublico');
     }

@@ -14,7 +14,7 @@
     border: 1px solid;
     text-decoration: none;
     font-size: 30px;
-    border-radius: 4px;
+    border-radius: 15px;
     margin: 0 5px;
 }
 
@@ -33,7 +33,7 @@
     border-color: #C3BB38;
     border: 1px solid;
     text-decoration: none;
-    border-radius: 4px;
+    border-radius: 15px;
     margin: 0 5px;
 }
 
@@ -47,7 +47,7 @@
 </style>
 
 {{-- Comprobamos si el número total de páginas excede 5 --}}
-@if ($paginable->lastPage() > 5)
+@if ($paginable->lastPage() > 1)
     <div class="pagination-links">
         {{-- Botón Anterior --}}
         @if ($paginable->onFirstPage())

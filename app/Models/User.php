@@ -21,6 +21,11 @@ class User extends Authenticatable
         'nombre_usuario',
         'email',
         'password',
+        'fecha_nacimiento',
+        'direccion',
+        'nacionalidad',
+        'pais_residencia',
+        'telefono',
         'rol',
     ];
 
@@ -155,6 +160,10 @@ class User extends Authenticatable
     public static function obtenerUsuarioPorEmail($email)
     {
         return self::where('email', $email)->first();
+    }
+
+    public function eliminarUsuario(){
+        $this->delete();
     }
 
 }

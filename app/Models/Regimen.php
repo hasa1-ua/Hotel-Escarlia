@@ -9,6 +9,8 @@ class Regimen extends Model
 {
     use HasFactory;
 
+    protected $table = 'regimenes';
+
     protected $fillable = [
         'nombre',
         'precio',
@@ -55,6 +57,10 @@ class Regimen extends Model
     }
 
     // Métodos
+
+    public function eliminarRegimen(){
+        $this->delete();
+    }
     
     
 }

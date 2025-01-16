@@ -8,22 +8,12 @@ use App\Models\Sala;
 use App\Models\Foto;
 
 // Controlador para la tabla Salas
-class DescripcionSalaController extends Controller{
+class descripcionSalaUsuarioNoRegController extends Controller{
 
-    public function getSalaUsuario($id){
+    public function getSalaUsuario($tipoid, $id){
         //Escoge todos los IDs de sala
         $sala = Sala::selectidbytype($id);
 
-        $fotos = Foto::where('sala_id', $sala->id)->get();
-        //Pasaremos todos los IDs a la vista de descripciones de sala
-        return view('descripciones.descripcionSalaUsuario', ['sala'=>$sala, 'fotos' => $fotos]);
-    }
-
-    public function getSalaRecepcionista($tipoid, $id)
-    {
-        $sala = Sala::selectidbySala($id);
-
-        // Obtén todas las salas del mismo tipo
         $salasMismoTipo = Sala::where('tipo_sala_id', $sala->tipo_sala_id)
             ->orderBy('id')
             ->get();
@@ -35,11 +25,9 @@ class DescripcionSalaController extends Controller{
         $previousSala = $salasMismoTipo->get($currentIndex + 1) ?? $salasMismoTipo->last();
         $nextSala = $salasMismoTipo->get($currentIndex - 1) ?? $salasMismoTipo->first();
 
-        // Obtener las fotos asociadas a la sala actual
         $fotos = Foto::where('sala_id', $sala->id)->get();
-
-        // Retornar la vista con los datos
-        return view('descripciones.descripcionSalaRecepcionista', [
+        //Pasaremos todos los IDs a la vista de descripciones de sala
+        return view('descripciones.descripcionUsuarioNoRegSala', [
             'sala' => $sala,
             'fotos' => $fotos,
             'previousSala' => $previousSala,
@@ -47,4 +35,5 @@ class DescripcionSalaController extends Controller{
             'salasMismoTipo' => $salasMismoTipo
         ]);
     }
+
 }

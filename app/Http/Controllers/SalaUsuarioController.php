@@ -11,6 +11,6 @@ class SalaUsuarioController extends Controller{
 
     public function getTipoSala(){
         $tipossalas = TipoSala::all();
-        return view('listas.listadoSalasUsuario', ['tipo_salas'=>$tipossalas]);
+        return view('listas.listadoUsuarioSalas', ['tipo_salas'=>$tipossalas]);
     }
 }

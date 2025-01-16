@@ -25,7 +25,6 @@ class DatabaseSeeder extends Seeder
             FotosTableSeeder::class,
             CuponesTableSeeder::class,
             ReservasTableSeeder::class,
-            CuponesReservasTableSeeder::class,
         ]);
     }
 }

@@ -10,7 +10,7 @@
 
 
 .casilla {
-  width: 1420px;
+  width: 1430px;
   height: 413px;
   padding: 8px 8px 8px 8px;
   background: #000000;
@@ -18,6 +18,7 @@
   border-width: 1px;
   border-style: solid;
   cursor: pointer;
+  border-radius: 15px;
 }
 
 .nombre {
@@ -42,6 +43,7 @@
 img{
   width: 450px;
   height: 300px;
+  border-radius: 20px;
 }
 
 .label1{
@@ -78,16 +80,16 @@ img{
 </style>
 
 
-@extends('layoutUsuario')
+@extends('layoutPublico')
 
 @section('contenido')
 
 
-<h3 class="titulo">Salas</h3>
+<h1 class="titulo">Salas</h1>
 
 @foreach($tipo_salas as $tiposala)
 
-    <div class="casilla"  onclick="window.location.href='/Usuario/salas-de-conferencia/{{$tiposala->id}}';">
+    <div class="casilla"  onclick="window.location.href='/Publico/salas-de-conferencia/{{$tiposala->id}}/{{$tiposala->salas()->first()->id}}';">
         <div class="image">
           <img src="{{ asset($tiposala->img) }}">
         </div>

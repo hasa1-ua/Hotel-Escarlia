@@ -63,5 +63,9 @@ class Temporada extends Model
     }
 
     // Métodos
+
+    public function eliminarTemporada(){
+        $this->delete();
+    }
     
 }

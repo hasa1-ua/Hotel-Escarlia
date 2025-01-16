@@ -62,7 +62,7 @@ class PerfilWebmasterController extends Controller
     public function confirmar_contraseña($email, Request $request){
         $request->validate([
             'current_password' => 'required',
-            'new_password' => 'required|min:8',
+            'new_password' => 'required|min:4',
             'repeat_password' => 'required|same:new_password',
         ]);
 
@@ -73,14 +73,24 @@ class PerfilWebmasterController extends Controller
 
         $usuario = User::obtenerUsuarioPorEmail($email);
 
-        // Verificar si la contraseña actual es correcta
-        if (!Hash::check($request->current_password, $usuario->password)) {
-            return back()->with('error', 'La contraseña actual no es correcta.');
-        }
-
-        $usuario->password = Hash::make($request->password);
+        $usuario->password = Hash::make($request->new_password);
         $usuario->save();
 
         return redirect('/Webmaster/perfil');
+    }
+
+    public function validarContraseñaActual(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+        ]);
+
+        $usuario = Auth::user();
+
+        if (!$usuario || !Hash::check($request->current_password, $usuario->password)) {
+            return response()->json(['valid' => false]);
+        }
+
+        return response()->json(['valid' => true]);
     }
 }

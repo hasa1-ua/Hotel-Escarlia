@@ -15,22 +15,24 @@
   margin-left: auto;
   margin-top: 20px;
   width: 1200px;
-  height: 400px;
   background-color: #f2f2f2;
   border-width: 1px;
   border-style: solid;
+  height: auto; /* Permite que la altura se ajuste al contenido */
 }
 
 
 .casilla {
-  width: 1420px;
-  height: 849px;
-  padding: 8px 8px 8px 8px;
+  width: auto;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  height: auto; /* Permite que la altura se ajuste al contenido */
+  border-radius: 15px;
 }
+
 
 table {
     background-color: white;
@@ -49,7 +51,6 @@ th, td {
 
 th {
     background-color: #C0C0C0;
-    text-align: left;
     text-align: center;
 }
 
@@ -73,7 +74,8 @@ td.breakword {
     font-size: 40px;
     border-radius: 4px;
     font-family: "Solitreo";
-    margin-left: 20px;
+    margin-left: 30px;
+    border-radius: 15px;
 }
 
 .separation {
@@ -86,6 +88,7 @@ td.breakword {
 img{
     width: 100px;
     height: 100px;
+    border-radius: 15px;
 }
 
 .filtro{
@@ -127,13 +130,13 @@ img{
                     <!-- Añadir añadir, editar y borrar-->
                     <td>{{ $tiposala->id }}</td>
                     <td>{{ $tiposala->nombre }}</td>
-                    <td>{{ $tiposala->descripcion }}</td>
+                    <td>{{ $tiposala->descripcion ?: 'Sin descripción' }}</td>
                     <td>{{number_format($tiposala->getPrecio(), 2)}}€</td>
                     <td>{{ $tiposala->aforo }}</td>
                     <td> <img src="{{ asset($tiposala->img) }}"></td>
                     <td>
                         <!-- Formulario para eliminar -->
-                        <form action="/Webmaster/salas-de-conferencia/tiposala/{{ $tiposala->id }}" method="POST" style="display: inline;">
+                        <form action="/Webmaster/salas-de-conferencia/tiposala/{{ $tiposala->id }}" method="POST" style="display: inline;" onclick="event.stopPropagation();">
                          @csrf
                          @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 
@@ -171,7 +174,7 @@ img{
             <option value="0" {{ request()->get('disponible') == '0' ? 'selected' : '' }}>No disponible</option>
         </select>
         <button type="submit" class="button1">Filtrar</button>
-    </form>
+        </form>
     </div>
     <table class="tabla-tipo">
         <thead>
@@ -190,7 +193,7 @@ img{
                     <!-- Añadir añadir, editar y borrar-->
                     <td>{{ $sala->id }}</td>
                     <td>{{ $sala->nombre }}</td>
-                    <td>
+                    <td @if($sala->disponible == 1) style="color: green;" @else style="color: red;" @endif>
                         @if ($sala->disponible == 1)
                             Disponible
                         @else
@@ -201,7 +204,7 @@ img{
 
                     <td>
                         <!-- Formulario para eliminar -->
-                        <form action="/Webmaster/salas-de-conferencia/sala/{{ $sala->id }}" method="POST" style="display: inline;">
+                        <form action="/Webmaster/salas-de-conferencia/sala/{{ $sala->id }}" method="POST" style="display: inline;" onclick="event.stopPropagation();">
                          @csrf
                          @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 

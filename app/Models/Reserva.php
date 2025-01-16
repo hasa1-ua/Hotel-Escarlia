@@ -14,6 +14,7 @@ class Reserva extends Model
         'fecha_fin',
         'estado',
         'precio_total',
+        'usuario_id',
     ];
 
     // Relaciones
@@ -43,14 +44,15 @@ class Reserva extends Model
         return $this->belongsTo(Sala::class, 'sala_id');
     }
 
+    public function cupon()
+    {
+        return $this->belongsTo(Cupon::class, 'cupon_id');
+    }
+
     // Getters
 
     public function getId() {
         return $this->id;
-    }
-
-    public function getTipoReserva() {
-        return $this->tipo_reserva;
     }
 
     public function getFechaInicio() {
@@ -75,10 +77,6 @@ class Reserva extends Model
         $this->id = $id;
     }
 
-    public function setTipoReserva($tipo_reserva) {
-        $this->tipo_reserva = $tipo_reserva;
-    }
-
     public function setFechaInicio($fecha_inicio) {
         $this->fecha_inicio = $fecha_inicio;
     }
@@ -96,5 +94,10 @@ class Reserva extends Model
     }
 
     // Métodos
+
+    public function eliminarReserva(){
+        $this->delete();
+    }
+
     
 }

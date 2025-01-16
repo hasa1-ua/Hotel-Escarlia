@@ -16,7 +16,7 @@
                 align-items: flex-end;
             }
             body{
-                background-image: url("/imagenes/BarraDeMenu/FondoGeneral.png");
+                background-image: url("/imagenes/BarraDeMenu/FondoFoto.png");
                 background-size: cover;
                 background-attachment: fixed;
                 background-repeat: no-repeat;
@@ -87,6 +87,7 @@
                 border-style: solid;
                 margin-left: 229px;
                 text-align: left;
+                border-radius: 20px;
             }
 
             .habitaciones {
@@ -99,7 +100,7 @@
                 text-align: left;
             }
 
-            .resevas {
+            .fotos {
                 width: 91px;
                 height: 67px;
                 color: #C3BB38;
@@ -152,6 +153,7 @@
                 border-color: #C3BB38;
                 border-width: 1px;
                 border-style: solid;
+                border-radius: 5px;
             }
 
             .dropdown-perfil {
@@ -189,6 +191,7 @@
                 background: #840705;
                 color: #C3BB38;
                 border-color: #F4EB49;
+                border-radius: 15px;
             }
 
             .btn-login:hover {
@@ -205,7 +208,7 @@
             <div class="barra-nav">
                 <div class="opcion"><a onclick="window.location.href='/Publico/habitaciones'" class="habitaciones">Habitaciones&nbsp;&nbsp;&nbsp;</a></div>
                 <div class="opcion"><a onclick="window.location.href='/Publico/salas-de-conferencia'" class="salas-de-conferencia">&nbsp;Salas de conferencia&nbsp;&nbsp;</a></div>
-                <div class="opcion"><a onclick="window.location.href='/Publico/reservas'" class="resevas">&nbsp;&nbsp;Reservas&nbsp;&nbsp;</a></div>
+                <div class="opcion"><a onclick="window.location.href='/Publico/fotos'" class="fotos">&nbsp;&nbsp;Fotos&nbsp;&nbsp;</a></div>
                 <div class="opcion"><a onclick="window.location.href='/Publico/sobre-nosotros'" class="sobre-nosotros">&nbsp;&nbsp;Sobre nosotros&nbsp;</a></div>
             </div>
             <!-- Botón de Login -->
