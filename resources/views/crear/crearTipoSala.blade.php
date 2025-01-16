@@ -55,7 +55,7 @@ button {
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
-  
+  margin-left: 20px;
 }
 
 .button-1{
@@ -126,6 +126,18 @@ button {
         cursor: pointer;
     }
 
+    .text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
+
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+}
+
 </style>
 
 
@@ -143,17 +155,26 @@ button {
         @csrf
         <div class="form-group">
             <label class="letras1" for="nombre">Nombre*:</label>
-            <input class="celda" style=" margin-left: 20px;" type="text" id="nombre" name="nombre" value="{{ 'nombre' }}">
+            <input class="celda" style=" margin-left: 20px;" type="text" id="nombre" name="nombre" value="{{ old('nombre') }}">
+            @error('nombre')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
             <label class="letras1" for="precio">Precio*:</label>
             <input class="celda" style=" margin-left: 20px;" type="number" id="precio" name="precio" step="0.01" value="{{ 'precio' }}">
+            @error('precio')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
             <label class="letras1" for="aforo">Aforo*:</label>
             <input class="celda" style=" margin-left: 20px;" type="number" id="aforo" name="aforo" value="{{ 'aforo' }}">
+            @error('aforo')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -167,9 +188,15 @@ button {
               <button type="button" style=" margin-left: 20px;"  class="custom-file-button">Subir Imagen</button>
               <input class="celda" type="file" id="img" name="img" class="hidden">
             </div>
+            @error('img')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
-        <button type="submit" class="button-1">Crear</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Crear</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/salas-de-conferencia';">Volver</button>
+        </div>
     </form>
 <div>
 

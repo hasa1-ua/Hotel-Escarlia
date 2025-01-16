@@ -130,6 +130,11 @@ button {
         cursor: pointer;
     }
 
+    .text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
 
 
 </style>
@@ -151,18 +156,27 @@ button {
             <label class="letras1" for="nombre_usuario">Nombre*:</label>
             <input  class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="nombre_usuario" name="nombre_usuario" value="{{ $usuarios->nombre_usuario }}">
+            @error('nombre_usuario')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
             <label class="letras1" for="password">Contraseña*:</label>
             <input  class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="password" id="password" name="password" value="{{ $usuarios->password }}">
+            @error('password')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
             <label class="letras1" for="email">Email*:</label>
             <input  class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="email" name="email" value="{{ $usuarios->email }}">
+            @error('email')
+             <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -205,7 +219,10 @@ button {
         </div>
 
 
-        <button type="submit" class="button1">Crear</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Crear</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/usuarios';">Volver</button>
+        </div>
     </form>
 <div>
 

@@ -149,7 +149,7 @@ img{
     </thead>
     <tbody>
     @forelse ($regimenes as $regimen)
-        <tr onclick="window.location.href='/Webmaster/menu-reservas/regimenes/editar/{{$regimen->id}}';" style="cursor: pointer;">
+        <tr onclick="window.location.href='/Webmaster/menu-reservas/regimenes/editar/{{$regimen->id}}';" style="cursor: pointer;" >
                 <!-- Realizar vista descripcion y añadir una columna mas para verla-->
                 <!-- Añadir añadir, editar y borrar-->
                 <td>{{ $regimen->id }}</td>
@@ -157,7 +157,7 @@ img{
                 <td>{{  $regimen->precio }}€</td>
                 <td>
                     <!-- Formulario para eliminar -->
-                    <form action="/Webmaster/menu-reservas/regimenes/{{ $regimen->id }}" method="POST" style="display: inline;">
+                    <form action="/Webmaster/menu-reservas/regimenes/{{ $regimen->id }}" method="POST" style="cursor: pointer; display: inline;" onclick="event.stopPropagation();">
                         @csrf
                         @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 

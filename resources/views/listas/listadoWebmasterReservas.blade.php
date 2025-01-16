@@ -188,15 +188,15 @@ img{
                         No tiene cupones
                     @endif
                 </td>
-                <td>{{ $reserva->regimen->nombre }}</td>
-                <td>{{ $reserva->temporada->nombre }}</td>
+                <td>{{ $reserva->regimen ? $reserva->regimen->nombre : 'Sin regimen' }}</td>
+                <td>{{ $reserva->temporada ? $reserva->temporada->nombre : 'Sin temporada' }}</td>
                 <td>{{ $reserva->fecha_inicio }}</td>
                 <td>{{$reserva->fecha_fin}}</td>
                 <td @if($reserva->estado == "Confirmada") style="color: green;"  @elseif($reserva->estado == "Pendiente") style="color: orange;"  @else style="color: red;" @endif>{{$reserva->estado}}</td>
                 <td>{{$reserva->precio_total}}€</td>
                 <td>
                     <!-- Formulario para eliminar -->
-                    <form action="/Webmaster/menu-reservas/reservas/{{ $reserva->id }}" method="POST" style="display: inline;">
+                    <form action="/Webmaster/menu-reservas/reservas/{{ $reserva->id }}" method="POST" style="display: inline;" onclick="event.stopPropagation();">
                         @csrf
                         @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 

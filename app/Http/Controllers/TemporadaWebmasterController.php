@@ -38,6 +38,12 @@ class TemporadaWebmasterController extends Controller{
         'fecha_inicio' => 'required|date',
         'fecha_fin' => 'required|date',
         'multiplicador' => 'required|numeric|min:0',
+    ],[
+        'nombre.required' => 'El nombre es obligatorio.',
+        'fecha_inicio.required' => 'La fecha de inicio es obligatoria.', // Mensaje personalizado
+        'fecha_fin.required' => 'La fecha de fin es obligatoria.',
+        'multiplicador.required' => 'El multiplicador es obligatorio'
+        
     ]);
 
     $temporadas = Temporada::find($id);
@@ -70,6 +76,12 @@ class TemporadaWebmasterController extends Controller{
         'fecha_inicio' => 'required|date',
         'fecha_fin' => 'required|date',
         'multiplicador' => 'required|numeric|min:0',
+    ],[
+        'nombre.required' => 'El nombre es obligatorio.',
+        'fecha_inicio.required' => 'La fecha de inicio es obligatoria.', // Mensaje personalizado
+        'fecha_fin.required' => 'La fecha de fin es obligatoria.',
+        'multiplicador.required' => 'El multiplicador es obligatorio'
+        
     ]);
 
     $temporadas = new Temporada();

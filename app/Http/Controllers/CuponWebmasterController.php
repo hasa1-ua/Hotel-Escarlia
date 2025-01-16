@@ -49,6 +49,11 @@ class CuponWebmasterController extends Controller{
         'codigo' => 'required|string|max:255',
         'fecha_expiracion' => 'required|date',
         'descuento' => 'required|numeric|min:0',
+    ],[
+        'codigo.required' => 'El codigo es obligatorio.',
+        'fecha_expiracion.required' => 'La fecha de expiracion es obligatoria.', // Mensaje personalizado
+        'descuento.required' => 'El descuento es obligatorio'
+        
     ]);
 
     // Obtener la reserva por ID
@@ -82,6 +87,11 @@ class CuponWebmasterController extends Controller{
         'codigo' => 'required|string|max:255',
         'fecha_expiracion' => 'required|date',
         'descuento' => 'required|numeric|min:0',
+    ],[
+        'codigo.required' => 'El codigo es obligatorio.',
+        'fecha_expiracion.required' => 'La fecha de expiracion es obligatoria.', // Mensaje personalizado
+        'descuento.required' => 'El descuento es obligatorio'
+        
     ]);
 
     // Obtener la reserva por ID

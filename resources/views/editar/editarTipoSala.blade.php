@@ -10,11 +10,9 @@
 
 
 .container{
-  margin-top: -20px;
-  margin-left: -10px;
-  width: 1420px;
-  height: 849px;
-  padding: 8px 8px 8px 8px;
+  width: auto;
+  height: auto;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
@@ -131,6 +129,18 @@ button {
         cursor: pointer;
     }
 
+    .text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
+
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+}
+
 </style>
 
 
@@ -158,16 +168,25 @@ button {
        
             <label class="letras1" for="nombre">Nombre*:</label>
             <input class="celda" style=" margin-left: 20px;"  type="text" id="nombre" name="nombre" value="{{ $tipo_salas->nombre }}">
-        </div>
+            @error('nombre')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+          </div>
 
         <div class="form-group">
             <label class="letras1" for="precio">Precio*:</label>
             <input class="celda" style=" margin-left: 20px;"  type="number" id="precio" name="precio" step="0.01" value="{{ $tipo_salas->precio }}">
-        </div>
+            @error('precio')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
+          </div>
 
         <div class="form-group">
             <label class="letras1" for="aforo">Aforo*:</label>
             <input class="celda" style=" margin-left: 20px;"  type="number" id="aforo" name="aforo" value="{{ $tipo_salas->aforo }}">
+            @error('aforo')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -181,9 +200,15 @@ button {
               <button type="button" style=" margin-left: 20px;"  class="custom-file-button">Subir Imagen</button>
               <input class="celda" type="file" id="img" name="img" class="hidden">
             </div>
+            @error('img')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
-        <button class="button1" type="submit">Editar</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Editar</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/salas-de-conferencia';">Volver</button>
+        </div>
     </form>
     </div>
     </div>

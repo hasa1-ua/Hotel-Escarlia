@@ -10,11 +10,9 @@
 
 
 .container{
-  margin-top: -20px;
-  margin-left: -10px;
-  width: 1420px;
-  height: 900px;
-  padding: 8px 8px 8px 8px;
+  width: auto;
+  height: auto;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
@@ -136,6 +134,19 @@ button {
     min-width: 360px; /* Ancho mínimo */
 }
 
+.text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
+
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    margin-left: 100px;
+    display: flex;
+}
+
 </style>
 
 
@@ -169,16 +180,25 @@ button {
                 </option>
             @endforeach
             </select>
+            @error('nombre')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
             <label class="letras1" for="precio">Precio*:</label>
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="precio" name="precio" step="0.01" value="{{ $regimen->precio}}">
+            @error('precio')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
 
-        <button class="button1" type="submit">Editar</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Editar</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/menu-reservas/regimenes';">Volver</button>
+        </div>
     </form>
     </div>
     </div>

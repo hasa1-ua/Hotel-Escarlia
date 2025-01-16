@@ -10,11 +10,9 @@
 
 
 .container{
-  margin-top: -20px;
-  margin-left: -10px;
   width: auto;
-  height: 860px;
-  padding: 8px 8px 8px 8px;
+  height: auto;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
@@ -123,6 +121,18 @@ button {
         cursor: pointer;
     }
 
+    .text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+}
+
+
 </style>
 
 
@@ -153,6 +163,9 @@ button {
             value="{{ $usuarios->nombre_usuario }}"
             class="celda dynamic-width"
             oninput="adjustInputWidth(this)">
+            @error('nombre_usuario')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -160,8 +173,8 @@ button {
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="email" name="email" value="{{ $usuarios->email }}">
             @error('email')
-                <small style="color:aliceblue">{{ $message }}</small>
-    @end    @enderror
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -206,7 +219,10 @@ button {
         
 
 
-        <button class="button1" type="submit">Editar</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Editar</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/usuarios';">Volver</button>
+        </div>
     </form>
     </div>
     </div>

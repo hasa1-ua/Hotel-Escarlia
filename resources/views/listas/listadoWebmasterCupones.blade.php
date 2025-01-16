@@ -177,7 +177,7 @@ img{
                     </td>
                 <td>
                     <!-- Formulario para eliminar -->
-                    <form action="/Webmaster/menu-reservas/cupones/{{ $cupon->id }}" method="POST" style="display: inline;">
+                    <form action="/Webmaster/menu-reservas/cupones/{{ $cupon->id }}" method="POST" style="cursor: pointer; display: inline;" onclick="event.stopPropagation();">
                         @csrf
                         @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 

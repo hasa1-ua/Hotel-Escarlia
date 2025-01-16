@@ -10,11 +10,9 @@
 
 
 .container{
-  margin-top: -20px;
-  margin-left: -10px;
-  width: 1420px;
-  height: 900px;
-  padding: 8px 8px 8px 8px;
+  width: auto;
+  height: auto;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
@@ -136,6 +134,18 @@ button {
         cursor: pointer;
     }
 
+    .text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
+
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+}
+
 </style>
 
 
@@ -160,7 +170,7 @@ button {
 
         <div class="form-group">
             <label class="letras1" for="nombre">Nombre*:</label>
-            <select class="celda" style=" margin-left: 20px;"  id="nombre" name="nombre" required>
+            <select class="celda" style=" margin-left: 20px;"  id="nombre" name="nombre">
                 <option value="">Seleccione un nombre</option>
                 @foreach($regimenes as $reg)
                 <option value="{{ $reg->id }}" {{ $regimen->id == $reg->id ? 'selected' : '' }}>
@@ -168,6 +178,9 @@ button {
                 </option>
             @endforeach
             </select>
+            @error('nombre')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
 
@@ -175,10 +188,16 @@ button {
             <label class="letras1" for="precio">Precio*:</label>
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="precio" name="precio" step="0.01" value="{{ $regimen->precio}}">
+            @error('precio')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
 
-        <button class="button1" type="submit">Crear</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Crear</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/menu-reservas/regimenes';">Volver</button>
+        </div>
     </form>
     </div>
     </div>

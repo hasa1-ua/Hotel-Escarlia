@@ -240,7 +240,10 @@ img{
             </div>
         </div>
 
-        <button type="submit" class="button1">Editar</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Editar</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/salas-de-conferencia';">Volver</button>
+        </div>
     </form>
 
 

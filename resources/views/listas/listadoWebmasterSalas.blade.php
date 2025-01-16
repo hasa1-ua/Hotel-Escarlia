@@ -133,7 +133,7 @@ img{
                     <td> <img src="{{ asset($tiposala->img) }}"></td>
                     <td>
                         <!-- Formulario para eliminar -->
-                        <form action="/Webmaster/salas-de-conferencia/tiposala/{{ $tiposala->id }}" method="POST" style="display: inline;">
+                        <form action="/Webmaster/salas-de-conferencia/tiposala/{{ $tiposala->id }}" method="POST" style="display: inline;" onclick="event.stopPropagation();">
                          @csrf
                          @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 
@@ -201,7 +201,7 @@ img{
 
                     <td>
                         <!-- Formulario para eliminar -->
-                        <form action="/Webmaster/salas-de-conferencia/sala/{{ $sala->id }}" method="POST" style="display: inline;">
+                        <form action="/Webmaster/salas-de-conferencia/sala/{{ $sala->id }}" method="POST" style="display: inline;" onclick="event.stopPropagation();">
                          @csrf
                          @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 
