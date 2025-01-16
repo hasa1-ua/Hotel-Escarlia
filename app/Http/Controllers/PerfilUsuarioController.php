@@ -93,4 +93,8 @@ class PerfilUsuarioController extends Controller
 
         return response()->json(['valid' => true]);
     }
+
+    public function about(){
+        return view('extras/sobre-nosotros');
+    }
 }

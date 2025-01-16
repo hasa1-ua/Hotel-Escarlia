@@ -51,7 +51,7 @@ Route::get('/Publico/fotos', [PublicoController::class, 'getFotosPublico']);
 Route::get('/Publico/habitaciones',[PublicoController::class, 'getTipoHabitacion']);
 Route::get('/Publico/salas-de-conferencia',[SalaUsuarioNoRegController::class, 'getTipoSala']);
 Route::get('/Publico/salas-de-conferencia/{tipoid}/{id}',[descripcionSalaUsuarioNoRegController::class, 'getSalaUsuario'])->name('descripcion.sala.publico');
-Route::get('/Publico/sobre-nosotros',[PublicoController::class], 'about');
+Route::get('/Publico/sobre-nosotros',[PublicoController::class, 'about']);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/validate-user', [RegisterController::class, 'validateUser'])->name('validate-user');
@@ -67,7 +67,7 @@ Route::middleware(['usuario.registrado'])->group(function () {
 
     Route::get('/Usuario/habitaciones',[HabitacionesUsuarioController::class, 'getTipoHabitacion']);
     Route::get('/Usuario/habitaciones/{tipoid}/{id}',[DescripcionHabitacionesController::class, 'getHabitacionesUsuario'])->name('descripcion.habitaciones.recepcionista');
-
+    Route::get('/Usuario/sobre-nosotros',[PerfilUsuarioController::class, 'about']);
     Route::get('/Usuario/fotos', [ExtrasUsuarioController::class, 'getFotos']);
 
     Route::get('/Usuario/perfil', [PerfilUsuarioController::class, 'mi_perfil']);
@@ -101,6 +101,7 @@ Route::middleware(['recepcionista'])->group(function () {
     Route::get('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'editar']);
     Route::put('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'actualizar'])->name('reservas.actualizar');
     Route::delete('/Recepcionista/reservas/borrar/{id}', [ReservasRecepcionistaController::class, 'borrarReserva']);
+    Route::get('/Recepcionista/sobre-nosotros',[PerfilRecepcionistaController::class, 'about']);
 });
 
 Route::middleware(['webmaster'])->group(function () {
@@ -162,4 +163,5 @@ Route::middleware(['webmaster'])->group(function () {
     Route::get('/Webmaster/perfil/modificar-contraseña', [PerfilWebmasterController::class, 'modificar_contraseña']);
     Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña']);
     Route::post('/validar-contraseña-actual-Webmaster', [PerfilWebmasterController::class, 'validarContraseñaActual']);
+    Route::get('/Webmaster/sobre-nosotros',[PerfilWebmasterController::class, 'about']);
 });
