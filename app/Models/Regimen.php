@@ -57,6 +57,10 @@ class Regimen extends Model
     }
 
     // Métodos
+
+    public function eliminarRegimen(){
+        $this->delete();
+    }
     
     
 }
