@@ -92,7 +92,7 @@
 <body>
     <div class="container">
         <div>
-            <h1 class="title">Sobre nosotros</h1>
+            <h1 class="title">Hotel Escarlia</h1>
         </div>
         <div class="columns">
             <div class="column contact-info">
