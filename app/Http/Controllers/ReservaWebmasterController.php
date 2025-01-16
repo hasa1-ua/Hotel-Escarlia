@@ -69,6 +69,11 @@ class ReservaWebmasterController extends Controller{
         'cupon_id' => 'nullable|exists:cupones,id',  // Verifica también este campo
         'temporada_id' => 'nullable|exists:temporadas,id',  // Verifica este campo también
         'regimen_id' => 'nullable|exists:regimenes,id', // Y este
+    ],[
+        'usuario_id.required' => 'El usuario es obligatorio.',
+        'precio_total.required' => 'El precio es obligatorio.',
+        'fecha_inicio.required' => 'La fecha de inicio es obligatoria.', // Mensaje personalizado
+        'fecha_fin.required' => 'La fecha de fin es obligatoria.',
     ]);
 
 
@@ -133,6 +138,12 @@ class ReservaWebmasterController extends Controller{
             'cupon_id' => 'nullable|exists:cupones,id',  // Verifica también este campo
             'temporada_id' => 'nullable|exists:temporadas,id',  // Verifica este campo también
             'regimen_id' => 'nullable|exists:regimenes,id', // Y este
+        ],[
+            'usuario_id.required' => 'El usuario es obligatorio.',
+            'precio_total.required' => 'El precio es obligatorio.',
+            'fecha_inicio.required' => 'La fecha de inicio es obligatoria.', // Mensaje personalizado
+            'fecha_fin.required' => 'La fecha de fin es obligatoria.',
+            
         ]);
     
     

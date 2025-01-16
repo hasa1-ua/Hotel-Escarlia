@@ -56,6 +56,11 @@ class SalaWebmasterController extends Controller{
             'aforo' => 'required|numeric',
             'descripcion' => 'nullable|string',
             'img' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ],[
+            'nombre.required' => 'El nombre es obligatorio.',
+            'precio.required' => 'El precio es obligatorio.',
+            'aforo.required' => 'El aforo es obligatorio.', // Mensaje personalizado
+            'img.required' => 'La imagen es obligatoria'
         ]);
 
         $imageName = $request->file('img')->getClientOriginalName();
@@ -81,6 +86,11 @@ class SalaWebmasterController extends Controller{
             'aforo' => 'required|numeric',
             'descripcion' => 'required|string',
             'img' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ],[
+            'nombre.required' => 'El nombre es obligatorio.',
+            'precio.required' => 'El precio es obligatorio.',
+            'aforo.required' => 'El aforo es obligatorio.', // Mensaje personalizado
+            'img.required' => 'La imagen es obligatoria'
         ]);
 
         $tipossalas = TipoSala::idTipo($id);
@@ -121,6 +131,9 @@ class SalaWebmasterController extends Controller{
             'nombre' => 'required|string|max:255',
             'disponible' => 'required|boolean',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ],[
+            'nombre.required' => 'El nombre es obligatorio.',
+            'imagenes.required' => 'Las imagenes son obligatorias (puedes subir almenos 1 imagen).',
         ]);
 
         $salas = Sala::obtenerSalaporId($id);
@@ -173,6 +186,9 @@ class SalaWebmasterController extends Controller{
             'nombre' => 'required|string|max:255',
             'disponible' => 'required|boolean',
             'imagenes.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+        ],[
+            'nombre.required' => 'El nombre es obligatorio.',
+            'imagenes.required' => 'Las imagenes son obligatorias (puedes subir almenos 1 imagen).',
         ]);
 
 

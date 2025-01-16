@@ -10,15 +10,14 @@
 
 
 .container{
-  margin-top: -20px;
-  margin-left: -10px;
-  width: 1420px;
-  height: 900px;
-  padding: 8px 8px 8px 8px;
+  width: auto;
+  height: auto;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 
@@ -33,16 +32,6 @@
   white-space: nowrap;
 }
 
-img{
-  width: 736px;
-  height: 457px;
-  margin-top: -400px;
-  margin-left: 600px;
-  align-items: left;
-}
-
-
-
 button {
   width: 363px;
   height: 73px;
@@ -51,7 +40,7 @@ button {
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
-  border-radius: 3px 3px 3px 3px;
+  border-radius: 15px;
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
@@ -61,6 +50,7 @@ button {
 .button1{
   margin-top: 40px;
   margin-left: 20px;
+  border-radius: 15px;
 }
 
 
@@ -70,11 +60,11 @@ button {
     font-size: 48px; 
     font-family: "Solitreo";
     border: 1px solid #C3BB38; /* Borde del input */
-    border-radius: 5px;
     background-color: #840705; /* Fondo rojo claro */
     color: #C3BB38; /* Texto en rojo oscuro */
     width: 300px;
     height: 70px;
+    border-radius: 15px;
 }
 
 .celda:focus{
@@ -103,6 +93,7 @@ button {
         width: 100%;
         height: 100%;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     /* Botón personalizado */
@@ -125,6 +116,17 @@ button {
         cursor: pointer;
     }
 
+    .text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
+
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+}
 
 
 </style>
@@ -144,7 +146,7 @@ button {
         @csrf
         <div class="form-group">
         <label for="usuario_id" class="letras1">Usuario*:</label>
-        <select class="celda" name="usuario_id" id="usuario_id" required>
+        <select class="celda" name="usuario_id" id="usuario_id">
         <option value="">Seleccione un usuario</option>
             @foreach ($usuarios as $usuario)
                 <option value="{{ $usuario->id }}" {{ $reservas->usuario_id == $usuario->id ? 'selected' : '' }}>
@@ -152,6 +154,9 @@ button {
                 </option>
             @endforeach
         </select>
+        @error('usuario_id')
+            <small class="text-danger">{{ $message }}</small>
+        @enderror 
         </div>
 
 
@@ -180,7 +185,7 @@ button {
 
         <div class="form-group">
         <label for="cupon_id" class="letras1">Cupon:</label>
-        <select class="celda" name="cupon_id" id="cupon_id" required>
+        <select class="celda" name="cupon_id" id="cupon_id">
         <option value="" {{ is_null($reservas->cupon_id) ? 'selected' : '' }}>Sin cupon</option>
             @foreach ($cupon as $cupon)
                 <option value="{{ $cupon->id }}" {{ $reservas->cupon_id == $cupon->id ? 'selected' : '' }}>
@@ -191,9 +196,9 @@ button {
         </div>
 
         <div class="form-group">
-        <label for="regimen_id" class="letras1">Regimen*:</label>
-        <select class="celda" name="regimen_id" id="regimen_id" required>
-        <option value="">Selecciona regimen</option>
+        <label for="regimen_id" class="letras1">Regimen:</label>
+        <select class="celda" name="regimen_id" id="regimen_id">
+        <option value="" {{ is_null($reservas->regimen_id) ? 'selected' : '' }}>Sin cupon</option>
             @foreach ($regimen as $regimen)
                 <option value="{{ $regimen->id }}" {{ $reservas->regimen_id == $regimen->id ? 'selected' : '' }}>
                     {{ $regimen->nombre }}
@@ -203,9 +208,9 @@ button {
         </div>
 
         <div class="form-group">
-        <label for="temporada_id" class="letras1">Temporada*:</label>
-        <select class="celda" name="temporada_id" id="temporada_id" required>
-        <option value="">Selecciona temporada</option>
+        <label for="temporada_id" class="letras1">Temporada:</label>
+        <select class="celda" name="temporada_id" id="temporada_id">
+        <option value="" {{ is_null($reservas->temporada_id ) ? 'selected' : '' }}>Sin cupon</option>
             @foreach ($temporada as $temporada)
                 <option value="{{ $temporada->id }}" {{ $reservas->temporada_id == $temporada->id ? 'selected' : '' }}>
                     {{ $temporada->nombre }}
@@ -220,6 +225,12 @@ button {
 
             <label class="letras1" for="fecha_fin">Fecha fin*:</label>
             <input class="celda" style=" margin-left: 20px;"  type="date" id="fecha_fin" name="fecha_fin" value="{{ $reservas->fecha_fin}}">
+            @error('fecha_inicio')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror   
+            @error('fecha_fin')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror 
         </div>
 
         <div class="form-group">
@@ -234,9 +245,15 @@ button {
         <div class="form-group">
             <label class="letras1" for="precio_total">Precio:</label>
             <input class="celda" style=" margin-left: 20px;"  type="number" id="precio_total" name="precio_total" step="0.01" value="{{ $reservas->precio_total }}">
+            @error('precio_total')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror 
         </div>
 
-        <button type="submit" class="button1">Crear</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Crear</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/menu-reservas/reservas';">Volver</button>
+        </div>
     </form>
 <div>
 

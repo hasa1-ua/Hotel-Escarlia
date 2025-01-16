@@ -18,6 +18,7 @@
   border-width: 1px;
   border-style: solid;
   cursor: pointer;
+  border-radius: 15px;
 }
 
 .nombre {
@@ -42,6 +43,7 @@
 img{
   width: 450px;
   height: 300px;
+  border-radius: 15px;
 }
 
 .label1{
@@ -87,7 +89,7 @@ img{
 
 @foreach($tipo_salas as $tiposala)
 
-    <div class="casilla"  onclick="window.location.href='/Usuario/salas-de-conferencia/{{$tiposala->id}}';">
+    <div class="casilla"  onclick="window.location.href='/Usuario/salas-de-conferencia/{{$tiposala->id}}/{{$tiposala->salas()->first()->id}}';">
         <div class="image">
           <img src="{{ asset($tiposala->img) }}">
         </div>

@@ -43,18 +43,16 @@ class UsuarioWebmasterController extends Controller{
 
         $request->validate([
             'nombre_usuario' => 'required|string|max:255',
-            'email' => [
-            'required',
-            'string',
-            'max:255',
-            'email',
-            Rule::unique('users', 'email')->ignore($id),
-            ],
+            'email' => 'required|string|email|max:255|unique:users,email,' . $id,
             'telefono' => 'nullable|numeric',
             'fecha_nacimiento' => 'nullable|date',
             'direccion' => 'nullable|string|max:255',
             'nacionalidad' => 'nullable|string|max:255',
             'pais_residencia' => 'nullable|string|max:255',
+        ],[
+            'email.unique' => 'El correo electrónico ya está registrado.', // Mensaje personalizado
+            'email.email' => 'Por favor, introduce un correo electrónico válido.',
+            'nombre_usuario.required' => 'El nombre de usuario es obligatorio.', // Mensaje personalizado
         ]);
 
         $usuarios = User::find($id);
@@ -77,16 +75,19 @@ class UsuarioWebmasterController extends Controller{
 
         $request->validate([
             'nombre_usuario' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
+            'email' => 'required|string|email|max:255|unique:users,email,',
             'telefono' => 'nullable|numeric',
             'fecha_nacimiento' => 'nullable|date',
             'direccion' => 'nullable|string|max:255',
             'nacionalidad' => 'nullable|string|max:255',
             'pais_residencia' => 'nullable|string|max:255',
-            'password' => 'required|string|max:10',
+            'password' => 'required|string|max:255'
         ],[
             'email.unique' => 'El correo electrónico ya está registrado.', // Mensaje personalizado
-            'email.email' => 'Por favor, introduce un correo electrónico válido.', // Mensaje personalizado
+            'email.required' => 'El correo electronico es obligatorio.',
+            'nombre_usuario.required' => 'El nombre de usuario es obligatorio.', // Mensaje personalizado
+            'password.required' => 'La contraseña es obligatorio.'
+            
         ]);
 
         $usuarios = new User();

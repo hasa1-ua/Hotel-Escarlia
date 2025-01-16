@@ -29,6 +29,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 table {
@@ -70,7 +71,7 @@ td.breakword {
     border: 1px solid;
     text-decoration: none;
     font-size: 40px;
-    border-radius: 4px;
+    border-radius: 15px;
     font-family: "Solitreo";
     margin-left: 30px;
 }
@@ -85,6 +86,7 @@ td.breakword {
 img{
     width: 100px;
     height: 100px;
+    border-radius: 15px;
 }
 
 .filtro{
@@ -188,15 +190,15 @@ img{
                         No tiene cupones
                     @endif
                 </td>
-                <td>{{ $reserva->regimen->nombre }}</td>
-                <td>{{ $reserva->temporada->nombre }}</td>
+                <td>{{ $reserva->regimen ? $reserva->regimen->nombre : 'Sin regimen' }}</td>
+                <td>{{ $reserva->temporada ? $reserva->temporada->nombre : 'Sin temporada' }}</td>
                 <td>{{ $reserva->fecha_inicio }}</td>
                 <td>{{$reserva->fecha_fin}}</td>
                 <td @if($reserva->estado == "Confirmada") style="color: green;"  @elseif($reserva->estado == "Pendiente") style="color: orange;"  @else style="color: red;" @endif>{{$reserva->estado}}</td>
                 <td>{{$reserva->precio_total}}€</td>
                 <td>
                     <!-- Formulario para eliminar -->
-                    <form action="/Webmaster/menu-reservas/reservas/{{ $reserva->id }}" method="POST" style="display: inline;">
+                    <form action="/Webmaster/menu-reservas/reservas/{{ $reserva->id }}" method="POST" style="display: inline;" onclick="event.stopPropagation();">
                         @csrf
                         @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 

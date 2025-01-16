@@ -30,7 +30,7 @@ class LoginController extends Controller
                 case 'Recepción':
                     return redirect()->intended('/Recepcionista');
                 case 'Webmaster':
-                    return redirect()->intended('/Webmaster');
+                    return redirect()->intended('/Webmaster/usuarios');
                 default:
                     return redirect()->intended('/Publico');
             }

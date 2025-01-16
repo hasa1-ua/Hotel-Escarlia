@@ -14,11 +14,6 @@ class InicioController extends Controller
         return view('Homes.inicioUsuario', ['user' => $user]);
     }
 
-    public function Webmaster()
-    {
-        return view('homes/inicioWebmaster');
-    }
-
     public function Recepcionista()
     {
         $user = Auth::user();

@@ -10,15 +10,14 @@
 
 
 .container{
-  margin-top: -20px;
-  margin-left: -10px;
-  width: 1420px;
-  height: 900px;
-  padding: 8px 8px 8px 8px;
+  width: auto;
+  height: auto;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 
@@ -38,16 +37,6 @@
     min-width: 360px; /* Ancho mínimo */
 }
 
-img{
-  width: 736px;
-  height: 457px;
-  margin-top: 50px;
-  margin-left: 600px;
-  align-items: left;
-  display: inline;
-}
-
-
 
 button {
   width: 363px;
@@ -57,16 +46,16 @@ button {
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
-  border-radius: 3px 3px 3px 3px;
+  border-radius: 15px;
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
   margin-left: 20px;
-  
 }
 
 .button1{
   margin-top: 40px;
+  border-radius: 15px;
 }
 
 
@@ -75,21 +64,17 @@ button {
     font-size: 48px; 
     font-family: "Solitreo";
     border: 1px solid #C3BB38; /* Borde del input */
-    border-radius: 5px;
     background-color: #840705; /* Fondo rojo claro */
     color: #C3BB38; /* Texto en rojo oscuro */
     width: 300px;
     height: 70px;
+    border-radius: 15px;
 }
 
 .label{
   margin-top: 0px;
 }
 
-.form-group label[for="descripcion"] {
-    margin-top: 20px; /* Ajusta este valor según necesites */
-    display: block;
-}
 
 .celda:focus{
     outline: none;
@@ -117,6 +102,7 @@ button {
         width: 100%;
         height: 100%;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     /* Botón personalizado */
@@ -129,6 +115,7 @@ button {
         cursor: pointer;
         font-size: 48px;
         text-align: center;
+        border-radius: 15px;
     }
 
     .custom-file-button:hover {
@@ -136,6 +123,18 @@ button {
         cursor: pointer;
     }
 
+
+    .text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
+
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+}
 </style>
 
 
@@ -163,18 +162,27 @@ button {
             <label class="letras1" for="codigo">Codigo*:</label>
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="codigo" name="codigo" value="{{ $cupones->codigo}}">
+            @error('codigo')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
             <label class="letras1" for="descuento">Descuento*:</label>
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="descuento" name="descuento" step="0.01" value="{{ $cupones->descuento}}">
+            @error('descuento')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
             <label class="letras1" for="fecha_expiracion">Fecha expiracion*:</label>
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="date" id="fecha_expiracion" name="fecha_expiracion" value="{{ $cupones->fecha_expiracion}}">
+            @error('fecha_expiracion')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -184,8 +192,11 @@ button {
                 <option value="1" {{ $cupones->utilizado ? 'selected' : '' }}>Utilizado</option>
             </select>
         </div>
-
-        <button class="button1" type="submit">Editar</button>
+        
+        <div class= "separation">
+            <button class="button1" type="submit">Editar</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/menu-reservas/cupones';">Volver</button>
+        </div>
     </form>
     </div>
     </div>

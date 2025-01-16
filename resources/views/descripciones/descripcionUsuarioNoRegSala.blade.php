@@ -4,20 +4,20 @@
   margin-top: 20px;
   margin-left: -10px;
   width: 1420px;
-  height: 830px;
+  height: 850px;
   padding: 8px 8px 8px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 .label1{
   margin-left: 50px;
-  margin-top: 0px;
   display: inline-block; /* Permite que esté en línea con la imagen */
   vertical-align: middle;
-  margin-top: -840px;
+  margin-top: -865px;
   margin-left: 800px;
 }
 
@@ -50,18 +50,40 @@
   font-size: 60px;
   text-align: center;
   float: right;
+  margin-top: -150px;
   margin-right: 200px;
-  margin-top: -200px;
+  border-radius: 15px;
+}
+
+.button2{
+  width: 363px;
+  height: 73px;
+  background: #840705;
+  color: #C3BB38;
+  border-color: #C3BB38;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px 3px 3px 3px;
+  font-family: "Solitreo";
+  font-weight: 400;
+  font-size: 60px;
+  text-align: center;
+  float: right;
+  margin-right: 260px;
+  margin-top: 30px;
+  border-radius: 20px;
 }
 
 .carousel {
     position: relative;
     width: 100%;
     max-width: 750px;
+    max-height: 500px;
     overflow: hidden;
     margin-top: -100px;
     margin-left: 20px;
     float: left;
+    border-radius: 15px;
 }
 
 .carousel-images {
@@ -140,6 +162,10 @@
         <button class="button1" onclick="window.location.href='/login';">Reservar</button>
     </div>
 
+    <div>
+        <a href="{{ route('descripcion.sala.publico', ['tipoid' => $sala->tipo_sala_id, 'id' => $previousSala->id]) }}" class="button2">Siguiente sala</a>
+        <a href="{{ route('descripcion.sala.publico', ['tipoid' => $sala->tipo_sala_id, 'id' => $nextSala->id]) }}" class="button2">Sala anterior</a>
+    </div>
 <div>
 
 

@@ -10,15 +10,14 @@
 
 
 .container{
-  margin-top: -20px;
-  margin-left: -10px;
-  width: 1420px;
-  height: 900px;
-  padding: 8px 8px 8px 8px;
+  width: auto;
+  height: auto;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 
@@ -33,16 +32,6 @@
   white-space: nowrap;
 }
 
-img{
-  width: 736px;
-  height: 457px;
-  margin-top: 50px;
-  margin-left: 600px;
-  align-items: left;
-  display: inline;
-}
-
-
 
 button {
   width: 363px;
@@ -52,16 +41,16 @@ button {
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
-  border-radius: 3px 3px 3px 3px;
+  border-radius: 15px;
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
   margin-left: 20px;
-  
 }
 
 .button1{
   margin-top: 40px;
+  border-radius: 15px;
 }
 
 
@@ -75,6 +64,7 @@ button {
     color: #C3BB38; /* Texto en rojo oscuro */
     width: 300px;
     height: 70px;
+    border-radius: 15px;
 }
 
 .label{
@@ -112,6 +102,7 @@ button {
         width: 100%;
         height: 100%;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     /* Botón personalizado */
@@ -134,6 +125,18 @@ button {
     .dynamic-width {
     display: inline-block;
     min-width: 360px; /* Ancho mínimo */
+}
+
+.text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
+
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
 }
 
 
@@ -162,27 +165,42 @@ button {
             <label class="letras1" for="nombre">Nombre*:</label>
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="nombre" name="nombre" value="{{ $temporadas->nombre}}">
+            @error('nombre')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror  
         </div>
 
         <div class="form-group">
             <label class="letras1" for="multiplicador">Multiplicador*:</label>
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="number" id="multiplicador" name="multiplicador" step="0.01" value="{{ $temporadas->multiplicador}}">
+            @error('multiplicador')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror  
         </div>
 
         <div class="form-group">
             <label class="letras1" for="fecha_inicio">Fecha inicio*:</label>
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="date" id="fecha_inicio" name="fecha_inicio" value="{{ $temporadas->fecha_inicio}}">
+            @error('fecha_inicio')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror  
         </div>
 
         <div class="form-group">
             <label class="letras1" for="fecha_fin">Fecha fin*:</label>
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="date" id="fecha_fin" name="fecha_fin" value="{{ $temporadas->fecha_fin}}">
+            @error('fecha_fin')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror  
         </div>
 
-        <button class="button1" type="submit">Crear</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Crear</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/menu-reservas/temporadas';">Volver</button>
+        </div>
     </form>
     </div>
     </div>

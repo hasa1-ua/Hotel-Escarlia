@@ -76,10 +76,7 @@ class Sala extends Model
     }
 
     public static function selectidbytype($tipoid){
-        return self::with(['tipoSala'])
-                    ->where('tipo_sala_id', $tipoid)
-                    ->where('disponible', true)
-                    ->first();
+        return self::with(['tipoSala'])->where('disponible', true)->find($tipoid);
     }
 
     public static function selectidbySala($tipoid){

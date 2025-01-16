@@ -19,6 +19,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 
@@ -33,15 +34,6 @@
   white-space: nowrap;
 }
 
-img{
-  width: 736px;
-  height: 457px;
-  margin-top: -400px;
-  margin-left: 600px;
-  align-items: left;
-}
-
-
 
 button {
   width: 363px;
@@ -51,7 +43,7 @@ button {
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
-  border-radius: 3px 3px 3px 3px;
+  border-radius: 15px;
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
@@ -61,6 +53,7 @@ button {
 .button1{
   margin-top: 40px;
   margin-left: 20px;
+  border-radius: 15px;
 }
 
 
@@ -70,7 +63,7 @@ button {
     font-size: 48px; 
     font-family: "Solitreo";
     border: 1px solid #C3BB38; /* Borde del input */
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: #840705; /* Fondo rojo claro */
     color: #C3BB38; /* Texto en rojo oscuro */
     width: 300px;
@@ -103,6 +96,7 @@ button {
         width: 100%;
         height: 100%;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     /* Botón personalizado */
@@ -125,7 +119,17 @@ button {
         cursor: pointer;
     }
 
+    .text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
 
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+}
 
 </style>
 
@@ -145,6 +149,9 @@ button {
         <div class="form-group">
             <label class="letras1" for="nombre">Nombre*:</label>
             <input class="celda" type="text" id="nombre" name="nombre" value="{{ $salas->nombre }}">
+            @error('nombre')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -173,10 +180,16 @@ button {
               <button type="button" style=" margin-left: 20px;" class="custom-file-button">Subir Imagen</button>
               <input style="margin-top: 10px;" class="celda" type="file" id="imagenes" name="imagenes[]" multiple accept="image/*" onchange="mostrarNombres()">
               <div id="lista-imagenes" style="margin-top: 10px; color: #C3BB38; font-family: 'Solitreo'; font-size: 20px;"></div>
+              @error('imagenes')
+                <small class="text-danger">{{ $message }}</small>
+              @enderror
             </div>
         </div>
 
-        <button type="submit" class="button1">Crear</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Crear</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/salas-de-conferencia';">Volver</button>
+        </div>
     </form>
 <div>
 

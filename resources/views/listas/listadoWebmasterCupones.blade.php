@@ -28,6 +28,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 table {
@@ -69,7 +70,7 @@ td.breakword {
     border: 1px solid;
     text-decoration: none;
     font-size: 40px;
-    border-radius: 4px;
+    border-radius: 15px;
     font-family: "Solitreo";
     margin-left: 30px;
 }
@@ -84,6 +85,7 @@ td.breakword {
 img{
     width: 100px;
     height: 100px;
+    border-radius: 15px;
 }
 
 .filtro{
@@ -177,7 +179,7 @@ img{
                     </td>
                 <td>
                     <!-- Formulario para eliminar -->
-                    <form action="/Webmaster/menu-reservas/cupones/{{ $cupon->id }}" method="POST" style="display: inline;">
+                    <form action="/Webmaster/menu-reservas/cupones/{{ $cupon->id }}" method="POST" style="cursor: pointer; display: inline;" onclick="event.stopPropagation();">
                         @csrf
                         @method('DELETE') <!-- Esto indica que la solicitud es de tipo DELETE -->
 

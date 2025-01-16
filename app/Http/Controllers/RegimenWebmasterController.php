@@ -7,14 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Regimen;
 
-
-use App\Models\Temporada;
-
-
-
-
-
-
 class RegimenWebmasterController extends Controller{
 
     public function getRegimen(){
@@ -45,6 +37,10 @@ class RegimenWebmasterController extends Controller{
     $request->validate([
         'nombre' => 'required|string|max:255',
         'precio' => 'required|numeric|min:0',
+    ],[
+        'nombre.required' => 'El nombre del regimen es obligatorio',
+        'precio.required' => 'El precio es obligatorio.', // Mensaje personalizado
+        
     ]);
 
     $regimenes = Regimen::find($id);
@@ -74,6 +70,10 @@ class RegimenWebmasterController extends Controller{
         $request->validate([
         'nombre' => 'required|string|max:255',
         'precio' => 'required|numeric|min:0',
+        ],[
+            'nombre.required' => 'El nombre del regimen es obligatorio',
+            'precio.required' => 'El precio es obligatorio.', // Mensaje personalizado
+            
         ]);
 
         $regimenes = new Regimen();

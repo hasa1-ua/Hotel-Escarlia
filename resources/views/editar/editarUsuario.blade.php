@@ -10,15 +10,14 @@
 
 
 .container{
-  margin-top: -20px;
-  margin-left: -10px;
   width: auto;
-  height: 860px;
-  padding: 8px 8px 8px 8px;
+  height: auto;
+  padding: 8px 8px 50px 8px;
   background: #000000;
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 
@@ -42,16 +41,16 @@ button {
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
-  border-radius: 3px 3px 3px 3px;
+  border-radius: 15px;
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
   margin-left: 20px;
-  
 }
 
 .button1{
   margin-top: 40px;
+  border-radius: 15px;
 }
 
 
@@ -60,7 +59,7 @@ button {
     font-size: 48px; 
     font-family: "Solitreo";
     border: 1px solid #C3BB38; /* Borde del input */
-    border-radius: 5px;
+    border-radius: 15px;
     background-color: #840705; /* Fondo rojo claro */
     color: #C3BB38; /* Texto en rojo oscuro */
     width: auto;
@@ -104,6 +103,7 @@ button {
         width: 100%;
         height: 100%;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     /* Botón personalizado */
@@ -116,12 +116,25 @@ button {
         cursor: pointer;
         font-size: 48px;
         text-align: center;
+        border-radius: 15px;
     }
 
     .custom-file-button:hover {
         background-color:rgb(84, 4, 3);
         cursor: pointer;
     }
+
+    .text-danger{
+        color:rgb(165, 0, 0);
+        font-family: "Yellowtail";
+        font-size: 30px;
+    }
+    .separation {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+}
+
 
 </style>
 
@@ -153,6 +166,9 @@ button {
             value="{{ $usuarios->nombre_usuario }}"
             class="celda dynamic-width"
             oninput="adjustInputWidth(this)">
+            @error('nombre_usuario')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -160,8 +176,8 @@ button {
             <input class="celda dynamic-width"
             oninput="adjustInputWidth(this)" style=" margin-left: 20px;"  type="text" id="email" name="email" value="{{ $usuarios->email }}">
             @error('email')
-                <small style="color:aliceblue">{{ $message }}</small>
-    @end    @enderror
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <div class="form-group">
@@ -206,7 +222,10 @@ button {
         
 
 
-        <button class="button1" type="submit">Editar</button>
+        <div class= "separation">
+            <button class="button1" type="submit">Editar</button>
+            <button class="button1" type="button" onclick="window.location.href='/Webmaster/usuarios';">Volver</button>
+        </div>
     </form>
     </div>
     </div>

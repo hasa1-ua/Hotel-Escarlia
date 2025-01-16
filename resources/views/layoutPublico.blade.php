@@ -87,6 +87,7 @@
                 border-style: solid;
                 margin-left: 229px;
                 text-align: left;
+                border-radius: 20px;
             }
 
             .habitaciones {
@@ -152,6 +153,7 @@
                 border-color: #C3BB38;
                 border-width: 1px;
                 border-style: solid;
+                border-radius: 5px;
             }
 
             .dropdown-perfil {
@@ -189,6 +191,7 @@
                 background: #840705;
                 color: #C3BB38;
                 border-color: #F4EB49;
+                border-radius: 15px;
             }
 
             .btn-login:hover {
