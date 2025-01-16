@@ -19,6 +19,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 
@@ -33,16 +34,6 @@
   white-space: nowrap;
 }
 
-img{
-  width: 736px;
-  height: 457px;
-  margin-top: -400px;
-  margin-left: 600px;
-  align-items: left;
-}
-
-
-
 button {
   width: 363px;
   height: 73px;
@@ -51,7 +42,7 @@ button {
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
-  border-radius: 3px 3px 3px 3px;
+  border-radius: 15px;
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
@@ -61,6 +52,7 @@ button {
 .button1{
   margin-top: 40px;
   margin-left: 20px;
+  border-radius: 15px;
 }
 
 
@@ -70,11 +62,11 @@ button {
     font-size: 48px; 
     font-family: "Solitreo";
     border: 1px solid #C3BB38; /* Borde del input */
-    border-radius: 5px;
     background-color: #840705; /* Fondo rojo claro */
     color: #C3BB38; /* Texto en rojo oscuro */
     width: 300px;
     height: 70px;
+    border-radius: 15px;
 }
 
 .celda:focus{
@@ -103,6 +95,7 @@ button {
         width: 100%;
         height: 100%;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     /* Botón personalizado */

@@ -76,7 +76,6 @@ Route::middleware(['usuario.registrado'])->group(function () {
     Route::get('/Usuario/perfil/modificar-contraseña', [PerfilUsuarioController::class, 'modificar_contraseña']);
     Route::post('/Usuario/perfil/modificar-contraseña/{email}', [PerfilUsuarioController::class, 'confirmar_contraseña']);
     Route::post('/validar-contraseña-actual-Usuario', [PerfilUsuarioController::class, 'validarContraseñaActual']);
-    // Otras rutas para usuarios registrados
 });
 
 Route::middleware(['recepcionista'])->group(function () {
@@ -102,7 +101,6 @@ Route::middleware(['recepcionista'])->group(function () {
     Route::get('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'editar']);
     Route::put('/Recepcionista/reservas/editar/{id}', [ReservasRecepcionistaController::class, 'actualizar'])->name('reservas.actualizar');
     Route::delete('/Recepcionista/reservas/borrar/{id}', [ReservasRecepcionistaController::class, 'borrarReserva']);
-    // Otras rutas para recepcionistas
 });
 
 Route::middleware(['webmaster'])->group(function () {

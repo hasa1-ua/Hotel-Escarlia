@@ -19,6 +19,7 @@
   background-color: #f2f2f2;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 

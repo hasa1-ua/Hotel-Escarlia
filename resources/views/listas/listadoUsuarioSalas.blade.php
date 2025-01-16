@@ -18,6 +18,7 @@
   border-width: 1px;
   border-style: solid;
   cursor: pointer;
+  border-radius: 15px;
 }
 
 .nombre {
@@ -42,6 +43,7 @@
 img{
   width: 450px;
   height: 300px;
+  border-radius: 15px;
 }
 
 .label1{

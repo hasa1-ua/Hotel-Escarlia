@@ -18,6 +18,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        border-radius: 15px;
     }
 
     .form-group {
@@ -36,11 +37,11 @@
         width: 100%;
         padding: 8px;
         border: 1px solid #C3BB38;
-        border-radius: 5px;
         background: #000000;
         color: #C3BB38;
         font-family: "Solitreo";
         font-size: 26px;
+        border-radius: 15px;
     }
 
     .form-group button {
@@ -52,7 +53,6 @@
         cursor: pointer;
         width: 100%;
         border-radius: 15px;
-
     }
 
     .form-group button:hover {
@@ -81,6 +81,7 @@
 
     button{
         font-size: 20px;
+        border-radius: 15px;
     }
 </style>
 

@@ -10,6 +10,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 .label1{
@@ -44,7 +45,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
-  border-radius: 3px 3px 3px 3px;
+  border-radius: 15px;
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
@@ -58,10 +59,12 @@
     position: relative;
     width: 100%;
     max-width: 750px;
+    max-height: 500px;
     overflow: hidden;
     margin-top: -100px;
     margin-left: 20px;
     float: left;
+    border-radius: 15px;
 }
 
 .carousel-images {

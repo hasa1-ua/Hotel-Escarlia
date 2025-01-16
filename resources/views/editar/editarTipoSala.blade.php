@@ -19,6 +19,7 @@
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
+  border-radius: 15px;
 }
 
 
@@ -40,9 +41,8 @@ img{
   margin-left: 600px;
   align-items: left;
   display: inline;
+  border-radius: 15px;
 }
-
-
 
 button {
   width: 363px;
@@ -52,29 +52,29 @@ button {
   border-color: #C3BB38;
   border-width: 1px;
   border-style: solid;
-  border-radius: 3px 3px 3px 3px;
   font-family: "Solitreo";
   font-weight: 400;
   font-size: 60px;
   margin-left: 20px;
-  
+  border-radius: 15px;
 }
 
 .button1{
   margin-top: 40px;
+  border-radius: 15px;
 }
 
 
 .celda{
-    padding: 10px;
-    font-size: 48px; 
-    font-family: "Solitreo";
-    border: 1px solid #C3BB38; /* Borde del input */
-    border-radius: 5px;
-    background-color: #840705; /* Fondo rojo claro */
-    color: #C3BB38; /* Texto en rojo oscuro */
-    width: 300px;
-    height: 70px;
+  padding: 10px;
+  font-size: 48px; 
+  font-family: "Solitreo";
+  border: 1px solid #C3BB38; /* Borde del input */
+  border-radius: 15px;
+  background-color: #840705; /* Fondo rojo claro */
+  color: #C3BB38; /* Texto en rojo oscuro */
+  width: 300px;
+  height: 70px;
 }
 
 .label{
@@ -112,6 +112,7 @@ button {
         width: 100%;
         height: 100%;
         cursor: pointer;
+        border-radius: 15px;
     }
 
     /* Botón personalizado */
@@ -124,6 +125,7 @@ button {
         cursor: pointer;
         font-size: 48px;
         text-align: center;
+        border-radius: 15px;
     }
 
     .custom-file-button:hover {

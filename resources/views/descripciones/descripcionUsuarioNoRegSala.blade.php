@@ -59,6 +59,7 @@
     position: relative;
     width: 100%;
     max-width: 750px;
+    max-height: 500px;
     overflow: hidden;
     margin-top: -100px;
     margin-left: 20px;

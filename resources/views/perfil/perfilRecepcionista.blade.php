@@ -42,6 +42,7 @@
 
     .casilla {
         width: 48%; /* Dos columnas */
+        border-radius: 15px;
     }
 
     .casilla label {
@@ -65,7 +66,7 @@
         border-color: #F4EB49;
         border-width: 1px;
         border-style: solid;
-        border-radius: 3px;
+        border-radius: 15px;
         font-family: "Solitreo";
         font-weight: 400;
         font-size: 58px; /* Letra más grande en el botón */
