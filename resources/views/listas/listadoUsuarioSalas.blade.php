@@ -89,7 +89,7 @@ img{
 
 @foreach($tipo_salas as $tiposala)
 
-    <div class="casilla"  onclick="window.location.href='/Usuario/salas-de-conferencia/{{$tiposala->id}}';">
+    <div class="casilla"  onclick="window.location.href='/Usuario/salas-de-conferencia/{{$tiposala->id}}/{{$tiposala->salas()->first()->id}}';">
         <div class="image">
           <img src="{{ asset($tiposala->img) }}">
         </div>

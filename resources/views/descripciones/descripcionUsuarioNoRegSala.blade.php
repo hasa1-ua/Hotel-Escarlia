@@ -55,6 +55,25 @@
   border-radius: 15px;
 }
 
+.button2{
+  width: 363px;
+  height: 73px;
+  background: #840705;
+  color: #C3BB38;
+  border-color: #C3BB38;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px 3px 3px 3px;
+  font-family: "Solitreo";
+  font-weight: 400;
+  font-size: 60px;
+  text-align: center;
+  float: right;
+  margin-right: 260px;
+  margin-top: 30px;
+  border-radius: 20px;
+}
+
 .carousel {
     position: relative;
     width: 100%;
@@ -143,6 +162,10 @@
         <button class="button1" onclick="window.location.href='/login';">Reservar</button>
     </div>
 
+    <div>
+        <a href="{{ route('descripcion.sala.publico', ['tipoid' => $sala->tipo_sala_id, 'id' => $previousSala->id]) }}" class="button2">Siguiente sala</a>
+        <a href="{{ route('descripcion.sala.publico', ['tipoid' => $sala->tipo_sala_id, 'id' => $nextSala->id]) }}" class="button2">Sala anterior</a>
+    </div>
 <div>
 
 

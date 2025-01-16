@@ -98,10 +98,7 @@ class Habitacion extends Model
     }
 
     public static function selectidbytype($tipoid){
-        return self::with(['tipo'])
-                    ->where('tipo_id', $tipoid)
-                    ->where('disponible', true)
-                    ->first();
+        return self::with(['tipo'])->where('disponible', true)->find($tipoid);
     }
 
     public static function selectidbyHabitacion($tipoid){

@@ -50,7 +50,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/Publico/fotos', [PublicoController::class, 'getFotosPublico']);
 Route::get('/Publico/habitaciones',[PublicoController::class, 'getTipoHabitacion']);
 Route::get('/Publico/salas-de-conferencia',[SalaUsuarioNoRegController::class, 'getTipoSala']);
-Route::get('/Publico/salas-de-conferencia/{id}',[descripcionSalaUsuarioNoRegController::class, 'getSalaUsuario']);
+Route::get('/Publico/salas-de-conferencia/{tipoid}/{id}',[descripcionSalaUsuarioNoRegController::class, 'getSalaUsuario'])->name('descripcion.sala.publico');
 Route::get('/Publico/sobre-nosotros',[PublicoController::class], 'about');
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
@@ -63,10 +63,10 @@ Route::get('/permiso-denegado', function () {
 Route::middleware(['usuario.registrado'])->group(function () {
     Route::get('/Usuario', [InicioController::class, 'Usuario']);
     Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
-    Route::get('/Usuario/salas-de-conferencia/{id}',[descripcionSalaUsuarioController::class, 'getSalaUsuario']);
+    Route::get('/Usuario/salas-de-conferencia/{tipoid}/{id}',[descripcionSalaUsuarioController::class, 'getSalaUsuario'])->name('descripcion.sala.usuario');
 
     Route::get('/Usuario/habitaciones',[HabitacionesUsuarioController::class, 'getTipoHabitacion']);
-    Route::get('/Usuario/habitaciones/{id}',[DescripcionHabitacionesController::class, 'getHabitacionesUsuario']);
+    Route::get('/Usuario/habitaciones/{tipoid}/{id}',[DescripcionHabitacionesController::class, 'getHabitacionesUsuario'])->name('descripcion.habitaciones.recepcionista');
 
     Route::get('/Usuario/fotos', [ExtrasUsuarioController::class, 'getFotos']);
 
