@@ -95,6 +95,6 @@ class PerfilUsuarioController extends Controller
     }
 
     public function about(){
-        return view('extras/sobre-nosotros');
+        return view('extras/sobre-nosotros-us');
     }
 }
