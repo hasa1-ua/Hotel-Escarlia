@@ -194,7 +194,10 @@
                 <div class="dropdown-menu">
                     <div class="dropdown-menu-item rectangle"><a onclick="window.location.href='/Recepcionista/perfil'" class="dropdown-perfil">Mi perfil</a></div>
                     <div class="dropdown-menu-item rectangle">
-                        <a onclick="window.location.href='/simulate-logout'" class="dropdown-perfil">Cerrar sesión</a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        <a href="#" class="dropdown-perfil" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Cerrar sesión</a>
                     </div>
                 </div>
             </div>

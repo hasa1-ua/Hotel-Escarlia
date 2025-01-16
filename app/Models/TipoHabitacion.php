@@ -9,9 +9,12 @@ class TipoHabitacion extends Model
 {
     use HasFactory;
 
+    protected $table = 'tipos_habitaciones';
+
     protected $fillable = [
         'nombre',
         'plazas',
+        'img'
     ];
 
     // Relaciones
@@ -21,11 +24,6 @@ class TipoHabitacion extends Model
         return $this->hasMany(Habitacion::class, 'tipo_id');
     }
 
-    public function precios()
-    {
-        return $this->hasMany(TipoHabitacion::class, 'tipo_habitacion_id');
-    }
-
     // Getters
 
     public function getId()
@@ -33,24 +31,32 @@ class TipoHabitacion extends Model
         return $this->id;
     }
 
-    public function getNombreAttribute()
+    public function getNombre()
     {
         return $this->nombre ?? 'Sin nombre';
     }
 
-    public function getDescripcionAttribute()
+    public function getDescripcion()
     {
         return $this->descripcion ?? 'No hay descripción';
     }
 
-    public function getPlazasAttribute()
+    public function getPlazas()
     {
         return $this->plazas ?? 'No hay plazas';
     }
 
-    public function getCaracteristicasAttribute()
+    public function getCaracteristicas()
     {
         return json_decode($this->características) ?? 'No hay características';
+    }
+
+    public function getPrecio(){
+        return $this->precio ?? 0.0;
+    }
+
+    public function getImg(){
+        return $this->img;
     }
 
     // Setters
@@ -60,24 +66,32 @@ class TipoHabitacion extends Model
         $this->id = $value;
     }
 
-    public function setNombreAttribute($value)
+    public function setNombre($value)
     {
         $this->nombre = $value;
     }
 
-    public function setDescripcionAttribute($value)
+    public function setDescripcion($value)
     {
         $this->descripcion = $value;
     }
 
-    public function setPlazasAttribute($value)
+    public function setPlazas($value)
     {
         $this->plazas = $value;
     }
 
-    public function setCaracteristicasAttribute($value)
+    public function setCaracteristicas($value)
     {
         $this->características = json_encode($value);
+    }
+
+    public function setPrecio($value){
+        $this->precio = $value;
+    }
+
+    public function setImg($value){
+        $this->img = $value;
     }
 
     // Métodos

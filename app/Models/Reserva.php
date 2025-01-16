@@ -14,6 +14,7 @@ class Reserva extends Model
         'fecha_fin',
         'estado',
         'precio_total',
+        'usuario_id',
     ];
 
     // Relaciones
@@ -26,6 +27,11 @@ class Reserva extends Model
     public function regimen()
     {
         return $this->belongsTo(Regimen::class, 'regimen_id');
+    }
+
+    public function cupon()
+    {
+        return $this->belongsTo(Cupon::class, 'cupon_id');
     }
 
     public function temporada()

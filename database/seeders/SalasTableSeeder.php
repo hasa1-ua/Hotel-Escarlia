@@ -19,8 +19,11 @@ class SalasTableSeeder extends Seeder
 
         $salas = [
             ['Sala de Conferencias 1', true, 1],
-            ['Sala de Eventos', true, 2],
-            ['Sala de Capacitación', true, 3],
+            ['Sala de Conferencias 2', true, 1],
+            ['Sala de Eventos 1', true, 2],
+            ['Sala de Eventos 2', true, 2],
+            ['Sala de Capacitación 1', true, 3],
+            ['Sala de Capacitación 2', true, 3],
         ];
 
         foreach ($salas as $s) {

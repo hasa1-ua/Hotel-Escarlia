@@ -41,18 +41,15 @@
 
 <div class="galeria">
     @php
-        $images = [
-            "/imagenes/Fotos/governor-s-mansion-montgomery-alabama-grand-staircase-161758.jpeg",
-            "/imagenes/Fotos/pexels-photo-164595.jpeg",
-            "/imagenes/Fotos/pexels-photo-260922.jpeg",
-            "/imagenes/Fotos/pexels-photo-262047.jpeg",
-            "/imagenes/Fotos/sheraton-palace-hotel-lobby-architecture-san-francisco-53464.jpeg"
-        ];
+        use Illuminate\Support\Facades\File;
+
+        $path = public_path('/imagenes/Fotos');
+        $files = File::files($path);
     @endphp
 
-    @foreach ($images as $image)
+    @foreach ($files as $file)
         <div class="galeria-item">
-            <img src="{{ $image }}" alt="Imagen del hotel">
+            <img src="{{ asset('/imagenes/Fotos/' . $file->getFilename()) }}" alt="Imagen del hotel">
         </div>
     @endforeach
 </div>

@@ -82,6 +82,10 @@ class Sala extends Model
                     ->first();
     }
 
+    public static function selectidbySala($tipoid){
+        return self::with(['tipoSala'])->find($tipoid);
+    }
+
     // Metodos CRUD
     
 

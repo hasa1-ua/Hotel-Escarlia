@@ -9,8 +9,6 @@ class TipoSala extends Model
 {
     use HasFactory;
 
-
-
     protected $fillable = [
         'nombre',
         'aforo',
