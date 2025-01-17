@@ -107,7 +107,7 @@ input[type="text"], input[type="date"] {
             <input type="text" name="cupon" placeholder="Introduce un cupón si tienes"><br>
 
             <div class="button-container">
-                <a href="{{ route('usuario.reservaSala.confirmacion', ['id' => $reserva->id]) }}" class="button1">Confirmar</a>
+                <button type="submit" class="button1">Confirmar</button>
                 <button type="button" onclick="window.history.back();" class="button2">Cancelar</button>
             </div>
         </form>

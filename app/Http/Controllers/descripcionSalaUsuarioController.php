@@ -8,25 +8,33 @@ use App\Models\Sala;
 use App\Models\Foto;
 
 // Controlador para la tabla Salas
-class descripcionSalaUsuarioController extends Controller{
+class descripcionSalaUsuarioController extends Controller
+{
+    public function getSalaUsuario($tipoid, $id)
+    {
+        // Buscar la sala por ID y verificar que pertenece al tipo de sala
+        $sala = Sala::where('id', $id)
+                    ->where('tipo_sala_id', $tipoid)
+                    ->first();
 
-    public function getSalaUsuario($tipoid, $id){
-        //Escoge todos los IDs de sala
-        $sala = Sala::selectidbytype($id);
-        
+        // Validar si la sala existe
+        if (!$sala) {
+            return redirect()->back()->withErrors('No se encontró la sala solicitada.');
+        }
+
+        // Obtener salas del mismo tipo
         $salasMismoTipo = Sala::where('tipo_sala_id', $sala->tipo_sala_id)
-            ->orderBy('id')
-            ->get();
+                              ->orderBy('id')
+                              ->get();
 
-        // Encuentra el índice de la sala actual
+        // Encontrar la posición de la sala actual
         $currentIndex = $salasMismoTipo->search(fn($item) => $item->id === $sala->id);
-
-        // Sala anterior y siguiente
         $previousSala = $salasMismoTipo->get($currentIndex + 1) ?? $salasMismoTipo->last();
         $nextSala = $salasMismoTipo->get($currentIndex - 1) ?? $salasMismoTipo->first();
 
+        // Obtener las fotos asociadas a la sala
         $fotos = Foto::where('sala_id', $sala->id)->get();
-        //Pasaremos todos los IDs a la vista de descripciones de sala
+
         return view('descripciones.descripcionUsuarioSala', [
             'sala' => $sala,
             'fotos' => $fotos,
@@ -38,24 +46,24 @@ class descripcionSalaUsuarioController extends Controller{
 
     public function getSalaRecepcionista($tipoid, $id)
     {
-        $sala = Sala::selectidbySala($id);
+        $sala = Sala::where('id', $id)
+                    ->where('tipo_sala_id', $tipoid)
+                    ->first();
 
-        // Obtén todas las salas del mismo tipo
+        if (!$sala) {
+            return redirect()->back()->withErrors('No se encontró la sala solicitada.');
+        }
+
         $salasMismoTipo = Sala::where('tipo_sala_id', $sala->tipo_sala_id)
-            ->orderBy('id')
-            ->get();
+                              ->orderBy('id')
+                              ->get();
 
-        // Encuentra el índice de la sala actual
         $currentIndex = $salasMismoTipo->search(fn($item) => $item->id === $sala->id);
-
-        // Sala anterior y siguiente
         $previousSala = $salasMismoTipo->get($currentIndex + 1) ?? $salasMismoTipo->last();
         $nextSala = $salasMismoTipo->get($currentIndex - 1) ?? $salasMismoTipo->first();
 
-        // Obtener las fotos asociadas a la sala actual
         $fotos = Foto::where('sala_id', $sala->id)->get();
 
-        // Retornar la vista con los datos
         return view('descripciones.descripcionSalaRecepcionista', [
             'sala' => $sala,
             'fotos' => $fotos,

@@ -158,7 +158,7 @@
         @else
             <h3 class="letras1">No disponible</h3>
         @endif
-        <a href="{{ route('usuario.reservarSala.form', ['id' => $sala->id]) }}" class="button1">Reservar</a>
+        <a href="{{ route('usuario.reservarSala.form', ['tipoid' => $sala->tipo_sala_id, 'id' => $sala->id]) }}" class="button1">Reservar</a>
     </div>
 
     <div>

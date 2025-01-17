@@ -62,15 +62,15 @@ Route::get('/permiso-denegado', function () {
     return view('errors.permiso-denegado');
 });
 
-Route::middleware(['usuario.registrado'])->group(function () {
+    Route::middleware(['usuario.registrado'])->group(function () {
     Route::get('/Usuario', [InicioController::class, 'Usuario']);
     Route::get('/Usuario/salas-de-conferencia',[SalaUsuarioController::class, 'getTipoSala']);
     Route::get('/Usuario/salas-de-conferencia/{tipoid}/{id}',[descripcionSalaUsuarioController::class, 'getSalaUsuario'])->name('descripcion.sala.usuario');
     //Falta mas info en la vista a rellenar de momento solo fechas. Mostrar y Hacer formularios
-    Route::get('/Usuario/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'formularioReservaUsuarioSala'])->name('usuario.reservarSala.form');
-    Route::post('/Usuario/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'reservarUsuarioSala']) ->name('usuario.reservar.sala');
+    Route::get('/Usuario/salas-de-conferencia/{tipoid}/{id}/reservar', [ReservaController::class, 'formularioReservaUsuarioSala'])->name('usuario.reservarSala.form');
+    Route::post('/Usuario/salas-de-conferencia/{tipoid}/{id}/reservar', [ReservaController::class, 'reservarUsuarioSala']) ->name('usuario.reservar.sala');
     //confirmar reserva
-    Route::get('/Usuario/salas/reserva/confirmacion/{id}', [ReservaController::class, 'mostrarConfirmacionReservaSala'])->name('usuario.reservaSala.confirmacion');
+    Route::get('/Usuario/salas/reserva/confirmacion/{tipoid}/{id}', [ReservaController::class, 'mostrarConfirmacionReservaSala'])->name('usuario.reservaSala.confirmacion');
 
 
     Route::get('/Usuario/habitaciones',[HabitacionesUsuarioController::class, 'getTipoHabitacion']);
@@ -94,7 +94,7 @@ Route::middleware(['usuario.registrado'])->group(function () {
 
 });
 
-Route::middleware(['recepcionista'])->group(function () {
+    Route::middleware(['recepcionista'])->group(function () {
     Route::get('/Recepcionista', [InicioController::class, 'Recepcionista']);
     Route::get('/Recepcionista/salas-de-conferencia',[SalaRecepcionistaController::class, 'getTipoSala']);
     Route::get('/Recepcionista/salas-de-conferencia/{tipoid}/{id}',[descripcionSalaUsuarioController::class, 'getSalaRecepcionista'])->name('descripcion.sala.recepcionista');
@@ -125,7 +125,7 @@ Route::middleware(['recepcionista'])->group(function () {
 
 });
 
-Route::middleware(['webmaster'])->group(function () {
+    Route::middleware(['webmaster'])->group(function () {
     Route::get('/Webmaster/salas-de-conferencia',[SalaWebmasterController::class, 'getTipoSala']);
     Route::get('/Webmaster/salas-de-conferencia/tiposala/crear', [SalaWebmasterController::class, 'añadirTipoSala']);
     Route::post('/Webmaster/salas-de-conferencia/tiposala/crear', [SalaWebmasterController::class, 'guardarTipoSala'])->name('tiposala.guardar');
