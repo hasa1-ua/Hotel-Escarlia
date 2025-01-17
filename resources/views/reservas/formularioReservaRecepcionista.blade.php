@@ -87,15 +87,18 @@ input[type="text"], input[type="date"] {
         <form method="POST" action="{{ route('recepcionista.reservar', ['tipoid' => $habitacion->tipo_id, 'id' => $habitacion->id]) }}">
             @csrf
 
-            <label for="nombre_huesped">Nombre del Huésped:</label><br>
-            <input type="text" name="nombre_huesped" placeholder="Introduce el nombre del huésped" required><br>
+            <label for="nombre_usuario">Nombre del Huésped:</label><br>
+            <input type="text" name="nombre_usuario" placeholder="Introduce el nombre del huésped" required><br>
 
-            <label for="tipo_alojamiento">Tipo de Alojamiento:</label><br>
+            <label for="email">Email:</label><br>
+            <input type="text" name="email" placeholder="Introduce el email" required><br>
+
+            <label for="regimen_id">Tipo de Alojamiento:</label><br>
             <div class="radio-group">
-                <input type="radio" name="tipo_alojamiento" value="Solo Alojamiento" checked> Solo Alojamiento<br>
-                <input type="radio" name="tipo_alojamiento" value="Alojamiento + Desayuno"> Alojamiento + Desayuno<br>
-                <input type="radio" name="tipo_alojamiento" value="Media Pensión"> Media Pensión<br>
-                <input type="radio" name="tipo_alojamiento" value="Pensión Completa"> Pensión Completa<br>
+            @foreach ($regimenes as $regimen)
+              <input type="radio" name="regimen_id" value="{{ $regimen->id }}" {{ $loop->first ? 'checked' : '' }}>
+                {{ $regimen->nombre }}<br>
+            @endforeach
             </div><br>
 
             <label for="fecha_inicio">Fecha de Inicio:</label><br>
@@ -108,7 +111,7 @@ input[type="text"], input[type="date"] {
             <input type="text" name="cupon" placeholder="Introduce un cupón si tienes"><br> 
 
             <div class="button-container">
-                <a href="{{ route('usuario.reserva.confirmacion', ['id' => $reserva->id]) }}" class="button1">Confirmar</a>
+                <button type="submit" class="button1">Confirmar</button>
                 <button type="button" onclick="window.history.back();" class="button2">Cancelar</button>
             </div>
         </form>

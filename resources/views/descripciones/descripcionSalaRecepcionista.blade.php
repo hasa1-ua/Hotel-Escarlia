@@ -166,7 +166,7 @@
                 {{ $sala->disponible ? 'Bloquear' : 'Desbloquear' }}
             </button>
         </form>
-        <a href="{{ route('recepcionista.reservarSala.form', ['id' => $sala->id]) }}" class="button1">Reservar</a>
+        <a href="{{ route('recepcionista.reservarSala.form',  ['tipoid' => $sala->tipoSala->id, 'id' => $sala->id]) }}" class="button1">Reservar</a>
     </div>
     </div>
 

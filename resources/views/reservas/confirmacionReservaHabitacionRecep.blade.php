@@ -1,4 +1,4 @@
-@extends('layoutUsuario')
+@extends('layoutRecepcionista')
 
 @section('contenido')
 
@@ -42,21 +42,22 @@ h3, p {
 </style>
 
 <div class="container">
-    <h1>¡Gracias por reservar una de nuestras salas!</h1>
+    <h1>¡Gracias por reservar en nuestros alojamientos!</h1>
     <h3>Aquí tienes un resumen de tu reserva:</h3>
 
-    <p><strong>Nombre de la Sala:</strong> {{ $sala->nombre }}</p>
+    <p><strong>Numero:</strong> {{ $habitacion->numero }}</p>
+    <p><strong>Planta:</strong> {{ $habitacion->planta }}</p>
+    <p><strong>Vistas:</strong> {{ $habitacion->vistas }}</p>
     <p><strong>Coordinador:</strong> {{ $reserva->usuario->nombre_usuario ?? 'Sin asignar' }}</p>
-    <p><strong>Aforo:</strong> {{ $sala->tipoSala->aforo }}</p>
 
-    <p><strong>Fecha de Inicio:</strong> {{ \Carbon\Carbon::parse($reserva->fecha_inicio)->format('d/m/Y') }}</p>
-    <p><strong>Fecha de Fin:</strong> {{ \Carbon\Carbon::parse($reserva->fecha_fin)->format('d/m/Y') }}</p>
-    <p><strong>Precio de la Sala:</strong> {{ number_format($reserva->precio_total, 2) }}€</p>
+    <p><strong>Inicio:</strong> {{ \Carbon\Carbon::parse($reserva->fecha_inicio)->format('d/m/Y') }}</p>
+    <p><strong>Fin:</strong> {{ \Carbon\Carbon::parse($reserva->fecha_fin)->format('d/m/Y') }}</p>
+    <p><strong>Precio Habitacion:</strong> {{ number_format($reserva->precio_total, 2) }}€</p>
 
-    <p><em>Recibirá un comprobante de su reserva en su correo electrónico.</em></p>
+    <p><em>También recibirá su recibo en su email.</em></p>
 
     <div class="button-container">
-        <button onclick="window.location.href='/Usuario/salas-de-conferencia';" class="button1">Volver a Salas</button>
+    <button onclick="window.location.href='/Recepcionista/habitaciones';" class="button1">Volver a Habitaciones</button>
     </div>
 </div>
 

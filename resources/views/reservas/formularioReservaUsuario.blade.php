@@ -83,18 +83,16 @@ input[type="text"], input[type="date"] {
     <div class="left-column">
         <h2>Reserva la habitación: {{ $habitacion->tipo->nombre }}</h2>
 
-        <form method="POST" action="{{ route('recepcionista.reservar', ['tipoid' => $habitacion->tipo_id, 'id' => $habitacion->id]) }}">
+        <form method="POST" action="{{ route('usuario.reservar', ['tipoid' => $habitacion->tipo_id, 'id' => $habitacion->id]) }}">
             @csrf
 
-            <label for="nombre_huesped">Nombre del Huésped:</label><br>
-            <input type="text" name="nombre_huesped" placeholder="Introduce el nombre del huésped" required><br>
-
-            <label for="tipo_alojamiento">Tipo de Alojamiento:</label><br>
+          
+            <label for="regimen_id">Tipo de Alojamiento:</label><br>
             <div class="radio-group">
-                <input type="radio" name="tipo_alojamiento" value="Solo Alojamiento" checked> Solo Alojamiento<br>
-                <input type="radio" name="tipo_alojamiento" value="Alojamiento + Desayuno"> Alojamiento + Desayuno<br>
-                <input type="radio" name="tipo_alojamiento" value="Media Pensión"> Media Pensión<br>
-                <input type="radio" name="tipo_alojamiento" value="Pensión Completa"> Pensión Completa<br>
+            @foreach ($regimenes as $regimen)
+              <input type="radio" name="regimen_id" value="{{ $regimen->id }}" {{ $loop->first ? 'checked' : '' }}>
+                {{ $regimen->nombre }}<br>
+            @endforeach
             </div><br>
 
             <label for="fecha_inicio">Fecha de Inicio:</label><br>
@@ -103,8 +101,8 @@ input[type="text"], input[type="date"] {
             <label for="fecha_fin">Fecha de Fin:</label><br>
             <input type="date" name="fecha_fin" required><br>
 
-            <label for="cupon">Cupón de Descuento:</label><br>
-            <input type="text" name="cupon" placeholder="Introduce un cupón si tienes"><br>
+            <label for="cupon_id">Cupón de Descuento:</label><br>
+            <input type="text" name="cupon_id" placeholder="Introduce un cupón si tienes"><br>
 
             <div class="button-container">
                 <button type="submit" class="button1">Confirmar</button>

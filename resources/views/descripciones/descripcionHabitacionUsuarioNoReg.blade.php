@@ -149,6 +149,8 @@
         <h5>Número: {{ $habitacion->getNumero() }}</h5>
         <h3>{{$habitacion->tipo->descripcion}}</h3>
         <h5>Vistas: {{ $habitacion->getVistas() }}</h5>   
+    
+    <button class="button1" onclick="window.location.href='/login';">Reservar</button>
 
 </div>
 

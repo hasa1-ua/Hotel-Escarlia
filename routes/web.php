@@ -122,8 +122,8 @@ Route::get('/permiso-denegado', function () {
 
     Route::get('/Recepcionista/habitaciones/{tipoid}/{id}/reservar', [ReservaController::class, 'formularioReservaRecepcionista'])->name('recepcionista.reservar.form');
     Route::post('/Recepcionista/habitaciones/{tipoid}/{id}/reservar', [ReservaController::class, 'reservarRecepcionista'])->name('recepcionista.reservar');
-    Route::get('/Recepcionista/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'formularioReservaRecepcionistaSala'])->name('recepcionista.reservarSala.form');
-    Route::post('/Recepcionista/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'reservarRecepcionistaSala'])->name('recepcionista.reservar.sala');
+    Route::get('/Recepcionista/salas-de-conferencia/{tipoid}/{id}/reservar', [ReservaController::class, 'formularioReservaRecepcionistaSala'])->name('recepcionista.reservarSala.form');
+    Route::post('/Recepcionista/salas-de-conferencia/{tipoid}/{id}/reservar', [ReservaController::class, 'reservarRecepcionistaSala'])->name('recepcionista.reservar.sala');
 
     Route::get('/Recepcionista/sobre-nosotros',[PerfilRecepcionistaController::class, 'about']);
 });

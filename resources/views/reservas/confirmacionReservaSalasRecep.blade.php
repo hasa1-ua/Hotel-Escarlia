@@ -1,4 +1,4 @@
-@extends('layoutUsuario')
+@extends('layoutRecepcionista')
 
 @section('contenido')
 
@@ -56,7 +56,7 @@ h3, p {
     <p><em>Recibirá un comprobante de su reserva en su correo electrónico.</em></p>
 
     <div class="button-container">
-        <button onclick="window.location.href='/Usuario/salas-de-conferencia';" class="button1">Volver a Salas</button>
+        <button onclick="window.location.href='/Recepcionista/salas-de-conferencia';" class="button1">Volver a Salas</button>
     </div>
 </div>
 

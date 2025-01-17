@@ -69,8 +69,14 @@ input[type="text"], input[type="date"] {
     <div class="left-column">
         <h2>Reserva la sala: {{ $sala->getNombre() }}</h2>
 
-        <form method="POST" action="{{ route('recepcionista.reservar.sala', ['id' => $sala->id]) }}">
+        <form method="POST" action="{{ route('recepcionista.reservar.sala',  ['tipoid' => $sala->tipoSala->id, 'id' => $sala->id]) }}">
             @csrf
+
+            <label for="nombre_usuario">Nombre del Huésped:</label><br>
+            <input type="text" name="nombre_usuario" placeholder="Introduce el nombre del huésped" required><br>
+
+            <label for="email">Email:</label><br>
+            <input type="text" name="email" placeholder="Introduce el email" required><br>
 
             <label for="fecha_inicio">Fecha de Inicio:</label><br>
             <input type="date" name="fecha_inicio" required><br>
@@ -82,7 +88,7 @@ input[type="text"], input[type="date"] {
             <input type="text" name="cupon" placeholder="Introduce un cupón si tienes"><br>
 
             <div class="button-container">
-                <a href="{{ route('usuario.reservaSala.confirmacion', ['id' => $reserva->id]) }}" class="button1">Confirmar</a>
+                <button type="submit" class="button1">Confirmar</button>
                 <button type="button" onclick="window.history.back();" class="button2">Cancelar</button>
             </div>
         </form>

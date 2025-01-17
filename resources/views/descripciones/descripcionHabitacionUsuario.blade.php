@@ -139,8 +139,8 @@
                 <h3>No disponible</h3>
             @endif
         </div>
-        <a href="{{ route('descripcion.habitaciones.recepcionista', ['tipoid' => $habitacion->tipo_id, 'id' => $nextHabitacion->id]) }}" class="button2">Habitación anterior</a>
-        <a href="{{ route('descripcion.habitaciones.recepcionista', ['tipoid' => $habitacion->tipo_id, 'id' => $previousHabitacion->id]) }}" class="button2">Siguiente habitación</a>
+        <a href="{{ route('usuario.habitacion.detalle', ['tipoid' => $habitacion->tipo_id, 'id' => $nextHabitacion->id]) }}" class="button2">Habitación anterior</a>
+        <a href="{{ route('usuario.habitacion.detalle', ['tipoid' => $habitacion->tipo_id, 'id' => $previousHabitacion->id]) }}" class="button2">Siguiente habitación</a>
     </div>
     
 
@@ -151,7 +151,7 @@
         <h5>Vistas: {{ $habitacion->getVistas() }}</h5>   
 
     <div class="margen2">
-        <a href="{{ route('recepcionista.reservar.form', ['tipoid' => $habitacion->tipo->id, 'id' => $habitacion->id]) }}" class="button1">Reservar</a>
+        <a href="{{ route('usuario.reservar.form', ['tipoid' => $habitacion->tipo->id, 'id' => $habitacion->id]) }}" class="button1">Reservar</a>
         </div>
     </div>
 
