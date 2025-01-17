@@ -18,13 +18,13 @@ class HabitacionesTableSeeder extends Seeder
         DB::table('habitaciones')->delete();
 
         $habitaciones = [
-            [1, 101, 1, 'Vista al jardín', true],
-            [1, 102, 1, 'Vista al patio', true],
-            [2, 201, 2, 'Vista al mar', true],
-            [2, 202, 2, 'Vista al mar 2', true],
-            [2, 203, 2, 'Vista al mar 3', true],
-            [3, 301, 3, 'Vista panorámica', true],
-            [3, 302, 3, 'Vista a la montaña', false],
+            [1, 101, 1, 'Habitación estándar con vista al jardín y cama individual.', true],
+            [1, 102, 1, 'Habitación estándar con vista al patio, cama individual y escritorio.', true],
+            [2, 201, 2, 'Habitación premium con vista al mar, balcón y cama doble.', true],
+            [2, 202, 2, 'Habitación premium con vista al mar, cama doble y decoración moderna.', true],
+            [2, 203, 2, 'Habitación premium con vista al mar, cama doble, escritorio y minibar.', true],
+            [3, 301, 3, 'Suite de lujo con vista panorámica, sala de estar y jacuzzi privado.', true],
+            [3, 302, 3, 'Suite de lujo con vista a la montaña, chimenea y cama king size.', false],
         ];
 
         foreach ($habitaciones as $h) {

@@ -16,4 +16,8 @@ class PublicoController extends Controller
     public function getFotosPublico(){
         return view('extras/fotosPublico');
     }
+
+    public function about(){
+        return view('extras/sobre-nosotros');
+    }
 }

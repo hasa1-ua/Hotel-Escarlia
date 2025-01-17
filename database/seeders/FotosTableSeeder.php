@@ -38,8 +38,12 @@ class FotosTableSeeder extends Seeder
             ['imagenes/Habitaciones/habitacionid2-2.jpg', null, 3],
             ['imagenes/Habitaciones/habitacionid2-3.jpg', null, 4],
             ['imagenes/Habitaciones/habitacionid2-4.jpg', null, 4],
-            ['imagenes/Habitaciones/habitacionid3-1.jpg', null, 5],
-            ['imagenes/Habitaciones/habitacionid3-2.jpg', null, 5],
+            ['imagenes/Habitaciones/habitacionid2-5.jpg', null, 5],
+            ['imagenes/Habitaciones/habitacionid2-6.jpg', null, 5],
+            ['imagenes/Habitaciones/habitacionid3-1.jpg', null, 6],
+            ['imagenes/Habitaciones/habitacionid3-2.jpg', null, 6],
+            ['imagenes/Habitaciones/habitacionid3-3.jpg', null, 7],
+            ['imagenes/Habitaciones/habitacionid3-4.jpg', null, 7],
         ];
 
         foreach ($fotos as $f) {

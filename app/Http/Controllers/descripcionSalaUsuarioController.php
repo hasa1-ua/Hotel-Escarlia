@@ -8,15 +8,16 @@ use App\Models\Sala;
 use App\Models\Foto;
 
 // Controlador para la tabla Salas
-class descripcionSalaUsuarioController extends Controller
-{
-    public function getSalaUsuario($tipoid, $id)
-    {
-        // Buscar la sala por ID y verificar que pertenece al tipo de sala
-        $sala = Sala::where('id', $id)
-                    ->where('tipo_sala_id', $tipoid)
-                    ->first();
+class descripcionSalaUsuarioController extends Controller{
 
+    public function getSalaUsuario($tipoid, $id){
+        //Escoge todos los IDs de sala
+        $sala = Sala::selectidbytype($id);
+        // Si la sala no existe, sumar uno en el id
+        if($sala == null){
+            $sala = Sala::selectidbytype($id+1);
+        }
+            
         // Validar si la sala existe
         if (!$sala) {
             return redirect()->back()->withErrors('No se encontró la sala solicitada.');
@@ -24,8 +25,9 @@ class descripcionSalaUsuarioController extends Controller
 
         // Obtener salas del mismo tipo
         $salasMismoTipo = Sala::where('tipo_sala_id', $sala->tipo_sala_id)
-                              ->orderBy('id')
-                              ->get();
+        ->where('disponible', true)
+        ->orderBy('id')
+        ->get();
 
         // Encontrar la posición de la sala actual
         $currentIndex = $salasMismoTipo->search(fn($item) => $item->id === $sala->id);

@@ -1,7 +1,7 @@
 <style>
 .container{
   width: 1435px;
-  height: 840px;
+  height: 920px;
   padding: 8px;
   background: #000000;
   border-color: #C3BB38;
@@ -18,7 +18,6 @@
     position: relative;
     width: 100%;
     max-width: 750px;
-    max-height: 500px;
     overflow: hidden;
     float: left;
     border-radius: 20px;
@@ -182,4 +181,3 @@
 </script>
 
 @endsection
-

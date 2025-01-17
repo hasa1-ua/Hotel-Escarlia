@@ -53,7 +53,7 @@ Route::get('/Publico/fotos', [PublicoController::class, 'getFotosPublico']);
 Route::get('/Publico/habitaciones',[PublicoController::class, 'getTipoHabitacion']);
 Route::get('/Publico/salas-de-conferencia',[SalaUsuarioNoRegController::class, 'getTipoSala']);
 Route::get('/Publico/salas-de-conferencia/{tipoid}/{id}',[descripcionSalaUsuarioNoRegController::class, 'getSalaUsuario'])->name('descripcion.sala.publico');
-Route::get('/Publico/sobre-nosotros',[PublicoController::class], 'about');
+Route::get('/Publico/sobre-nosotros',[PublicoController::class, 'about']);
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/validate-user', [RegisterController::class, 'validateUser'])->name('validate-user');
@@ -78,7 +78,7 @@ Route::get('/permiso-denegado', function () {
     //Mostrar formulario de reserva habitaciones
     Route::get('/Usuario/habitaciones/{tipoid}/{id}/reservar', [ReservaController::class, 'formularioReservaUsuario'])->name('usuario.reservar.form');
     Route::post('/Usuario/habitaciones/{tipoid}/{id}/reservar', [ReservaController::class, 'reservarUsuario'])->name('usuario.reservar');
-
+    Route::get('/Usuario/sobre-nosotros',[PerfilUsuarioController::class, 'about']);
     Route::get('/Usuario/fotos', [ExtrasUsuarioController::class, 'getFotos']);
 
     Route::get('/Usuario/perfil', [PerfilUsuarioController::class, 'mi_perfil']);
@@ -123,6 +123,7 @@ Route::get('/permiso-denegado', function () {
     Route::get('/Recepcionista/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'formularioReservaRecepcionistaSala'])->name('recepcionista.reservarSala.form');
     Route::post('/Recepcionista/salas-de-conferencia/{id}/reservar', [ReservaController::class, 'reservarRecepcionistaSala'])->name('recepcionista.reservar.sala');
 
+    Route::get('/Recepcionista/sobre-nosotros',[PerfilRecepcionistaController::class, 'about']);
 });
 
     Route::middleware(['webmaster'])->group(function () {
@@ -184,6 +185,7 @@ Route::get('/permiso-denegado', function () {
     Route::get('/Webmaster/perfil/modificar-contraseña', [PerfilWebmasterController::class, 'modificar_contraseña']);
     Route::post('/Webmaster/perfil/modificar-contraseña/{email}', [PerfilWebmasterController::class, 'confirmar_contraseña']);
     Route::post('/validar-contraseña-actual-Webmaster', [PerfilWebmasterController::class, 'validarContraseñaActual']);
+    Route::get('/Webmaster/sobre-nosotros',[PerfilWebmasterController::class, 'about']);
 
     //Tablas de webMaster-CRUD
     Route::get('/Webmaster/habitaciones', [HabitacionesWebmasterController::class, 'listarHabitaciones']);

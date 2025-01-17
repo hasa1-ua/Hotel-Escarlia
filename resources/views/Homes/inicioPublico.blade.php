@@ -101,9 +101,16 @@
 </style>
 <div class="hero-section">
         <div class="hero-content">
-            <h1 class="titulo">Bienvenido a Hotel Escarlia</h1>
+            @if ($user)
+                <h1 class="titulo">Bienvenido a Hotel Escarlia</h1>
+                <h1 class="titulo">{{ $user->nombre_usuario }}</h1>
+            @else
+                <h1 class="titulo">Bienvenido a Hotel Escarlia</h1>
+            @endif
             <p>Disfruta de una experiencia única y lujosa en el corazón de la ciudad.</p>
-            <a href="/register" class="btn btn-primary">Regístrate</a>
+            @unless ($user)
+                <a href="/register" class="btn btn-primary">Regístrate</a>
+            @endif
         </div>
     </div>
 
