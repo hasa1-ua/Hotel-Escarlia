@@ -91,7 +91,7 @@
 }
 
 .button2{
-    width: 100px;
+  width: 100px;
   height: 60px;
   background: #840705;
   color: #C3BB38;
@@ -157,11 +157,9 @@
                     {{ $habitacion->disponible ? 'Bloquear' : 'Desbloquear' }}
                 </button>
             </form>
+            <a href="{{ route('recepcionista.reservar.form', ['tipoid' => $habitacion->tipo->id, 'id' => $habitacion->id]) }}" class="button1">Reservar</a>
         </div>
 
-    <div class="margen2">
-        <a href="{{ route('recepcionista.reservar.form', ['tipoid' => $habitacion->tipo->id, 'id' => $habitacion->id]) }}" class="button1">Reservar</a>
-        </div>
     </div>
 
 </div>

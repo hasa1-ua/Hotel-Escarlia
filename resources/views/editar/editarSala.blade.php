@@ -83,6 +83,7 @@
     max-width: 750px;
     overflow: hidden;
     margin-top: -480px;
+    max-height: 500px;
     margin-left: 600px;
     float: left;
     border-radius: 15px;

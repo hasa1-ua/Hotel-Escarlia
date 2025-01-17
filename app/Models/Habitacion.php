@@ -29,6 +29,11 @@ class Habitacion extends Model
         return $this->hasMany(Reserva::class, 'recurso_id')->where('tipo_reserva', 'Habitación');
     }
 
+    public function fotos()
+    {
+        return $this->hasMany(Foto::class, 'habitacion_id');
+    }
+
     // Getters
 
     public function getId()

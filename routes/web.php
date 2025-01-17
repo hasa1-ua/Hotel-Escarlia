@@ -27,6 +27,7 @@ use App\Http\Controllers\SobreNosotrosController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PublicoController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\HabitacionesUsuarioNoRegController;
 use App\Models\User;
 
 
@@ -50,7 +51,8 @@ Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/Publico/fotos', [PublicoController::class, 'getFotosPublico']);
-Route::get('/Publico/habitaciones',[PublicoController::class, 'getTipoHabitacion']);
+Route::get('/Publico/habitaciones',[HabitacionesUsuarioNoRegController::class, 'getTipoHabitacion']);
+Route::get('/Publico/habitaciones/{tipoid}/{id}',[HabitacionesUsuarioNoRegController::class, 'getHabitacionDetalle'])->name('usuarionoreg.habitacion.detalle');
 Route::get('/Publico/salas-de-conferencia',[SalaUsuarioNoRegController::class, 'getTipoSala']);
 Route::get('/Publico/salas-de-conferencia/{tipoid}/{id}',[descripcionSalaUsuarioNoRegController::class, 'getSalaUsuario'])->name('descripcion.sala.publico');
 Route::get('/Publico/sobre-nosotros',[PublicoController::class, 'about']);
@@ -194,6 +196,7 @@ Route::get('/permiso-denegado', function () {
     Route::get('/Webmaster/habitaciones/editar/{id}', [HabitacionesWebmasterController::class, 'editarHabitacion']);
     Route::put('/Webmaster/habitaciones/editar/{id}', [HabitacionesWebmasterController::class, 'actualizarHabitacion'])->name('habitaciones.actualizar');
     Route::delete('/Webmaster/habitaciones/{id}', [HabitacionesWebmasterController::class, 'deleteHabitacion']);
+    Route::delete('/Webmaster/habitaciones/editar/{id}', [HabitacionesWebmasterController::class, 'deleteImagen'])->name('habitacion.eliminarImagen');
 
 }); 
 

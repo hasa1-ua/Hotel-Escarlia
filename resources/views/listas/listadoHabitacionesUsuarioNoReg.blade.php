@@ -1,4 +1,4 @@
-@extends('layoutUsuario')
+@extends('layoutPublico')
 
 @section('contenido')
 
@@ -80,7 +80,7 @@ img {
 <h3 class="titulo">Habitaciones</h3>
 
 @foreach($tipo_habitaciones as $tipohabitacion)
-    <div class="casilla" onclick="window.location.href='/Usuario/habitaciones/{{$tipohabitacion->id}}/{{$tipohabitacion->habitaciones()->first()->id}}';">
+    <div class="casilla" onclick="window.location.href='/Publico/habitaciones/{{$tipohabitacion->id}}/{{$tipohabitacion->habitaciones()->first()->id}}';">
         <div class="image">
             <img src="{{ asset($tipohabitacion->img) }}" alt="Imagen de {{ $tipohabitacion->nombre }}">
         </div>

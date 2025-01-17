@@ -7,12 +7,12 @@ use App\Models\TipoHabitacion;
 use App\Models\Habitacion;
 use Illuminate\Http\Request;
 
-class HabitacionesUsuarioController extends Controller
+class HabitacionesUsuarioNoRegController extends Controller
 {
     public function getTipoHabitacion()
     {
         $tiposhabitaciones = TipoHabitacion::all();
-        return view('listas.listadoHabitacionesUsuario', ['tipo_habitaciones' => $tiposhabitaciones]);
+        return view('listas.listadoHabitacionesUsuarioNoReg', ['tipo_habitaciones' => $tiposhabitaciones]);
     }
 
     public function getHabitacionDetalle($tipoid, $id)
@@ -37,7 +37,7 @@ class HabitacionesUsuarioController extends Controller
 
         $fotos = Foto::where('habitacion_id', $habitacion->id)->get();
 
-        return view('descripciones.descripcionHabitacionUsuario', [
+        return view('descripciones.descripcionHabitacionUsuarioNoReg', [
             'habitacion' => $habitacion,
             'nextHabitacion' => $nextHabitacion,
             'previousHabitacion' => $previousHabitacion,

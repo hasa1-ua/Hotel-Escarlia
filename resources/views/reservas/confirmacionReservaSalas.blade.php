@@ -45,9 +45,9 @@ h3, p {
     <h1>¡Gracias por reservar una de nuestras salas!</h1>
     <h3>Aquí tienes un resumen de tu reserva:</h3>
 
-    <p><strong>Nombre de la Sala:</strong> {{ $reserva->sala->getNombre() }}</p>
+    <p><strong>Nombre de la Sala:</strong> {{ $sala->nombre }}</p>
     <p><strong>Coordinador:</strong> {{ $reserva->user->name ?? 'Sin asignar' }}</p>
-    <p><strong>Aforo:</strong> {{ $reserva->sala->tipoSala->aforo }}</p>
+    <p><strong>Aforo:</strong> {{ $sala->tipoSala->aforo }}</p>
 
     <p><strong>Fecha de Inicio:</strong> {{ \Carbon\Carbon::parse($reserva->fecha_inicio)->format('d/m/Y') }}</p>
     <p><strong>Fecha de Fin:</strong> {{ \Carbon\Carbon::parse($reserva->fecha_fin)->format('d/m/Y') }}</p>
@@ -56,7 +56,7 @@ h3, p {
     <p><em>Recibirá un comprobante de su reserva en su correo electrónico.</em></p>
 
     <div class="button-container">
-        <a href="{{ route('usuario.salas-de-conferencia') }}" class="button1">Volver a Salas</a>
+        <button onclick="window.location.href='/Usuario/salas-de-conferencia';" class="button1">Volver a Salas</button>
     </div>
 </div>
 

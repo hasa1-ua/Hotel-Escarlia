@@ -89,11 +89,12 @@ class ReservaController extends Controller
             'fecha_fin' => 'required|date|after:fecha_inicio',
         ]);
 
-        $sala = Sala::findOrFail($sala_id);
+        $sala = Sala::with('tipoSala')->findOrFail($sala_id);
         $dias = now()->parse($request->fecha_inicio)->diffInDays(now()->parse($request->fecha_fin));
         $precio_total = $dias * $sala->tipoSala->precio;
 
         $reserva = Reserva::create([
+            'usuario_id' => auth()->id(),
             'sala_id' => $sala->id,
             'fecha_inicio' => $request->fecha_inicio,
             'fecha_fin' => $request->fecha_fin,
@@ -101,7 +102,7 @@ class ReservaController extends Controller
             'precio_total' => $precio_total,
         ]);
 
-        return view('reservas.confirmacionReservaSalas', compact('reserva'));
+        return view('reservas.confirmacionReservaSalas', compact('reserva', 'sala'));
     }
 
 

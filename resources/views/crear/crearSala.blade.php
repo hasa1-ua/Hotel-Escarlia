@@ -155,7 +155,7 @@ button {
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="precio">Disponible*:</label>
+            <label class="letras1" for="disponible">Disponible*:</label>
             <select class="celda" id="disponible" name="disponible">
                 <option value="1" {{ $salas->disponible ? 'selected' : '' }}>Sí</option>
                 <option value="0" {{ !$salas->disponible ? 'selected' : '' }}>No</option>

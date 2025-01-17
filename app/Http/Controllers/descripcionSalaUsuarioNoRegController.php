@@ -14,7 +14,12 @@ class descripcionSalaUsuarioNoRegController extends Controller{
         //Escoge todos los IDs de sala
         $sala = Sala::selectidbytype($id);
 
+        if($sala == null){
+            $sala = Sala::selectidbytype($id+1);
+        }
+
         $salasMismoTipo = Sala::where('tipo_sala_id', $sala->tipo_sala_id)
+            ->where('disponible', true)
             ->orderBy('id')
             ->get();
 

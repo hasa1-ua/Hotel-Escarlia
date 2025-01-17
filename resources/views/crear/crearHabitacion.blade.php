@@ -124,22 +124,22 @@ button {
         @csrf
 
         <div class="form-group">
-            <label class="letras1" for="numero">Número de Habitación:</label>
-            <input class="celda" type="number" id="numero" name="numero" placeholder="Ej: 101" required>
+            <label class="letras1" for="numero">Número de Habitación*:</label>
+            <input class="celda" type="number" id="numero" name="numero" value="{{ $habitacion->numero }}" required>
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="planta">Planta:</label>
-            <input class="celda" type="number" id="planta" name="planta" placeholder="Ej: 1" required>
+            <label class="letras1" for="planta">Planta*:</label>
+            <input class="celda" type="number" id="planta" name="planta" value="{{ $habitacion->planta }}" required>
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="vistas">Vistas:</label>
-            <input class="celda" type="text" id="vistas" name="vistas" placeholder="Ej: Vista al jardín">
+            <label class="letras1" for="vistas">Vistas*:</label>
+            <input class="celda" type="text" id="vistas" name="vistas" value="{{ $habitacion->vistas }}">
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="tipo_id">Tipo de Habitación:</label>
+            <label class="letras1" for="tipo_id">Tipo de Habitación*:</label>
             <select class="celda" id="tipo_id" name="tipo_id" required>
                 <option value="" disabled selected>Seleccionar tipo...</option>
                 @foreach($tiposHabitacion as $tipo)
@@ -149,23 +149,52 @@ button {
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="disponible">Disponible:</label>
+            <label class="letras1" for="disponible">Disponible*:</label>
             <select class="celda" id="disponible" name="disponible">
-                <option value="1">Sí</option>
-                <option value="0">No</option>
+                <option value="1" {{ $habitacion->disponible ? 'selected' : '' }}>Sí</option>
+                <option value="0" {{ !$habitacion->disponible ? 'selected' : '' }}>No</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label class="letras1" for="img">Imagen:</label>
-            <div class="custom-file-container">
-                <button type="button" class="custom-file-button">Subir Imagen</button>
-                <input type="file" id="img" name="img">
+            <label class="letras1" for="imagenes" style="display: block;">Imágenes de la Habitacion*:</label>
+            <div class="custom-file-container" style="display: block;">
+              <button type="button" style=" margin-left: 20px;" class="custom-file-button">Subir Imagen</button>
+              <input style="margin-top: 10px;" class="celda" type="file" id="imagenes" name="imagenes[]" multiple accept="image/*" onchange="mostrarNombres()">
+              <div id="lista-imagenes" style="margin-top: 10px; color: #C3BB38; font-family: 'Solitreo'; font-size: 20px;"></div>
             </div>
         </div>
 
-        <button type="submit" class="button-1">Crear Habitación</button>
+        <button type="submit" class="button-1">Crear</button>
     </form>
 </div>
+
+<script>
+ function mostrarNombres() {
+    const input = document.getElementById('imagenes');
+    const lista = document.getElementById('lista-imagenes');
+    
+    // Limpiar el contenido actual
+    lista.innerHTML = '';
+
+    // Obtener los archivos seleccionados
+    const archivos = input.files;
+
+    // Crear una lista de nombres
+    if (archivos.length > 0) {
+        const ul = document.createElement('ul');
+        for (const archivo of archivos) {
+            const li = document.createElement('li');
+            li.textContent = archivo.name; // Mostrar solo el nombre del archivo
+            ul.appendChild(li);
+        }
+        lista.appendChild(ul);
+    } else {
+        lista.textContent = 'No se ha seleccionado ninguna imagen.';
+    }
+}
+
+
+</script>
 
 @endsection
